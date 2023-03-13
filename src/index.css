@@ -1,0 +1,8 @@
+.root {
+  max-width: 1400px;
+  min-width: 500px;
+  min-height: 822px;
+  position: relative;
+  margin: 0 auto;
+  border: solid blue;
+}
