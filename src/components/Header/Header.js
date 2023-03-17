@@ -7,16 +7,6 @@ function Header() {
   return (
     <>
       <div className="header__container">
-        {/* <img className="header__logo" src={HeaderLogo} alt="headerlogo" />
-        <div className="header__date">{currentDate}</div>
-
-        <button className="header__button">+ Add clothes</button>
-        <h4 className="header__username">Jared Girvan</h4>
-        <img
-          className="header__userAvatar"
-          src={userAvatar}
-          alt="User Avatar"
-        /> */}
         <img
           className="header__userAvatar"
           src={userAvatar}
