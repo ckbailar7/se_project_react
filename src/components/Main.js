@@ -1,5 +1,5 @@
-import WeatherCard from "../WeatherCard/WeatherCard";
-import ItemCard from "../ItemCard/ItemCard";
+import WeatherCard from "./WeatherCard";
+import ItemCard from "./ItemCard";
 
 function Main() {
   return (
