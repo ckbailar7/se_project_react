@@ -6,17 +6,23 @@ import currentDate from "../utils/constants";
 function Header() {
   return (
     <>
-      <div className="header__container">
-        <img
-          className="header__userAvatar"
-          src={userAvatar}
-          alt="User Avatar"
-        />
-        <h4 className="header__username">Jared Girvan</h4>
-        <button className="header__button">+ Add clothes</button>
-        <div className="header__date">{currentDate}</div>
-        <img className="header__logo" src={HeaderLogo} alt="headerlogo" />
-      </div>
+      <header className="header">
+        <div className="header__logo">
+          <div>
+            <img src={HeaderLogo} alt="logo"></img>
+          </div>
+          <div>Date{/* <p>{currentDate}</p> */}</div>
+        </div>
+        <div className="header__avatar-logo">
+          <div>
+            <button>Add New Clothes</button>
+          </div>
+          <div>Name</div>
+          <div>
+            <img src={userAvatar} alt="avatar"></img>
+          </div>
+        </div>
+      </header>
     </>
   );
 }
