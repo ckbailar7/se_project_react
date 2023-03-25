@@ -15,7 +15,7 @@ function Main({ weatherTemp, onSelectCard }) {
       return "cold";
     }
   }, [weatherTemp]);
-  console.log(weatherType);
+  //console.log(weatherType);
   return (
     <main className="main">
       <WeatherCard day={true} type={"Sunny-Storm"} weatherTemp={weatherTemp} />

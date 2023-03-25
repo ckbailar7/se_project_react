@@ -77,7 +77,7 @@ const weatherOptions = [
 ];
 
 const WeatherCard = ({ day, type, weatherTemp = 0 }) => {
-  console.log("weather Card");
+  //console.log("weather Card");
   const imgSrc = weatherOptions.filter((i) => {
     return i.day === day && i.type === type;
   });
