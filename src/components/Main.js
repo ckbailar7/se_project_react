@@ -5,7 +5,7 @@ import "../blocks/App.css";
 function Main() {
   return (
     <main className="main">
-      <WeatherCard />
+      <WeatherCard day={true} type={"Sunny-Fog"} />
       <ItemCard />
     </main>
   );

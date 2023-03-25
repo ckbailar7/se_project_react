@@ -1,76 +1,98 @@
-import SunnyImage from "../images/Sunny/Sunny.svg";
 import "../blocks/WeatherCard.css";
+import Night from "../images/Night/Night.svg";
+import NightCloudy from "../images/Night/Night-Cloudy.svg";
+import NightRain from "../images/Night/Night-Rain.svg";
+import NightStorm from "../images/Night/Night-Storm.svg";
+import NightSnow from "../images/Night/Night-Snow.svg";
+import NightFog from "../images/Night/Night-Fog.svg";
+
+import Sunny from "../images/Sunny/Sunny.svg";
+import SunnyCloudy from "../images/Sunny/Sunny-Cloudy.svg";
+import SunnyRain from "../images/Sunny/Sunny-Rain.svg";
+import SunnyStorm from "../images/Sunny/Sunny-Storm.svg";
+import SunnySnow from "../images/Sunny/Sunny-Snow.svg";
+import SunnyFog from "../images/Sunny/Sunny-Fog.svg";
 
 const weatherOptions = [
   {
-    url: "../images/Sunny/Sunny.svg",
+    url: Sunny,
     day: true,
-    type: "sunny",
+    type: "Sunny",
   },
   {
-    url: "../images/Sunny/Sunny-Cloudy.svg",
+    url: SunnyCloudy,
     day: true,
-    type: "sunny",
+    type: "Sunny-Cloudy",
   },
   {
-    url: "../images/Sunny/Sunny-Rain.svg",
+    url: SunnyRain,
     day: true,
-    type: "sunny",
+    type: "Sunny-Rain",
   },
   {
-    url: "../images/Sunny/Sunny-Storm.svg",
+    url: SunnyStorm,
     day: true,
-    type: "sunny",
+    type: "Sunny-Storm",
   },
   {
-    url: "../images/Sunny/Sunny-Snow.svg",
+    url: SunnySnow,
     day: true,
-    type: "sunny",
+    type: "Sunny-Snow",
   },
   {
-    url: "../images/Sunny/Sunny-Fog.svg",
+    url: SunnyFog,
     day: true,
-    type: "sunny",
+    type: "Sunny-Fog",
   },
   {
-    url: "../images/Night/Night.svg",
-    day: true,
+    url: Night,
+    day: false,
     type: "Night",
   },
   {
-    url: "../images/Night/Night-Cloudy.svg",
-    day: true,
-    type: "Night",
+    url: NightCloudy,
+    day: false,
+    type: "Night-Cloudy",
   },
   {
-    url: "../images/Night/Night-Rain.svg",
-    day: true,
-    type: "Night",
+    url: NightRain,
+    day: false,
+    type: "Night-Rain",
   },
   {
-    url: "../images/Night/Night-Storm.svg",
-    day: true,
-    type: "Night",
+    url: NightStorm,
+    day: false,
+    type: "Night-Storm",
   },
   {
-    url: "../images/Night/Night-Snow.svg",
-    day: true,
-    type: "Night",
+    url: NightSnow,
+    day: false,
+    type: "Night-Snow",
   },
   {
-    url: "../images/Night/Sunny-Fog.svg",
-    day: true,
-    type: "sunny",
+    url: NightFog,
+    day: false,
+    type: "Night-Fog",
   },
 ];
 
-function WeatherCard() {
+function WeatherCard({ day, type }) {
+  console.log("weather Card");
+  const imgSrc = weatherOptions.filter((i) => {
+    console.log(i);
+    return i.day === day && i.type === type;
+  });
+
+  console.log(imgSrc);
+  console.log(imgSrc[0].url);
+
+  const imageSrcUrl = imgSrc[0].url || "";
   return (
     <>
       <section className="weather" id="weather">
         <div className="weather_info">65F</div>
 
-        <img src={SunnyImage} className="weather_image"></img>
+        <img src={imageSrcUrl} className="weather_image" alt="weather"></img>
       </section>
       <section id="card-section">CardSection</section>
     </>
