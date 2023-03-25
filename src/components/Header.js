@@ -3,7 +3,7 @@ import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import currentDate from "../utils/constants";
 
-function Header() {
+const Header = ({ onCreateModal }) => {
   return (
     <>
       <header className="header">
@@ -15,7 +15,7 @@ function Header() {
         </div>
         <div className="header__avatar-logo">
           <div>
-            <button>Add New Clothes</button>
+            <button onClick={onCreateModal}>Add New Clothes</button>
           </div>
           <div>Name</div>
           <div>
@@ -25,6 +25,6 @@ function Header() {
       </header>
     </>
   );
-}
+};
 
 export default Header;

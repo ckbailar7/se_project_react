@@ -21,17 +21,41 @@
 
 // export default weatherApi;
 
-export const getLocalWeather = (options, APIkey) => {
-  const latitude = options.latitude;
-  const longitude = options.longitude;
+//https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}
 
-  return fetch(
+// export const getLocalWeather = (options, APIkey) => {
+//   const latitude = options.latitude;
+//   const longitude = options.longitude;
+
+//   return fetch(
+//     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
+//   ).then((res) => {
+//     if (res.ok) {
+//       res.json();
+//     } else {
+//       Promise.reject(`Error: ${res.status}`);
+//     }
+//   });
+// };
+const latitude = 38.9072;
+const longitude = 77.0369;
+const APIkey = "a897cb667f85da5c2b7bbe2afde79165";
+
+export const getForecastWeather = () => {
+  const weatherApi = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then((res) => {
-    if (res.ok) {
-      res.json();
-    } else {
-      Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  )
+    .then((res) => {
+      console.log(res);
+      if (res.ok) {
+        res.json();
+      } else {
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    })
+    .then((res) => {
+      console.log(res);
+    });
+
+  return weatherApi;
 };

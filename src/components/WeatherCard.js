@@ -76,16 +76,11 @@ const weatherOptions = [
   },
 ];
 
-function WeatherCard({ day, type, weatherTemp }) {
+const WeatherCard = ({ day, type, weatherTemp = 0 }) => {
   console.log("weather Card");
   const imgSrc = weatherOptions.filter((i) => {
-    //console.log(i);
     return i.day === day && i.type === type;
   });
-
-  //console.log(imgSrc);
-  //console.log(imgSrc[0].url);
-
   const imageSrcUrl = imgSrc[0].url || "";
   return (
     <>
@@ -96,6 +91,6 @@ function WeatherCard({ day, type, weatherTemp }) {
       </section>
     </>
   );
-}
+};
 
 export default WeatherCard;
