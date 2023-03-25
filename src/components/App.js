@@ -3,16 +3,17 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
-import SunnyImage from "../images/Sunny/Sunny.svg";
 import "../blocks/App.css";
 
 function App() {
+  const weatherTemp = "75°F";
+
   return (
     <>
       <Header />
-      <Main />
+      <Main weatherTemp={weatherTemp} />
       <Footer />
-      <ModalWithForm />
+      <ModalWithForm title="New Garment">These Are the children</ModalWithForm>
       <ItemModal />
     </>
   );
