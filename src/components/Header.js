@@ -3,7 +3,7 @@ import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import currentDate from "../utils/constants";
 
-const Header = ({ onCreateModal }) => {
+const Header = ({ onCreateModal, currentLocation }) => {
   return (
     <>
       <header className="header">
@@ -11,7 +11,12 @@ const Header = ({ onCreateModal }) => {
           <div>
             <img src={HeaderLogo} alt="logo"></img>
           </div>
-          <div>Date{/* <p>{currentDate}</p> */}</div>
+          <div>
+            <p>{currentDate},</p>
+          </div>
+          <div>
+            <p>{currentLocation}</p>
+          </div>
         </div>
         <div className="header__avatar-logo">
           <div>

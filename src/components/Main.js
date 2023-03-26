@@ -18,14 +18,14 @@ function Main({ weatherTemp, onSelectCard }) {
   console.log(weatherType);
 
   const filteredCards = defaultClothingItems.filter((item) => {
-    console.log(item);
+    //console.log(item);
     return item.weather.toLowerCase() === weatherType;
   });
 
-  console.log(filteredCards);
+  //console.log(filteredCards);
   return (
     <main className="main">
-      <WeatherCard day={true} type={"Sunny-Storm"} weatherTemp={weatherTemp} />
+      <WeatherCard day={true} type={"Sunny"} weatherTemp={weatherTemp} />
       <section className="card__section" id="card-section">
         Today is {weatherTemp} / You may want to wear:
         <div className="card__items">
