@@ -11,7 +11,7 @@ function App() {
   const weatherTemp = "75°F";
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  // const [temp, setTemp] = useState(0);
+  const [temp, setTemp] = useState(0);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -26,18 +26,26 @@ function App() {
     setSelectedCard(card);
   };
 
+  // useEffect(() => {
+  //   getForecastWeather().then((data) => {
+  //     console.log(data);
+  //   });
+  // }, []);
+
   useEffect(() => {
     getForecastWeather().then((data) => {
-      //console.log(data);
-      parseWeatherData(data);
+      const tempreture = parseWeatherData(data);
+      console.log(tempreture);
+      setTemp(tempreture);
     });
   }, []);
 
-  //console.log(selectedCard);
+  console.log(temp);
+
   return (
     <div>
       <Header onCreateModal={handleCreateModal} />
-      <Main onSelectCard={handleSelectedCard} weatherTemp={weatherTemp} />
+      <Main onSelectCard={handleSelectedCard} weatherTemp={temp} />
       <Footer />
 
       {activeModal === "create" && (
