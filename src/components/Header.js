@@ -11,12 +11,13 @@ const Header = ({ onCreateModal, currentLocation }) => {
           <div>
             <img src={HeaderLogo} alt="logo"></img>
           </div>
-          <div>
+          <div className="header__logo-date">
             <p>{currentDate},</p>
-          </div>
-          <div>
             <p>{currentLocation}</p>
           </div>
+          {/* <div>
+            <p>{currentLocation}</p>
+          </div> */}
         </div>
         <div className="header__avatar-logo">
           <div>

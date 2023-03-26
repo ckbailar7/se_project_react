@@ -41,3 +41,7 @@
   font-family: "Cabinet Grotesk semi";
   cursor: pointer;
 }
+
+.header__logo-date {
+  display: flex;
+}
