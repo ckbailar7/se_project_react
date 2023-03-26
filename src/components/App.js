@@ -26,21 +26,12 @@ function App() {
     setSelectedCard(card);
   };
 
-  // useEffect(() => {
-  //   getForecastWeather().then((data) => {
-  //     console.log(data);
-  //   });
-  // }, []);
-
   useEffect(() => {
     getForecastWeather().then((data) => {
       const tempreture = parseWeatherData(data);
-      console.log(tempreture);
       setTemp(tempreture);
     });
   }, []);
-
-  console.log(temp);
 
   return (
     <div>

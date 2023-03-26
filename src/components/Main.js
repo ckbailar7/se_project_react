@@ -23,7 +23,6 @@ function Main({ weatherTemp, onSelectCard }) {
         Today is {weatherTemp} / You may want to wear:
         <div className="card__items">
           {defaultClothingItems.map((data) => (
-            //console.log(data);
             <ItemCard data={data} onSelectCard={onSelectCard} />
           ))}
         </div>

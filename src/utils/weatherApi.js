@@ -12,23 +12,11 @@ export const getForecastWeather = () => {
       return Promise.reject(`Error: ${res.status}`);
     }
   });
-  // .then((res) => {
-  //   parseWeatherData(res);
-  // });
-
   return weatherApi;
 };
 
 export const parseWeatherData = (data) => {
-  // const main = data.main;
-  // const tempreture = main && main.temp;
-  // console.log(Math.ceil(tempreture));
-  // return Math.ceil(tempreture);
-  //console.log(data);
-
   const main = data.main;
-  //console.log(main);
   const tempreture = main && main.temp;
-  console.log(Math.ceil(tempreture));
   return Math.ceil(tempreture);
 };
