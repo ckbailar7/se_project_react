@@ -12,7 +12,6 @@ import {
 } from "../utils/weatherApi";
 
 function App() {
-  const weatherTemp = "75°F";
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
@@ -62,29 +61,41 @@ function App() {
             <label className="modalWithForm__name">
               Name
               <input
+                className="modalWithForm__name-input"
                 type="name"
                 name="name"
                 minLength="1"
                 maxLength="30"
+                placeholder="Name"
               ></input>
             </label>
             <label className="modalWithForm__image">
               Image
               <input
+                className="modalWithForm__image-input"
                 type="url"
                 name="link"
                 minLength="1"
                 maxLength="30"
+                placeholder="Image URL"
               ></input>
             </label>
-            <p>Select the Weather Type:</p>
+            <p className="modalWithForm__SelectText">
+              Select the Weather Type:
+            </p>
             <div className="modalWithForm__radio-Btns__container">
-              <input type="radio" id="hot" value="hot"></input>
-              <label>Hot</label>
-              <input type="radio" id="warm" value="warm"></input>
-              <label>Warm</label>
-              <input type="radio" id="cold" value="cold"></input>
-              <label>Cold</label>
+              <div>
+                <input type="radio" id="hot" value="hot"></input>
+                <label>Hot</label>
+              </div>
+              <div>
+                <input type="radio" id="warm" value="warm"></input>
+                <label>Warm</label>
+              </div>
+              <div>
+                <input type="radio" id="cold" value="cold"></input>
+                <label>Cold</label>
+              </div>
             </div>
           </div>
         </ModalWithForm>

@@ -19,13 +19,28 @@
 }
 
 .card__name {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Cabinet Grotesk semi";
   text-align: center;
+  display: flex;
+  position: absolute;
+  top: 15px;
+  left: 116px;
+  min-height: 24px;
+  min-width: 54px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  pointer-events: none;
+  padding: 2px 12px 2px 12px;
 }
 
 .card__image {
   width: 328px;
   height: 328px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .card__items {
@@ -34,4 +49,8 @@
   gap: 20px;
   justify-content: center;
   margin-top: 20px;
+}
+
+.card__items-imgContainer {
+  position: relative;
 }

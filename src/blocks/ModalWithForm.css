@@ -31,7 +31,7 @@
   max-width: 496px;
   width: 100%;
   border-radius: 20px;
-  padding: 23px 31px 36px 28px;
+  padding: 28px 31px 36px 28px;
 }
 .modal__content-Item_close,
 .modal__content-button {
@@ -43,7 +43,7 @@
   height: 20px;
   opacity: 100%;
   border: none;
-  top: -15px;
+  top: -20px;
   right: -20px;
   background-color: transparent;
   float: right;
@@ -54,7 +54,7 @@
   margin: 0;
   font-size: 16px;
   font-family: "Cabinet Grotesk medium";
-  padding-bottom: 24px;
+  /* padding-bottom: 24px; */
 }
 
 .modal__content-form {
@@ -65,16 +65,23 @@
 .modalWithForm {
   display: flex;
   flex-direction: column;
+  font-family: "Cabinet Grotesk medium";
 }
 
 .modalWithForm__name {
   display: flex;
   flex-direction: column;
+  margin-top: 24px;
+  max-width: 440px;
+  min-height: 52px;
 }
 
 .modalWithForm__image {
   display: flex;
   flex-direction: column;
+  margin-top: 24px;
+  max-width: 440px;
+  min-height: 52px;
 }
 
 .modalWithForm__radio-Btns__container {
@@ -82,7 +89,37 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 8px;
+  font-family: "Cabinet Grotesk medium";
 }
 
 .modalWithForm__radio-Btns {
+}
+
+.modalWithForm__name-input {
+  margin-top: 8px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.modalWithForm__image-input {
+  margin-top: 8px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.modalWithForm__SelectText {
+  margin: 24px 0 12px 0;
+  font-family: "Cabinet Grotesk medium";
+}
+
+.modal__content-submitBtn {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 124px;
+  height: 36px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: "Cabinet Grotesk medium";
 }
