@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "Cabinet Grotesk Bold";
+  src: url("/src/fonts/HankenGrotesk-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk semi";
+  src: url("/src/fonts/HankenGrotesk-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk medium";
+  src: url("/src/fonts/HankenGrotesk-Medium.ttf");
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -9,11 +24,65 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 .modal__content {
+  /* display: flex;
+  flex-direction: column; */
   background-color: white;
   max-width: 496px;
   width: 100%;
   border-radius: 20px;
-  padding: 34px 36px;
+  padding: 23px 31px 36px 28px;
+}
+.modal__content-Item_close,
+.modal__content-button {
+  position: relative;
+  background-image: url("../images/Unioncloseclose.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  opacity: 100%;
+  border: none;
+  top: -15px;
+  right: -20px;
+  background-color: transparent;
+  float: right;
+  cursor: pointer;
+}
+
+.modal__content-title {
+  margin: 0;
+  font-size: 16px;
+  font-family: "Cabinet Grotesk medium";
+  padding-bottom: 24px;
+}
+
+.modal__content-form {
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+.modalWithForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalWithForm__name {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalWithForm__image {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalWithForm__radio-Btns__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.modalWithForm__radio-Btns {
 }
