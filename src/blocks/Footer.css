@@ -1,6 +1,22 @@
+@font-face {
+  font-family: "Cabinet Grotesk Bold";
+  src: url("/src/fonts/HankenGrotesk-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk semi";
+  src: url("/src/fonts/HankenGrotesk-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk medium";
+  src: url("/src/fonts/HankenGrotesk-Medium.ttf");
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  padding: 0 20px;
+  margin-top: 237px;
+  padding: 0 42px 20px 16px;
+  font-family: "Cabinet Grotesk medium";
 }

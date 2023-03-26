@@ -1,16 +1,27 @@
+@font-face {
+  font-family: "Cabinet Grotesk semi";
+  src: url("/src/fonts/HankenGrotesk-SemiBold.ttf");
+}
+
 .weather {
   position: relative;
 }
 
 .weather_info {
   position: absolute;
-  top: 12px;
+  display: flex;
+  top: 14px;
   left: 16px;
   color: #fff;
   font-size: 26px;
   max-height: 40px;
+  font-family: "Cabinet Grotesk semi";
+}
+.weather_info-temp {
+  display: block;
 }
 
 .weather_image {
   width: 100%;
+  max-height: 80px;
 }

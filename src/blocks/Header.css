@@ -1,7 +1,18 @@
 @font-face {
+  font-family: "Cabinet Grotesk Bold";
+  src: url("/src/fonts/HankenGrotesk-Bold.ttf");
+}
+
+@font-face {
   font-family: "Cabinet Grotesk semi";
   src: url("/src/fonts/HankenGrotesk-SemiBold.ttf");
 }
+
+@font-face {
+  font-family: "Cabinet Grotesk medium";
+  src: url("/src/fonts/HankenGrotesk-Medium.ttf");
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -14,10 +25,18 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  font-family: "Cabinet Grotesk semi";
 }
 
 .header__avatar-logo {
+  font-family: "Cabinet Grotesk semi";
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+.header__avatar-logo_button {
+  background-color: transparent;
+  border: none;
+  font-family: "Cabinet Grotesk semi";
 }
