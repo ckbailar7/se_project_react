@@ -1,7 +1,12 @@
 const ItemModal = ({ selectedCard, onClose }) => {
   return (
-    <div className={`modal`}>
-      <div className="modal__content">
+    <div onClick={onClose} className={`modal`}>
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="modal__content"
+      >
         <button
           className="modal__content-Item_close"
           type="button"

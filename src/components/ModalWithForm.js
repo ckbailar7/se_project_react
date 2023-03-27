@@ -9,8 +9,13 @@ function ModalWithForm({
 }) {
   console.log("Logging ModalWithForm");
   return (
-    <div className={`modal modal_type_${name}`}>
-      <div className="modal__content">
+    <div onClick={onClose} className={`modal modal_type_${name}`}>
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="modal__content"
+      >
         <button
           className="modal__content-button"
           type="button"
