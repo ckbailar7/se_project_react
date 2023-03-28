@@ -9,14 +9,24 @@ const ItemModal = ({ selectedCard, onClose }) => {
         }}
         className="modal__content modal__content-Item-Modal"
       >
-        <button
-          className="modal__content-Item_close"
-          type="button"
-          onClick={onClose}
-        ></button>
         <div className="modal__content-flex">
-          <img className="modal__content-flex-img" src={selectedCard.link} />
-          <div>{selectedCard.name}</div>
+          <button
+            className="modal__content-Item_close"
+            type="button"
+            onClick={onClose}
+          ></button>
+          <div className="modal__content-flex-img_container">
+            <div>
+              <img
+                className="modal__content-flex-img"
+                src={selectedCard.link}
+              />
+            </div>
+            <div className="modal__content-flex-img-name">
+              {selectedCard.name}
+            </div>
+          </div>
+
           <div>Weather: {selectedCard.weather}</div>
         </div>
       </div>

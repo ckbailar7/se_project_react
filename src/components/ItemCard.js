@@ -2,6 +2,7 @@ import "../blocks/ItemCard.css";
 
 const ItemCard = ({ data, onSelectCard }) => {
   return (
+    //Parent Class = <div className="card__items">
     <div className="card__items-imgContainer">
       <div>
         <img

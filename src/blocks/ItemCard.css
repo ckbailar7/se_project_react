@@ -18,6 +18,25 @@
   font-family: "Cabinet Grotesk semi";
 }
 
+.card__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card__items-imgContainer {
+  position: relative;
+}
+
+.card__image {
+  width: 328px;
+  height: 328px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .card__name {
   color: rgba(0, 0, 0, 0.6);
   font-family: "Cabinet Grotesk semi";
@@ -34,23 +53,4 @@
   cursor: pointer;
   pointer-events: none;
   padding: 2px 12px 2px 12px;
-}
-
-.card__image {
-  width: 328px;
-  height: 328px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.card__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.card__items-imgContainer {
-  position: relative;
 }
