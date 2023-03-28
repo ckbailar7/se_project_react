@@ -11,7 +11,7 @@ const ItemModal = ({ selectedCard, onClose }) => {
       >
         <div className="modal__content-flex">
           <button
-            className="modal__content-Item_close"
+            className="modal__content-Item_close "
             type="button"
             onClick={onClose}
           ></button>
@@ -25,9 +25,10 @@ const ItemModal = ({ selectedCard, onClose }) => {
             <div className="modal__content-flex-img-name">
               {selectedCard.name}
             </div>
+            <div className="modal__content-flex-card-weather">
+              Weather: {selectedCard.weather}
+            </div>
           </div>
-
-          <div>Weather: {selectedCard.weather}</div>
         </div>
       </div>
     </div>

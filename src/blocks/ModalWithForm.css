@@ -33,7 +33,7 @@
   border-radius: 20px;
   padding: 28px 31px 36px 28px;
 }
-.modal__content-Item_close,
+
 .modal__content-button {
   position: relative;
   background-image: url("../images/Unioncloseclose.svg");

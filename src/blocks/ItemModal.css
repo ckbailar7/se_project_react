@@ -1,8 +1,40 @@
-@media screen and (min-width: 430px) and (max-width: 1350px) {
+@font-face {
+  font-family: "Cabinet Grotesk Bold";
+  src: url("/src/fonts/HankenGrotesk-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk semi";
+  src: url("/src/fonts/HankenGrotesk-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk medium";
+  src: url("/src/fonts/HankenGrotesk-Medium.ttf");
+}
+
+@media screen and (min-width: 300px) and (max-width: 1350px) {
   .modal__content-Item-Modal {
     display: flex;
     max-width: 670px;
     max-height: 368px;
+    flex-direction: column-reverse;
+  }
+
+  .modal__content-Item_close {
+    position: relative;
+    background-image: url("../images/Unioncloseclose.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    opacity: 100%;
+    border: none;
+    top: -20px;
+    right: -337px;
+    background-color: transparent;
+    float: right;
+    cursor: pointer;
   }
 
   .modal__content-flex {
@@ -22,6 +54,7 @@
   }
 
   .modal__content-flex-img-name {
+    font-family: "Cabinet Grotesk semi";
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
     display: flex;
@@ -36,4 +69,29 @@
     cursor: pointer;
     padding: 2px 12px 2px 12px;
   }
+
+  .modal__content-flex-card-weather {
+    font-family: "Cabinet Grotesk semi";
+    padding-left: 28px;
+  }
+}
+
+.modal__content-flex {
+  display: block;
+}
+
+.modal__content-Item_close {
+  position: relative;
+  background-image: url("../images/Unioncloseclose.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  opacity: 100%;
+  border: none;
+  top: -20px;
+  right: -20px;
+  background-color: transparent;
+  float: right;
+  cursor: pointer;
 }
