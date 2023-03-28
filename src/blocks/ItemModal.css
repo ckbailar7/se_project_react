@@ -1,0 +1,13 @@
+@media screen and (min-width: 430px) and (max-width: 1350px) {
+  .modal__content-Item-Modal {
+    display: flex;
+    max-width: 670px;
+    max-height: 368px;
+  }
+
+  .modal__content-flex-img {
+    max-width: 325px;
+    max-height: 328px;
+    border-radius: 10px;
+  }
+}

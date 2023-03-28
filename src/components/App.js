@@ -44,7 +44,7 @@ function App() {
     });
   });
 
-  console.log(currentLocation);
+  //console.log(currentLocation);
 
   return (
     <div>
