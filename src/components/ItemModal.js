@@ -1,6 +1,6 @@
 import "../blocks/ItemModal.css";
 
-const ItemModal = ({ selectedCard, onClose }) => {
+const ItemModal = ({ selectedCard, onClose, handleEscKeyDown }) => {
   return (
     <div onClick={onClose} className={`modal`}>
       <div
@@ -9,13 +9,16 @@ const ItemModal = ({ selectedCard, onClose }) => {
         }}
         className="modal__content modal__content-Item-Modal"
       >
-        <div className="modal__content-flex">
+        <div onKeyDown={handleEscKeyDown} className="modal__content-flex">
           <button
             className="modal__content-Item_close "
             type="button"
             onClick={onClose}
           ></button>
-          <div className="modal__content-flex-img_container">
+          <div
+            onKeyDown={handleEscKeyDown}
+            className="modal__content-flex-img_container"
+          >
             <div>
               <img
                 className="modal__content-flex-img"

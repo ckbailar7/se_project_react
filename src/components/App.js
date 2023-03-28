@@ -10,6 +10,10 @@ import {
   parseWeatherData,
   parseWeatherDataName,
 } from "../utils/weatherApi";
+// import { localSelectors } from "../utils/constants";
+
+const root = document.querySelector("#root");
+const containerSelector = root.querySelectorAll("#content__container");
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -44,10 +48,27 @@ function App() {
     });
   });
 
+  useEffect(() => {
+    root.addEventListener("keydown", detectKeyPress, true);
+  }, []);
+
+  const detectKeyPress = (e) => {
+    console.log("Clicked Key", e.key);
+    if (e.key === "Escape") {
+      console.log("ESCESCESCESC");
+      handleCloseModal();
+    }
+  };
+  // const handleEscListener = (e) => {
+  //   if (e.keyCode === "escape") {
+  //     console.log("Hellow from esc");
+  //   }
+  // };
+
   //console.log(currentLocation);
 
   return (
-    <div>
+    <div id="content__container">
       <Header
         onCreateModal={handleCreateModal}
         currentLocation={currentLocation}
@@ -56,7 +77,11 @@ function App() {
       <Footer />
 
       {activeModal === "create" && (
-        <ModalWithForm title="New Garment" onClose={handleCloseModal}>
+        <ModalWithForm
+          handleEscKeyDown={detectKeyPress}
+          title="New Garment"
+          onClose={handleCloseModal}
+        >
           <div className="modalWithForm">
             <label className="modalWithForm__name">
               Name
@@ -101,7 +126,11 @@ function App() {
         </ModalWithForm>
       )}
       {activeModal === "preview" && (
-        <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+        <ItemModal
+          handleEscKeyDown={detectKeyPress}
+          selectedCard={selectedCard}
+          onClose={handleCloseModal}
+        />
       )}
     </div>
   );

@@ -17,10 +17,12 @@
 
 // export default currentDate;
 //WashingtonDC Coordinates
+
 export const localSelectors = {
   latitude: "38.9072",
   longitude: "77.0369",
   APIkey: "a897cb667f85da5c2b7bbe2afde79165",
+  modalSelector: document.querySelector(".modal"),
 };
 
 const currentDate = new Date().toLocaleString("default", {
