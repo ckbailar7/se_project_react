@@ -1,6 +1,7 @@
 import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
 import "../blocks/App.css";
+import "../blocks/Main.css";
 import "../blocks/ItemCard.css";
 import { defaultClothingItems } from "../utils/constants.js";
 import { useMemo } from "react";
