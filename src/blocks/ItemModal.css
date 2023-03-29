@@ -1,16 +1,16 @@
 @font-face {
   font-family: "Cabinet Grotesk Bold";
-  src: url("/src/fonts/HankenGrotesk-Bold.ttf");
+  src: url("/src/vendor/fonts/HankenGrotesk-Bold.ttf");
 }
 
 @font-face {
   font-family: "Cabinet Grotesk semi";
-  src: url("/src/fonts/HankenGrotesk-SemiBold.ttf");
+  src: url("/src/vendor/fonts/HankenGrotesk-SemiBold.ttf");
 }
 
 @font-face {
   font-family: "Cabinet Grotesk medium";
-  src: url("/src/fonts/HankenGrotesk-Medium.ttf");
+  src: url("/src/vendor/fonts/HankenGrotesk-Medium.ttf");
 }
 
 @media screen and (min-width: 300px) and (max-width: 1350px) {
