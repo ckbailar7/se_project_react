@@ -1,15 +1,8 @@
 import "../blocks/ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose, handleEscKeyDown }) => {
-  console.log("Logging from Item Modal");
   return (
-    <div
-      id="modal"
-      onKeyDown={handleEscKeyDown}
-      onClick={onClose}
-      className={`modal`}
-      tabIndex="-1"
-    >
+    <div id="modal" onClick={onClose} className={`modal`} tabIndex="-1">
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -21,11 +14,12 @@ const ItemModal = ({ selectedCard, onClose, handleEscKeyDown }) => {
             className="modal__content-Item_close "
             type="button"
             onClick={onClose}
-          ></button>
+          />
           <div className="modal__content-flex-img_container">
             <div>
               <img
                 className="modal__content-flex-img"
+                alt="Selected Card Preview"
                 src={selectedCard.link}
               />
             </div>

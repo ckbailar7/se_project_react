@@ -6,16 +6,9 @@ function ModalWithForm({
   title,
   onClose,
   name,
-  handleEscKeyDown,
 }) {
-  console.log("Logging ModalWithForm");
   return (
-    <div
-      onKeyDown={handleEscKeyDown}
-      id="modal"
-      onClick={onClose}
-      className={`modal modal_type_${name}`}
-    >
+    <div id="modal" onClick={onClose} className={`modal modal_type_${name}`}>
       <div
         onClick={(e) => {
           e.stopPropagation();

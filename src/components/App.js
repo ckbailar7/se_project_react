@@ -10,10 +10,6 @@ import {
   parseWeatherData,
   parseWeatherDataName,
 } from "../utils/weatherApi";
-// import { localSelectors } from "../utils/constants";
-
-const root = document.querySelector("#root");
-const containerSelector = root.querySelectorAll("#content__container");
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -35,37 +31,30 @@ function App() {
   };
 
   useEffect(() => {
-    getForecastWeather().then((data) => {
-      const tempreture = parseWeatherData(data);
-      setTemp(tempreture);
-    });
-  }, []);
-
-  useEffect(() => {
-    getForecastWeather().then((data) => {
-      const currentLocation = parseWeatherDataName(data);
-      setCurrentLocation(currentLocation);
-    });
+    getForecastWeather()
+      .then((data) => {
+        const currentLocation = parseWeatherDataName(data);
+        setCurrentLocation(currentLocation);
+        const tempreture = parseWeatherData(data);
+        setTemp(tempreture);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   useEffect(() => {
-    root.addEventListener("keydown", detectKeyPress, true);
-  }, []);
+    const closeByEscape = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
 
-  const detectKeyPress = (e) => {
-    console.log("Clicked Key", e.key);
-    if (e.key === "Escape") {
-      console.log("ESCESCESCESC");
-      handleCloseModal();
-    }
-  };
-  // const handleEscListener = (e) => {
-  //   if (e.keyCode === "escape") {
-  //     console.log("Hellow from esc");
-  //   }
-  // };
-
-  //console.log(currentLocation);
+    document.addEventListener("keydown", closeByEscape);
+    return () => {
+      document.removeEventListener("keydown", closeByEscape);
+    };
+  });
 
   return (
     <div id="content__container">
@@ -77,11 +66,7 @@ function App() {
       <Footer />
 
       {activeModal === "create" && (
-        <ModalWithForm
-          handleEscKeyDown={detectKeyPress}
-          title="New Garment"
-          onClose={handleCloseModal}
-        >
+        <ModalWithForm title="New Garment" onClose={handleCloseModal}>
           <div className="modalWithForm">
             <label className="modalWithForm__name">
               Name
@@ -126,11 +111,7 @@ function App() {
         </ModalWithForm>
       )}
       {activeModal === "preview" && (
-        <ItemModal
-          handleEscKeyDown={detectKeyPress}
-          selectedCard={selectedCard}
-          onClose={handleCloseModal}
-        />
+        <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
       )}
     </div>
   );
