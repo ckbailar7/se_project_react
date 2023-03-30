@@ -54,7 +54,7 @@ function App() {
     return () => {
       document.removeEventListener("keydown", closeByEscape);
     };
-  });
+  }, []);
 
   return (
     <div id="content__container">
