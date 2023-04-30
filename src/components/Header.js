@@ -2,8 +2,12 @@ import HeaderLogo from "../images/wtwrlogologo.svg";
 import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import currentDate from "../utils/constants";
+import ToggleSwitch from "./ToggleSwitch";
+// import Switch from "./Switch";
+import { useState } from "react";
 
 const Header = ({ onCreateModal, currentLocation }) => {
+  const [value, setValue] = useState(false);
   return (
     <header className="header">
       <div className="header__logo">
@@ -14,11 +18,18 @@ const Header = ({ onCreateModal, currentLocation }) => {
           <p>{currentDate}, </p>
           <p>{currentLocation}</p>
         </div>
-        {/* <div>
-            <p>{currentLocation}</p>
-          </div> */}
       </div>
       <div className="header__avatar-logo">
+        <ToggleSwitch
+          onColor="#3683d0"
+          isOn={value}
+          handleToggle={() => setValue(!value)}
+        />
+        {/* <Switch
+          onColor="#3683d0"
+          isOn={value}
+          handleToggle={() => setValue(!value)}
+        /> */}
         <div>
           <button
             className="header__avatar-logo_button"

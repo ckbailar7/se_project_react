@@ -20,11 +20,28 @@ export const getForecastWeather = () => {
 };
 
 export const parseWeatherData = (data) => {
+  const weather = {
+    temperature: {
+      F: "",
+      C: "",
+    },
+  };
   const main = data.main;
-  // const name = data.name;
-  // //console.log(name);
-  const tempreture = main && main.temp;
-  return Math.ceil(tempreture);
+  const temperature = main && main.temp;
+
+  weather.temperature.F = `${Math.round(data.main.temp)}°F`;
+  weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
+  console.log("Weather in Fahrenheit");
+  console.log(weather.temperature.F);
+  console.log("Weather in Calcius");
+  console.log(weather.temperature.C);
+
+  return Math.ceil(weather.temperature.F);
+};
+
+export const parseWeaterDataCelcius = (data) => {
+  console.log("Weather Data from Celcius Parse >>>");
+  console.log(data);
 };
 
 export const parseWeatherDataName = (data) => {
