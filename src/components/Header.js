@@ -3,10 +3,15 @@ import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import currentDate from "../utils/constants";
 import ToggleSwitch from "./ToggleSwitch";
-// import Switch from "./Switch";
+import Switch from "./Switch";
 import { useState } from "react";
 
-const Header = ({ onCreateModal, currentLocation }) => {
+const Header = ({
+  onCreateModal,
+  currentLocation,
+  currentTemp,
+  handleToggleSwitchChange,
+}) => {
   const [value, setValue] = useState(false);
   return (
     <header className="header">
@@ -20,16 +25,20 @@ const Header = ({ onCreateModal, currentLocation }) => {
         </div>
       </div>
       <div className="header__avatar-logo">
-        <ToggleSwitch
+        {/* <ToggleSwitch
+          currentTemp={currentTemp}
           onColor="#3683d0"
           isOn={value}
           handleToggle={() => setValue(!value)}
-        />
-        {/* <Switch
-          onColor="#3683d0"
-          isOn={value}
-          handleToggle={() => setValue(!value)}
+          handleToggleSwitchChange={handleToggleSwitchChange}
         /> */}
+        <Switch
+          onColor="#3683d0"
+          isOn={value}
+          handleToggle={() => setValue(!value)}
+          currentTemp={currentTemp}
+          handleToggleSwitchChange={handleToggleSwitchChange}
+        />
         <div>
           <button
             className="header__avatar-logo_button"

@@ -85,8 +85,13 @@ function App() {
         <Header
           onCreateModal={handleCreateModal}
           currentLocation={currentLocation}
+          currentTemp={temp}
+          handleToggleSwitchChange={handleToggleSwitchChange}
         />
-        <Main onSelectCard={handleSelectedCard} weatherTemp={temp} />
+        <Main
+          onSelectCard={handleSelectedCard}
+          weatherTemp={currentTemperatureUnit}
+        />
         <Footer />
 
         {activeModal === "create" && (
