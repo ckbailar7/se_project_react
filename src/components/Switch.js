@@ -33,7 +33,7 @@ const Switch = ({
         className="react-switch-label"
         htmlFor={`react-switch-new`}
       >
-        <span className={`react-switch-button`} />
+        F<span className={`react-switch-button`} />C
       </label>
     </div>
   );

@@ -25,13 +25,6 @@ const Header = ({
         </div>
       </div>
       <div className="header__avatar-logo">
-        {/* <ToggleSwitch
-          currentTemp={currentTemp}
-          onColor="#3683d0"
-          isOn={value}
-          handleToggle={() => setValue(!value)}
-          handleToggleSwitchChange={handleToggleSwitchChange}
-        /> */}
         <Switch
           onColor="#3683d0"
           isOn={value}

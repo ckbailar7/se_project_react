@@ -26,7 +26,7 @@
   height: 45px;
   border-radius: 45px;
   transition: 0.2s;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }
 
