@@ -1,3 +1,5 @@
+//Before Submission uncomment line 45 to enable useEffect for
+
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -9,7 +11,7 @@ import {
   getForecastWeather,
   parseWeatherData,
   parseWeatherDataName,
-  parseWeaterDataCelcius,
+  //parseWeaterDataCelcius,
 } from "../utils/weatherApi";
 
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
@@ -45,13 +47,20 @@ function App() {
       .then((data) => {
         const currentLocation = parseWeatherDataName(data);
         setCurrentLocation(currentLocation);
-        const temperature = parseWeatherData(data);
-        setTemp(temperature);
+        // const temperature = parseWeatherData(data);
+        const weatherData = parseWeatherData(data);
+        //setTemp(temperature);
+        //console.log(temperature);
+        //console.log(weatherData);
+        setTemp(weatherData.temperature[currentTemperatureUnit]);
+        return weatherData;
       })
       .catch((error) => {
         console.log(error);
       });
   });
+  //console.log("weather Data:");
+  //console.log(weatherData);
 
   // useEffect(() => {
   //   getForecastWeather()
@@ -76,6 +85,8 @@ function App() {
       document.removeEventListener("keydown", closeByEscape);
     };
   }, []);
+  //console.log("Hello from App.js");
+  //console.log(temp);
 
   return (
     <div id="content__container">
@@ -91,6 +102,8 @@ function App() {
         <Main
           onSelectCard={handleSelectedCard}
           weatherTemp={currentTemperatureUnit}
+          currentTemp={temp}
+          //datadata={weatherData}
         />
         <Footer />
 

@@ -12,6 +12,8 @@ import SunnyRain from "../images/Sunny/Sunny-Rain.svg";
 import SunnyStorm from "../images/Sunny/Sunny-Storm.svg";
 import SunnySnow from "../images/Sunny/Sunny-Snow.svg";
 import SunnyFog from "../images/Sunny/Sunny-Fog.svg";
+//import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
+//import { useContext } from "react";
 
 const weatherOptions = [
   {
@@ -76,8 +78,12 @@ const weatherOptions = [
   },
 ];
 
-const WeatherCard = ({ day, type, weatherTemp = 0 }) => {
+const WeatherCard = ({ day, type, weatherTemp = 0, currentTemp }) => {
   //console.log("weather Card");
+  //console.log(" From WeatherCard.js");
+  //console.log(currentTemp);
+  //const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   const imgSrc = weatherOptions.filter((i) => {
     return i.day === day && i.type === type;
   });
@@ -85,7 +91,7 @@ const WeatherCard = ({ day, type, weatherTemp = 0 }) => {
   return (
     <>
       <section className="weather" id="weather">
-        <div className="weather_info">{weatherTemp}</div>
+        <div className="weather_info">{currentTemp}</div>
 
         <img src={imageSrcUrl} className="weather_image" alt="weather"></img>
       </section>

@@ -28,15 +28,15 @@ export const parseWeatherData = (data) => {
   };
   const main = data.main;
   const temperature = main && main.temp;
+  const weatherData = weather;
 
   weather.temperature.F = `${Math.round(data.main.temp)}°F`;
   weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
-  console.log("Weather in Fahrenheit");
-  console.log(weather.temperature.F);
-  console.log("Weather in Calcius");
-  console.log(weather.temperature.C);
-
-  return Math.ceil(weather.temperature.F);
+  // console.log("Weather in Fahrenheit");
+  // console.log(weather.temperature.F);
+  // console.log("Weather in Calcius");
+  // console.log(weather.temperature.C);
+  return weatherData;
 };
 
 export const parseWeaterDataCelcius = (data) => {
