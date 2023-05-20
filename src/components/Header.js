@@ -5,6 +5,7 @@ import currentDate from "../utils/constants";
 import ToggleSwitch from "./ToggleSwitch";
 import Switch from "./Switch";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = ({
   onCreateModal,
@@ -17,7 +18,9 @@ const Header = ({
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={HeaderLogo} alt="logo"></img>
+          <Link to="/">
+            <img src={HeaderLogo} alt="logo"></img>
+          </Link>
         </div>
         <div className="header__logo-date">
           <p>{currentDate}, </p>

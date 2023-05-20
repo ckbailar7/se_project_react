@@ -5,6 +5,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
+import Profile from "./Profile";
 import "../blocks/App.css";
 import { useState, useEffect } from "react";
 import {
@@ -13,6 +14,7 @@ import {
   parseWeatherDataName,
   //parseWeaterDataCelcius,
 } from "../utils/weatherApi";
+import { Route } from "react-router-dom";
 
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
@@ -99,12 +101,17 @@ function App() {
           currentTemp={temp}
           handleToggleSwitchChange={handleToggleSwitchChange}
         />
-        <Main
-          onSelectCard={handleSelectedCard}
-          weatherTemp={currentTemperatureUnit}
-          currentTemp={temp}
-          //datadata={weatherData}
-        />
+        <Route path="/">
+          <Main
+            onSelectCard={handleSelectedCard}
+            weatherTemp={currentTemperatureUnit}
+            currentTemp={temp}
+            //datadata={weatherData}
+          />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
         <Footer />
 
         {activeModal === "create" && (
