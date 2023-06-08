@@ -8,23 +8,28 @@ import { useMemo } from "react";
 
 function Main({ weatherTemp, onSelectCard, currentTemp, weatherData }) {
   const weatherType = useMemo(() => {
-    if (weatherTemp >= 82) {
+    if (currentTemp >= 82) {
       return "hot";
-    } else if (weatherTemp >= 66 && weatherTemp <= 81) {
+    } else if (currentTemp >= 66 && currentTemp <= 81) {
       return "warm";
-    } else if (weatherTemp <= 65) {
+    } else if (currentTemp <= 65) {
       return "cold";
     }
-  }, [weatherTemp]);
-  //console.log(weatherType);
+  }, [currentTemp]);
+  console.log(weatherType);
+  console.log(weatherTemp);
+  console.log(currentTemp);
+  console.log(weatherData);
 
   const filteredCards = defaultClothingItems.filter((item) => {
     //console.log(item);
     return item.weather.toLowerCase() === weatherType;
   });
+  console.log(filteredCards);
   //console.log("Hello from Main");
   //console.log(currentTemp);
-  //console.log(filteredCards);
+  //console.log(filteredCards.map);
+
   return (
     <main id="0" className="main">
       <WeatherCard

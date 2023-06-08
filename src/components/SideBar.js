@@ -1,11 +1,14 @@
 import userAvatar from "../images/userAvatar.png";
+import "../blocks/Header.css";
 
 const SideBar = () => {
   return (
     <>
-      <div>Jared Girvan</div>
-      <div>
-        <img src={userAvatar} alt="avatar"></img>
+      <div className="header__logo">
+        <div>Jared Girvan</div>
+        <div>
+          <img src={userAvatar} alt="avatar"></img>
+        </div>
       </div>
     </>
   );

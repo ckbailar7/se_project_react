@@ -78,7 +78,7 @@ const weatherOptions = [
   },
 ];
 
-const WeatherCard = ({ day, type, weatherTemp = 0, currentTemp }) => {
+const WeatherCard = ({ day, type, weatherTemp, currentTemp }) => {
   //console.log("weather Card");
   //console.log(" From WeatherCard.js");
   //console.log(currentTemp);

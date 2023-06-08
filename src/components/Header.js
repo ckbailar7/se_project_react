@@ -2,10 +2,9 @@ import HeaderLogo from "../images/wtwrlogologo.svg";
 import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import currentDate from "../utils/constants";
-import ToggleSwitch from "./ToggleSwitch";
 import Switch from "./Switch";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = ({
   onCreateModal,
@@ -18,9 +17,9 @@ const Header = ({
     <header className="header">
       <div className="header__logo">
         <div>
-          <Link to="/">
+          <NavLink exact to="/">
             <img src={HeaderLogo} alt="logo"></img>
-          </Link>
+          </NavLink>
         </div>
         <div className="header__logo-date">
           <p>{currentDate}, </p>
@@ -43,10 +42,14 @@ const Header = ({
             +Add New Clothes
           </button>
         </div>
-        <div>Jared Girvan</div>
-        <div>
-          <img src={userAvatar} alt="avatar"></img>
-        </div>
+        <NavLink exact to="/profile">
+          <div className="header__logo">
+            <div>Jared Girvan</div>
+            <div>
+              <img src={userAvatar} alt="avatar"></img>
+            </div>
+          </div>
+        </NavLink>
       </div>
     </header>
   );

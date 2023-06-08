@@ -1,6 +1,8 @@
+import React from "react";
 import "../blocks/ItemCard.css";
+console.log("Hello from ItemCard.js ");
 
-const ItemCard = ({ data, onSelectCard }) => {
+function ItemCard({ data, onSelectCard }) {
   return (
     //Parent Class = <div className="card__items">
     <div className="card__items-imgContainer">
@@ -15,6 +17,6 @@ const ItemCard = ({ data, onSelectCard }) => {
       <div className="card__name">{data.name}</div>
     </div>
   );
-};
+}
 
 export default ItemCard;

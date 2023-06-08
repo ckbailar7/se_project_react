@@ -34,6 +34,7 @@
   width: 328px;
   height: 328px;
   border-radius: 10px;
+  border: solid black;
   cursor: pointer;
 }
 
