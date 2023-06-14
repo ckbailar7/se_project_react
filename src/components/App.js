@@ -1,5 +1,3 @@
-//Before Submission uncomment line 45 to enable useEffect for
-
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -52,32 +50,20 @@ function App() {
       .then((data) => {
         const currentLocation = parseWeatherDataName(data);
         setCurrentLocation(currentLocation);
-        // const temperature = parseWeatherData(data);
         const weatherData = parseWeatherData(data);
-        //setTemp(temperature);
-        //console.log(temperature);
-        //console.log(weatherData);
-        setTemp(weatherData.temperature[currentTemperatureUnit]);
+        const weatherString = weatherData.temperature[currentTemperatureUnit];
+        const newWeatherData = parseInt(weatherString);
+        console.log(`newWeatherData`, newWeatherData);
+        //console.log(`weatherString`, weatherString);
+        setTemp(newWeatherData);
+        //setTemp(60);
 
-        return weatherData;
+        return newWeatherData;
       })
       .catch((error) => {
         console.log(error);
       });
   });
-  //console.log("weather Data:");
-  //console.log(weatherData);
-
-  // useEffect(() => {
-  //   getForecastWeather()
-  //     .then((data) => {
-  //       const celciusData = parseWeaterDataCelcius(data);
-  //       console.log(celciusData);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // });
 
   useEffect(() => {
     const closeByEscape = (e) => {
@@ -93,7 +79,7 @@ function App() {
   }, []);
   //console.log("Hello from App.js");
   //console.log(temp);
-
+  // Important Variables : temp, currentTemperatureUnit
   return (
     <div id="content__container">
       <CurrentTemperatureUnitContext.Provider
@@ -110,8 +96,6 @@ function App() {
             onSelectCard={handleSelectedCard}
             weatherTemp={currentTemperatureUnit}
             currentTemp={temp}
-            //datadata={weatherData}
-            //data={temp}
           />
         </Route>
         <Route path="/profile">

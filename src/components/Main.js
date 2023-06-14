@@ -4,28 +4,64 @@ import "../blocks/App.css";
 import "../blocks/Main.css";
 import "../blocks/ItemCard.css";
 import { defaultClothingItems } from "../utils/constants.js";
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, currentTemp, weatherData }) {
+function Main({ weatherTemp, onSelectCard, currentTemp }) {
+  //const { CurrentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  //const { currentTemperatureUnit } = useContext(weatherTemp);
+
+  console.log(`CurrentTemperatureUnit`, weatherTemp);
+
+  const checkWeatherTempDegreeFar = useMemo(() => {
+    if (weatherTemp === "F") {
+      console.log(`checkWeatherTempDegreeFar .... ` + "true");
+      return true;
+    } else {
+      console.log(`checkWeatherTempDegreeFar .... ` + "false");
+      return false;
+    }
+  }, [weatherTemp]);
+
+  //const newTemp = currentTemp?.[weatherTemp] || 999;
+
+  const newTemp = currentTemp;
+  const newCelTempTemp = (currentTemp - 32) * 0.556;
+  console.log(`newCelTempTemp ... `, newCelTempTemp);
   const weatherType = useMemo(() => {
-    if (currentTemp >= 82) {
+    if (
+      (newTemp >= 82 && weatherTemp === "F") ||
+      (newTemp >= 28 && weatherTemp === "C")
+    ) {
       return "hot";
-    } else if (currentTemp >= 66 && currentTemp <= 81) {
+    } else if (
+      (newTemp >= 66 && weatherTemp === "F") ||
+      (newTemp >= 19 &&
+        weatherTemp === "C" &&
+        newTemp <= 81 &&
+        weatherTemp === "F") ||
+      (newTemp <= 27 && weatherTemp === "F")
+    ) {
       return "warm";
-    } else if (currentTemp <= 65) {
+    } else if (
+      (newTemp <= 65 && weatherTemp === "F") ||
+      (newTemp <= 18 && weatherTemp === "F")
+    ) {
       return "cold";
     }
-  }, [currentTemp]);
-  console.log(weatherType);
-  console.log(weatherTemp);
-  console.log(currentTemp);
-  console.log(weatherData);
+  }, [newTemp]);
+  //console.log(`weatherType`, weatherType);
+  //console.log(`weatherTemp`, weatherTemp);
+  //console.log(`currentTemp2`, currentTemp);
+  console.log(`newTemp`, newTemp);
+  //console.log(`weatherData`, weatherData);
 
   const filteredCards = defaultClothingItems.filter((item) => {
     //console.log(item);
     return item.weather.toLowerCase() === weatherType;
   });
-  console.log(filteredCards);
+
+  console.log(`filteredCards`, filteredCards);
   //console.log("Hello from Main");
   //console.log(currentTemp);
   //console.log(filteredCards.map);
@@ -36,10 +72,11 @@ function Main({ weatherTemp, onSelectCard, currentTemp, weatherData }) {
         day={true}
         type={"Sunny-Cloudy"}
         weatherTemp={weatherTemp}
-        currentTemp={currentTemp}
+        currentTemp={newTemp}
       />
       <section className="card__section" id="card-section">
-        Today is {currentTemp} You may want to wear:
+        Today is {newTemp}
+        {weatherTemp} You may want to wear:
         <div className="card__items">
           {filteredCards.map((data) => (
             <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />

@@ -20,22 +20,27 @@ export const getForecastWeather = () => {
 };
 
 export const parseWeatherData = (data) => {
-  const weather = {
-    temperature: {
-      F: "",
-      C: "",
-    },
-  };
   const main = data.main;
   const temperature = main && main.temp;
+
+  //const newNewWeatherData = parseInt(weather.temperature);
+  const weather = {
+    temperature: {
+      F: Math.round(temperature),
+      C: Math.round(((temperature - 32) * 5) / 9),
+    },
+  };
   const weatherData = weather;
 
-  weather.temperature.F = `${Math.round(data.main.temp)}°F`;
-  weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
+  // weather.temperature.F = `${Math.round(data.main.temp)}°F`;
+  // weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
   // console.log("Weather in Fahrenheit");
   // console.log(weather.temperature.F);
   // console.log("Weather in Calcius");
   // console.log(weather.temperature.C);
+  //console.log("weather.temperature", weather.temperature);
+  console.log(`weatherData - parseWeatherData`, weatherData);
+  //onsole.log("newNewWeatherData - parseWeatherData", newNewWeatherData);
   return weatherData;
 };
 
