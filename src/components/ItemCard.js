@@ -1,6 +1,6 @@
 import React from "react";
 import "../blocks/ItemCard.css";
-console.log("Hello from ItemCard.js ");
+//console.log("Hello from ItemCard.js ");
 
 function ItemCard({ data, onSelectCard }) {
   return (

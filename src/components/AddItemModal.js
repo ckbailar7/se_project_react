@@ -1,35 +1,43 @@
 import "../blocks/AddItemModal.css";
 import ModalWithForm from "./ModalWithForm";
-import { useState } from "react";
-import React from "react";
+import { React, useState } from "react";
 
 // onAddItem refers to handleAddItemSubmit, which is declared in App.js
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   // declare state for each input field
-  // const [name, setName] = React.useState("");
-  // const [imageUrl, setImageUrl] = React.useState("");
-  // const [weather, setWeather] = React.useState("");
+  const [name, setName] = useState("");
+  const [link, setImageUrl] = useState("");
+  const [weather, setWeather] = useState("");
 
-  const setName = () => {
-    console.log("Hello from setName");
+  const handleNameChange = (e) => {
+    console.log(e.target.value);
+    setName(e.target.value);
   };
 
-  const handleSetImageUrl = () => {
-    console.log("Hello from handleSetImageUrl");
+  const handleSetImageUrl = (e) => {
+    console.log(e.target.value);
+    setImageUrl(e.target.value);
+  };
+  const handleWeatherChange = (e) => {
+    console.log(e.target.value);
+    setWeather(e.target.value);
   };
 
-  // use a useEffect hook to reset the input field state to empty strings when
-  // the modal is opened
-
-  // create onChange handlers corresponding to each state variable
-
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     //prevent Default behavior
     //call onAddItem with approppriate arguments
-  }
+    e.preventDefault();
+    onAddItem({ name, link, weather });
+    onCloseModal();
+  };
 
   return (
-    <ModalWithForm title="New Garment" onClose={onCloseModal}>
+    <ModalWithForm
+      title="New Garment"
+      onClose={onCloseModal}
+      isOpen={isOpen}
+      onSubmit={handleSubmit}
+    >
       <div className="modalWithForm">
         <label className="modalWithForm__name">
           Name
@@ -38,9 +46,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="name"
             name="name"
             minLength="1"
-            maxLength="30"
+            maxLength="300"
             placeholder="Name"
-            onChange={setName}
+            onChange={handleNameChange}
+            value={name}
           ></input>
         </label>
         <label className="modalWithForm__image">
@@ -50,23 +59,39 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="url"
             name="link"
             minLength="1"
-            maxLength="30"
+            maxLength="300"
             placeholder="Image URL"
+            value={link}
             onChange={handleSetImageUrl}
           ></input>
         </label>
         <p className="modalWithForm__SelectText">Select the Weather Type:</p>
         <div className="modalWithForm__radio-Btns__container">
           <div>
-            <input type="radio" id="hot" value="hot"></input>
+            <input
+              type="radio"
+              id="hot"
+              value="hot"
+              onChange={handleWeatherChange}
+            ></input>
             <label>Hot</label>
           </div>
           <div>
-            <input type="radio" id="warm" value="warm"></input>
+            <input
+              type="radio"
+              id="warm"
+              value="warm"
+              onChange={handleWeatherChange}
+            ></input>
             <label>Warm</label>
           </div>
           <div>
-            <input type="radio" id="cold" value="cold"></input>
+            <input
+              type="radio"
+              id="cold"
+              value="cold"
+              onChange={handleWeatherChange}
+            ></input>
             <label>Cold</label>
           </div>
         </div>

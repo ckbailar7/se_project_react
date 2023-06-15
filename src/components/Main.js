@@ -15,7 +15,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp }) {
 
   const checkWeatherTempDegreeFar = useMemo(() => {
     if (weatherTemp === "F") {
-      console.log(`checkWeatherTempDegreeFar .... ` + "true");
+      //console.log(`checkWeatherTempDegreeFar .... ` + "true");
       return true;
     } else {
       console.log(`checkWeatherTempDegreeFar .... ` + "false");
@@ -27,7 +27,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp }) {
 
   const newTemp = currentTemp;
   const newCelTempTemp = (currentTemp - 32) * 0.556;
-  console.log(`newCelTempTemp ... `, newCelTempTemp);
+  //console.log(`newCelTempTemp ... `, newCelTempTemp);
   const weatherType = useMemo(() => {
     if (
       (newTemp >= 82 && weatherTemp === "F") ||

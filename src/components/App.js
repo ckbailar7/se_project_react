@@ -5,6 +5,7 @@ import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
 import Profile from "./Profile";
 import AddItemModal from "./AddItemModal";
+import { defaultClothingItems } from "../utils/constants";
 import "../blocks/App.css";
 import { useState, useEffect } from "react";
 import {
@@ -43,6 +44,13 @@ function App() {
       : setCurrenTemperatureUnit("F");
   };
 
+  const onAddItem = (values) => {
+    console.log(values);
+    defaultClothingItems.unshift(values);
+    console.log(`defaultClothingItems ... `, defaultClothingItems);
+    return values;
+  };
+
   const handleAddItemSubmit = () => {};
 
   useEffect(() => {
@@ -77,9 +85,7 @@ function App() {
       document.removeEventListener("keydown", closeByEscape);
     };
   }, []);
-  //console.log("Hello from App.js");
-  //console.log(temp);
-  // Important Variables : temp, currentTemperatureUnit
+
   return (
     <div id="content__container">
       <CurrentTemperatureUnitContext.Provider
@@ -105,7 +111,8 @@ function App() {
         {activeModal === "create" && (
           <AddItemModal
             onCloseModal={handleCloseModal}
-            isOpen={handleCreateModal}
+            isOpen={activeModal === "create"}
+            onAddItem={onAddItem}
           />
         )}
 
