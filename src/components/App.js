@@ -15,8 +15,9 @@ import {
   //parseWeaterDataCelcius,
 } from "../utils/weatherApi";
 import { Route } from "react-router-dom";
-
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
+import "../utils/api";
+import api from "../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -24,6 +25,9 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentLocation, setCurrentLocation] = useState("");
   const [currentTemperatureUnit, setCurrenTemperatureUnit] = useState("F");
+  const [defaultClothingItemsArray, setDefaultClothingItemsArray] = useState(
+    []
+  );
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -47,11 +51,19 @@ function App() {
   const onAddItem = (values) => {
     console.log(values);
     defaultClothingItems.unshift(values);
+
     console.log(`defaultClothingItems ... `, defaultClothingItems);
     return values;
   };
 
-  const handleAddItemSubmit = () => {};
+  const handleDeleteSelectedItem = (values) => {
+    console.log(`hello from handleDeleteSelectedItem ... `);
+    console.log(values);
+  };
+
+  // const testTestTest = () => {
+  //   console.log(`Hello from testTestTest ...`);
+  // };
 
   useEffect(() => {
     getForecastWeather()
@@ -61,7 +73,7 @@ function App() {
         const weatherData = parseWeatherData(data);
         const weatherString = weatherData.temperature[currentTemperatureUnit];
         const newWeatherData = parseInt(weatherString);
-        console.log(`newWeatherData`, newWeatherData);
+        // console.log(`newWeatherData`, newWeatherData);
         //console.log(`weatherString`, weatherString);
         setTemp(newWeatherData);
         //setTemp(60);
@@ -86,6 +98,30 @@ function App() {
     };
   }, []);
 
+  //useEffect for api fetch requests
+  // useEffect(() => {
+  //   function getItems() {
+  //     api
+  //       .getClothingItems()
+  //       .then((data) => {
+  //         setDefaultClothingItemsArray(data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, []);
+
+  // console.log(
+  //   `Generated Cards from App UseSate([]) ... `,
+  //   defaultClothingItemsArray
+  // );
+
+  useEffect(() => {
+    function testResponse() {
+      api.handleInitialResponse();
+    }
+  });
   return (
     <div id="content__container">
       <CurrentTemperatureUnitContext.Provider
@@ -102,6 +138,7 @@ function App() {
             onSelectCard={handleSelectedCard}
             weatherTemp={currentTemperatureUnit}
             currentTemp={temp}
+            newGeneratedCards={defaultClothingItemsArray}
           />
         </Route>
         <Route path="/profile">
@@ -117,7 +154,11 @@ function App() {
         )}
 
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+          <ItemModal
+            selectedCard={selectedCard}
+            onClose={handleCloseModal}
+            onDelete={handleDeleteSelectedItem}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

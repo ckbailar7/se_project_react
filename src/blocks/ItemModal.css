@@ -95,3 +95,24 @@
   float: right;
   cursor: pointer;
 }
+
+.modal__content-flex-img_deleteBtn {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  left: -86px;
+  bottom: 13px;
+}
+
+.modal__content-flex-img_deleteBtn__button {
+  max-height: 20px;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 77, 0, 1);
+}
+
+@media screen and (min-width: 100px) and (max-width: 299px) {
+  .modal__content-flex-img_deleteBtn__button {
+    margin-left: 20px;
+  }
+}

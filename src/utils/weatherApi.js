@@ -39,7 +39,7 @@ export const parseWeatherData = (data) => {
   // console.log("Weather in Calcius");
   // console.log(weather.temperature.C);
   //console.log("weather.temperature", weather.temperature);
-  console.log(`weatherData - parseWeatherData`, weatherData);
+  // console.log(`weatherData - parseWeatherData`, weatherData);
   //onsole.log("newNewWeatherData - parseWeatherData", newNewWeatherData);
   return weatherData;
 };

@@ -1,23 +1,3 @@
-// import weatherApi from "./weatherApi";
-
-// const currentDate = new Date().toLocaleString("default", {
-//   month: "long",
-//   day: "numeric",
-// });
-// //WashingtonDC Coordinates
-// export const localSelectors = {
-//   latitude: "38.9072",
-//   longitude: "77.0369",
-//   APIkey: "a897cb667f85da5c2b7bbe2afde79165",
-// };
-
-// export const personalApi = new weatherApi({
-//   baseUrl: `https://api.openweathermap.org/data/2.5/weather?lat=${localSelectors.latitude}&lon=${localSelectors.longitude}&units=imperial&appid=${localSelectors.APIkey}`,
-// });
-
-// export default currentDate;
-//WashingtonDC Coordinates
-
 export const localSelectors = {
   latitude: "38.9072",
   longitude: "77.0369",
@@ -68,5 +48,13 @@ export const defaultClothingItems = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },
 ];
+
+//BaseUrl
+//Handle Initial Server Response(res)
+//Add Item = POST request ... double check back when learning about server side development
+const base_URL = "http://localhost:3001";
+
+//Add Items
+//GET https://localhost:3001/items
 
 export default currentDate;

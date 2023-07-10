@@ -7,11 +7,11 @@ import { defaultClothingItems } from "../utils/constants.js";
 import { useMemo, useContext } from "react";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, currentTemp }) {
+function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
   //const { CurrentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   //const { currentTemperatureUnit } = useContext(weatherTemp);
 
-  console.log(`CurrentTemperatureUnit`, weatherTemp);
+  // console.log(`CurrentTemperatureUnit`, weatherTemp);
 
   const checkWeatherTempDegreeFar = useMemo(() => {
     if (weatherTemp === "F") {
@@ -36,16 +36,14 @@ function Main({ weatherTemp, onSelectCard, currentTemp }) {
       return "hot";
     } else if (
       (newTemp >= 66 && weatherTemp === "F") ||
-      (newTemp >= 19 &&
-        weatherTemp === "C" &&
-        newTemp <= 81 &&
-        weatherTemp === "F") ||
-      (newTemp <= 27 && weatherTemp === "F")
+      (newTemp >= 19 && weatherTemp === "C") ||
+      (newTemp <= 81 && weatherTemp === "F") ||
+      (newTemp <= 27 && weatherTemp === "C")
     ) {
       return "warm";
     } else if (
       (newTemp <= 65 && weatherTemp === "F") ||
-      (newTemp <= 18 && weatherTemp === "F")
+      (newTemp <= 18 && weatherTemp === "C")
     ) {
       return "cold";
     }
@@ -53,15 +51,16 @@ function Main({ weatherTemp, onSelectCard, currentTemp }) {
   //console.log(`weatherType`, weatherType);
   //console.log(`weatherTemp`, weatherTemp);
   //console.log(`currentTemp2`, currentTemp);
-  console.log(`newTemp`, newTemp);
+  // console.log(`newTemp`, newTemp);
   //console.log(`weatherData`, weatherData);
+  // console.log(`New Generated Cards ... `, newGeneratedCards);
 
   const filteredCards = defaultClothingItems.filter((item) => {
     //console.log(item);
     return item.weather.toLowerCase() === weatherType;
   });
 
-  console.log(`filteredCards`, filteredCards);
+  // console.log(`filteredCards`, filteredCards);
   //console.log("Hello from Main");
   //console.log(currentTemp);
   //console.log(filteredCards.map);
