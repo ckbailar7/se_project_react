@@ -97,6 +97,9 @@ function App() {
       document.removeEventListener("keydown", closeByEscape);
     };
   }, []);
+  api.handleRequest(
+    "https://my-json-server.typicode.com/ckbailar7/se_project_react/items"
+  );
 
   //useEffect for api fetch requests
   // useEffect(() => {
@@ -117,11 +120,6 @@ function App() {
   //   defaultClothingItemsArray
   // );
 
-  useEffect(() => {
-    function testResponse() {
-      api.handleInitialResponse();
-    }
-  });
   return (
     <div id="content__container">
       <CurrentTemperatureUnitContext.Provider
