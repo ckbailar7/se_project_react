@@ -15,7 +15,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   };
 
   const handleSetImageUrl = (e) => {
-    console.log(e.target.value);
+    console.log(`ImageUrl ...`, e.target.value);
     setImageUrl(e.target.value);
   };
   const handleWeatherChange = (e) => {

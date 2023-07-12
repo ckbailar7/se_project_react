@@ -46,10 +46,19 @@ function handleRequest(url, options) {
 }
 
 function getItems() {
-  return handleRequest(`${base_URL}/items`, { method: "GET" });
+  return handleRequest(`${base_URL}/items`, {
+    method: "GET",
+  });
 }
 
-const api = { handleInitialResponse, handleRequest, getItems };
+function addNewItem({ name, imageUrl, weather }) {
+  return handleRequest(`${base_URL}/items`, {
+    method: "POST",
+    body: { name: name, imageUrl: imageUrl, weather: weather },
+  });
+}
+
+const api = { handleInitialResponse, handleRequest, getItems, addNewItem };
 
 export default api;
 

@@ -48,13 +48,19 @@ function App() {
       : setCurrenTemperatureUnit("F");
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
-    defaultClothingItemsArray.unshift(values);
+  const onAddItem = ({ name, imageUrl, weather }) => {
+    console.log({ name, imageUrl, weather });
+    //defaultClothingItemsArray.unshift(values);
 
-    console.log(`defaultClothingItems ... `, defaultClothingItemsArray);
-    setDefaultClothingItemsArray([...defaultClothingItemsArray], values);
-    return values;
+    //console.log(`defaultClothingItems ... `, defaultClothingItemsArray);
+    //setDefaultClothingItemsArray([...defaultClothingItemsArray], values);
+    //api.addNewItem(values);
+    setDefaultClothingItemsArray([
+      { name, imageUrl, weather },
+      ...defaultClothingItemsArray,
+    ]);
+    api.addNewItem({ name, imageUrl: imageUrl, weather });
+    return { name, imageUrl, weather };
   };
 
   const handleDeleteSelectedItem = (values) => {
