@@ -1,6 +1,6 @@
 import "../blocks/ItemModal.css";
 import { useState } from "react";
-import { defaultClothingItems } from "../utils/constants";
+//import { defaultClothingItems } from "../utils/constants";
 
 const ConfirmDeleteFormComponent = (selectedCard) => {
   // const [inputValue, setInputValue] = useState("");
@@ -11,17 +11,17 @@ const ConfirmDeleteFormComponent = (selectedCard) => {
   // });
   //console.log(filterDltArr);
 
-  const handleDeleteButtonClick = (e) => {
-    e.preventDefault();
-    console.log(`You clicked the delete button ...`);
-    console.log(`selectedCard ... `, selectedCard);
+  // const handleDeleteButtonClick = (e) => {
+  //   e.preventDefault();
+  //   console.log(`You clicked the delete button ...`);
+  //   console.log(`selectedCard ... `, selectedCard);
 
-    const newShallowArr = defaultClothingItems.filter((item) => {
-      return item._id === selectedCard.selectedCard._id;
-    });
-    console.log(`newShallowArr ... `, newShallowArr);
-    return newShallowArr;
-  };
+  //   const newShallowArr = defaultClothingItems.filter((item) => {
+  //     return item._id === selectedCard.selectedCard._id;
+  //   });
+  //   console.log(`newShallowArr ... `, newShallowArr);
+  //   return newShallowArr;
+  // };
 
   return (
     <form
@@ -32,7 +32,7 @@ const ConfirmDeleteFormComponent = (selectedCard) => {
       <button
         className="modal__content-flex-img_deleteBtn__button"
         type="submit"
-        onClick={handleDeleteButtonClick}
+        // onClick={handleDeleteButtonClick}
       >
         Delete item
       </button>

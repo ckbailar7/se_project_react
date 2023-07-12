@@ -22,7 +22,7 @@
 // export default api;
 
 export const base_URL =
-  "https://my-json-server.typicode.com/ckbailar7/se_project_react/items";
+  "https://my-json-server.typicode.com/ckbailar7/se_project_react";
 
 function handleInitialResponse(res) {
   return res.ok
@@ -35,6 +35,8 @@ function handleInitialResponse(res) {
 function handleRequest(url, options) {
   return fetch(url, options).then((res) => {
     console.log(res);
+    console.log(`Url ... `, url);
+    console.log(`Options...`, options);
     if (res.ok) {
       return res.json();
     } else {
@@ -43,7 +45,11 @@ function handleRequest(url, options) {
   });
 }
 
-const api = { handleInitialResponse, handleRequest };
+function getItems() {
+  return handleRequest(`${base_URL}/items`, { method: "GET" });
+}
+
+const api = { handleInitialResponse, handleRequest, getItems };
 
 export default api;
 

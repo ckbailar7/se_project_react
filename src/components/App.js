@@ -50,9 +50,9 @@ function App() {
 
   const onAddItem = (values) => {
     console.log(values);
-    defaultClothingItems.unshift(values);
+    defaultClothingItemsArray.unshift(values);
 
-    console.log(`defaultClothingItems ... `, defaultClothingItems);
+    console.log(`defaultClothingItems ... `, defaultClothingItemsArray);
     return values;
   };
 
@@ -97,9 +97,25 @@ function App() {
       document.removeEventListener("keydown", closeByEscape);
     };
   }, []);
-  api.handleRequest(
-    "https://my-json-server.typicode.com/ckbailar7/se_project_react/items"
-  );
+
+  api.getItems();
+  useEffect(() => {
+    api
+      .getItems()
+      .then((data) => {
+        setDefaultClothingItemsArray(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+  // useEffect(() => {
+  //   function setNewItems() {
+  //     api.getItems((data) => {
+  //       setDefaultClothingItemsArray(data);
+  //     });
+  //   }
+  // }, []);
 
   //useEffect for api fetch requests
   // useEffect(() => {
