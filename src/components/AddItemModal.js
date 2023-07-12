@@ -6,7 +6,7 @@ import { React, useState } from "react";
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   // declare state for each input field
   const [name, setName] = useState("");
-  const [link, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
 
   const handleNameChange = (e) => {
@@ -27,7 +27,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     //prevent Default behavior
     //call onAddItem with approppriate arguments
     e.preventDefault();
-    onAddItem({ name, link, weather });
+    onAddItem({ name, imageUrl, weather });
     onCloseModal();
   };
 
@@ -57,11 +57,11 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           <input
             className="modalWithForm__image-input"
             type="url"
-            name="link"
+            name="imageUrl"
             minLength="1"
             maxLength="300"
             placeholder="Image URL"
-            value={link}
+            value={imageUrl}
             onChange={handleSetImageUrl}
           ></input>
         </label>

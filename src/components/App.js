@@ -53,6 +53,7 @@ function App() {
     defaultClothingItemsArray.unshift(values);
 
     console.log(`defaultClothingItems ... `, defaultClothingItemsArray);
+    setDefaultClothingItemsArray([...defaultClothingItemsArray], values);
     return values;
   };
 
