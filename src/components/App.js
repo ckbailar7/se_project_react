@@ -77,13 +77,21 @@ function App() {
         //console.log(`weatherString`, weatherString);
         setTemp(newWeatherData);
         //setTemp(60);
-
+        api
+          .getItems()
+          .then((data) => {
+            setDefaultClothingItemsArray(data);
+            console.log(defaultClothingItemsArray);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         return newWeatherData;
       })
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, []);
 
   useEffect(() => {
     const closeByEscape = (e) => {
@@ -98,17 +106,17 @@ function App() {
     };
   }, []);
 
-  api.getItems();
-  useEffect(() => {
-    api
-      .getItems()
-      .then((data) => {
-        setDefaultClothingItemsArray(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  // api.getItems();
+  // useEffect(() => {
+  //   api
+  //     .getItems()
+  //     .then((data) => {
+  //       setDefaultClothingItemsArray(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
   // useEffect(() => {
   //   function setNewItems() {
   //     api.getItems((data) => {

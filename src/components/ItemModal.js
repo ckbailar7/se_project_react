@@ -28,7 +28,7 @@ const ItemModal = ({
               <img
                 className="modal__content-flex-img"
                 alt="Selected Card Preview"
-                src={selectedCard.link}
+                src={selectedCard.imageUrl}
               />
             </div>
             <div className="modal__content-flex-img-name">
