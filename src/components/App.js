@@ -12,7 +12,6 @@ import {
   getForecastWeather,
   parseWeatherData,
   parseWeatherDataName,
-  //parseWeaterDataCelcius,
 } from "../utils/weatherApi";
 import { Route } from "react-router-dom";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
@@ -48,29 +47,21 @@ function App() {
       : setCurrenTemperatureUnit("F");
   };
 
-  const onAddItem = ({ name, imageUrl, weather }) => {
-    console.log({ name, imageUrl, weather });
-    //defaultClothingItemsArray.unshift(values);
-
-    //console.log(`defaultClothingItems ... `, defaultClothingItemsArray);
-    //setDefaultClothingItemsArray([...defaultClothingItemsArray], values);
-    //api.addNewItem(values);
-    setDefaultClothingItemsArray([
-      { name, imageUrl, weather },
-      ...defaultClothingItemsArray,
-    ]);
-    api.addNewItem({ name, imageUrl: imageUrl, weather });
-    return { name, imageUrl, weather };
-  };
-
-  const handleDeleteSelectedItem = (values) => {
-    console.log(`hello from handleDeleteSelectedItem ... `);
+  const onAddItem = (values) => {
     console.log(values);
-  };
 
-  // const testTestTest = () => {
-  //   console.log(`Hello from testTestTest ...`);
-  // };
+    api
+      .addNewItem(values)
+      .then((addedItem) => {
+        setDefaultClothingItemsArray((defaultClothingItemsArray) => [
+          addedItem,
+          ...defaultClothingItemsArray,
+        ]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     getForecastWeather()
@@ -80,8 +71,7 @@ function App() {
         const weatherData = parseWeatherData(data);
         const weatherString = weatherData.temperature[currentTemperatureUnit];
         const newWeatherData = parseInt(weatherString);
-        // console.log(`newWeatherData`, newWeatherData);
-        //console.log(`weatherString`, weatherString);
+
         setTemp(newWeatherData);
         //setTemp(60);
         api
@@ -113,43 +103,13 @@ function App() {
     };
   }, []);
 
-  // api.getItems();
-  // useEffect(() => {
-  //   api
-  //     .getItems()
-  //     .then((data) => {
-  //       setDefaultClothingItemsArray(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // });
-  // useEffect(() => {
-  //   function setNewItems() {
-  //     api.getItems((data) => {
-  //       setDefaultClothingItemsArray(data);
-  //     });
-  //   }
-  // }, []);
-
-  //useEffect for api fetch requests
-  // useEffect(() => {
-  //   function getItems() {
-  //     api
-  //       .getClothingItems()
-  //       .then((data) => {
-  //         setDefaultClothingItemsArray(data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, []);
-
-  // console.log(
-  //   `Generated Cards from App UseSate([]) ... `,
-  //   defaultClothingItemsArray
-  // );
+  const handleDeleteSelectedItem = (id) => {
+    console.log(
+      `hello from handleDeleteSelectedItem ...Current Selected ID : `,
+      id
+    );
+    api.handleDeleteSelectedItem(id).then(() => {});
+  };
 
   return (
     <div id="content__container">

@@ -9,6 +9,10 @@ const ItemModal = ({
   buttonText = " Delete item ",
   onDelete,
 }) => {
+  const handleDeleteSubmit = () => {
+    console.log(selectedCard);
+    onDelete(selectedCard.id);
+  };
   return (
     <div id="modal" onClick={onClose} className={`modal`} tabIndex="-1">
       <div
@@ -47,7 +51,23 @@ const ItemModal = ({
                   {buttonText}
                 </button>
               </form> */}
-              <ConfirmDeleteFormComponent selectedCard={selectedCard} />
+              <form
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <button
+                  className="modal__content-flex-img_deleteBtn__button"
+                  type="submit"
+                  onClick={handleDeleteSubmit}
+                >
+                  Delete item
+                </button>
+              </form>
+              {/* <ConfirmDeleteFormComponent
+                onDelete={onDelete}
+                selectedCard={selectedCard}
+              /> */}
             </div>
           </div>
         </div>

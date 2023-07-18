@@ -10,14 +10,6 @@ const Switch = ({
   currentTemp,
   handleToggleSwitchChange,
 }) => {
-  // const { CurrentTemperatureUnit, handleToggleSwitchChange } = useContext(
-  //   CurrentTemperatureUnitContext
-  // );
-
-  // const [isChecked, setIsChecked] = useState(CurrentTemperatureUnit === "C");
-  // useEffect(() => {
-  //   setIsChecked(CurrentTemperatureUnit === "C"), [CurrentTemperatureUnit];
-  // });
   return (
     <div>
       <input

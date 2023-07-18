@@ -8,11 +8,6 @@ import { useMemo, useContext } from "react";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
-  //const { CurrentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  //const { currentTemperatureUnit } = useContext(weatherTemp);
-
-  // console.log(`CurrentTemperatureUnit`, weatherTemp);
-
   const checkWeatherTempDegreeFar = useMemo(() => {
     if (weatherTemp === "F") {
       //console.log(`checkWeatherTempDegreeFar .... ` + "true");
@@ -48,19 +43,18 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
       return "cold";
     }
   }, [newTemp]);
-  //console.log(`weatherType`, weatherType);
-  //console.log(`weatherTemp`, weatherTemp);
-  //console.log(`currentTemp2`, currentTemp);
-  // console.log(`newTemp`, newTemp);
-  //console.log(`weatherData`, weatherData);
+
   //console.log(`New Generated Cards ... `, newGeneratedCards);
 
   const filteredCards = newGeneratedCards.filter((item) => {
     //console.log(item);
-    return item.weather.toLowerCase() === weatherType;
+
+    return (
+      item.weather && weatherType && item.weather.toLowerCase() === weatherType
+    );
   });
 
-  console.log(`filteredCards`, filteredCards);
+  //console.log(`filteredCards`, filteredCards);
   //console.log("Hello from Main");
   //console.log(currentTemp);
   //console.log(filteredCards.map);
