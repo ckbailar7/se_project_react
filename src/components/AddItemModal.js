@@ -43,6 +43,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           Name
           <input
             className="modalWithForm__name-input"
+            id="name"
             type="name"
             name="name"
             minLength="1"
@@ -56,6 +57,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           Image
           <input
             className="modalWithForm__image-input"
+            id="image"
             type="url"
             name="imageUrl"
             minLength="1"

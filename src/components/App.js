@@ -108,7 +108,19 @@ function App() {
       `hello from handleDeleteSelectedItem ...Current Selected ID : `,
       id
     );
-    api.handleDeleteSelectedItem(id).then(() => {});
+    api
+      .handleDeleteSelectedItem(id)
+      .then(() => {
+        setDefaultClothingItemsArray((defaultClothingItemsArray) =>
+          defaultClothingItemsArray.filter((itemForDLT) => itemForDLT.id !== id)
+        );
+      })
+      .then(() => {
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
