@@ -45,3 +45,10 @@
 .header__logo-date {
   display: flex;
 }
+
+.header__logo_profile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-family: "Cabinet Grotesk semi";
+}
