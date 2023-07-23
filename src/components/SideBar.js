@@ -1,6 +1,6 @@
 import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
-import "../blocks/SideBar.css";
+import "../blocks/Sidebar.css";
 
 const SideBar = () => {
   return (

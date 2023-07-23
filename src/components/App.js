@@ -142,9 +142,9 @@ function App() {
             newGeneratedCards={defaultClothingItemsArray}
           />
         </Route>
-        <Route path="/profile">
+        {/* <Route path="/profile">
           <Profile items={temp} />
-        </Route>
+        </Route> */}
         <Footer />
         {activeModal === "create" && (
           <AddItemModal

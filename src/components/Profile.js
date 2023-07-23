@@ -8,10 +8,10 @@ const Profile = ({ items }) => {
     <div className="profile_component">
       <div className="profile_container">
         <div className="profile_sidebar">
-          <SideBar></SideBar>
+          <SideBar />
         </div>
         <div className="profile_clothes-component">
-          <ClothesSection></ClothesSection>
+          <ClothesSection />
         </div>
       </div>
     </div>
