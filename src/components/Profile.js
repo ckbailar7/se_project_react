@@ -7,6 +7,7 @@ const Profile = ({
   newGeneratedCards,
   weatherTemp,
   onSelectCard,
+  onCreateModal,
 }) => {
   return (
     <div className="profile__component">
@@ -19,6 +20,7 @@ const Profile = ({
           currentTemp={currentTemp}
           weatherTemp={weatherTemp}
           onSelectCard={onSelectCard}
+          onCreateModal={onCreateModal}
         />
       </div>
     </div>

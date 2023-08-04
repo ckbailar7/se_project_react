@@ -7,6 +7,7 @@ const ClothesSection = ({
   currentTemp,
   weatherTemp,
   onSelectCard,
+  onCreateModal,
 }) => {
   const newTemp = currentTemp;
   const weatherType = useMemo(() => {
@@ -39,7 +40,7 @@ const ClothesSection = ({
     <div className="clothes__section-container">
       <div className="clothes__section-title">
         <p className="clothes__section-title_item">Your items</p>
-        <p className="clothes__section-title_button" onClick={onSelectCard}>
+        <p className="clothes__section-title_button" onClick={onCreateModal}>
           + Add new
         </p>
       </div>

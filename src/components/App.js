@@ -149,6 +149,7 @@ function App() {
               newGeneratedCards={defaultClothingItemsArray}
               weatherTemp={currentTemperatureUnit}
               onSelectCard={handleSelectedCard}
+              onCreateModal={handleCreateModal}
             />
           </Route>
         </Switch>
