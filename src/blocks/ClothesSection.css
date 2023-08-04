@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Cabinet Grotesk semi";
+  src: url("/src/vendor/fonts/HankenGrotesk-SemiBold.ttf");
+}
+
+.clothes__section-container {
+  max-width: 1100px;
+  margin: 0 0 0 100px;
+}
+
+.clothes__section-title {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.clothes__section-title_item {
+  width: 130px;
+  height: 25px;
+  font-family: "Cabinet Grotesk semi";
+  font-size: 20px;
+}
+.clothes__section-title_button {
+  font-family: "Cabinet Grotesk semi";
+  font-size: 20px;
+  width: 119px;
+  height: 25px;
+}
+.clothes__section-clothes_items {
+  /* display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 1015px;
+  height: 676px; */
+  display: flex;
+  position: relative;
+  border-radius: 20px;
+  /* overflow: hidden; */
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 1038px;
+}
+
+/* display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px; */

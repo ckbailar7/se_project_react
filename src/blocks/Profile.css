@@ -1,25 +1,22 @@
-.profile_component {
+.profile__component {
   max-width: 1440px;
   margin: 40px auto 0 auto;
-}
-.profile_container {
-  max-width: 1200px;
-  margin: 0 40px 0 40px;
   display: flex;
-  width: 70%;
 }
-
-.profile_sidebar {
+/* .profile__container {
+  max-width: 1200px;
+  margin: 0 0 0 -110px;
+  /* display: flex; */
+/* width: 70%;
+} */
+.profile__sidebar {
   display: flex;
   flex-direction: column;
   padding: 0 20px 0 20px;
   align-items: center;
+  max-width: 230px;
+  max-height: 56px;
 }
 
-.profile_clothe-component {
-  display: flex;
-  height: 100%;
-  width: 75%;
-  flex-direction: column;
-  align-items: center;
+.profile__clothes-component {
 }

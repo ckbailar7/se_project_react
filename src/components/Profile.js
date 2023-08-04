@@ -2,17 +2,24 @@ import "../blocks/Profile.css";
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 
-const Profile = ({ items }) => {
-  console.log(items);
+const Profile = ({
+  currentTemp,
+  newGeneratedCards,
+  weatherTemp,
+  onSelectCard,
+}) => {
   return (
-    <div className="profile_component">
-      <div className="profile_container">
-        <div className="profile_sidebar">
-          <SideBar />
-        </div>
-        <div className="profile_clothes-component">
-          <ClothesSection />
-        </div>
+    <div className="profile__component">
+      <div className="profile__sidebar">
+        <SideBar />
+      </div>
+      <div className="profile__clothes-component">
+        <ClothesSection
+          newGeneratedCards={newGeneratedCards}
+          currentTemp={currentTemp}
+          weatherTemp={weatherTemp}
+          onSelectCard={onSelectCard}
+        />
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ import {
   parseWeatherData,
   parseWeatherDataName,
 } from "../utils/weatherApi";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import "../utils/api";
 import api from "../utils/api";
@@ -134,17 +134,25 @@ function App() {
           currentTemp={temp}
           handleToggleSwitchChange={handleToggleSwitchChange}
         />
-        <Route path="/">
-          <Main
-            onSelectCard={handleSelectedCard}
-            weatherTemp={currentTemperatureUnit}
-            currentTemp={temp}
-            newGeneratedCards={defaultClothingItemsArray}
-          />
-        </Route>
-        {/* <Route path="/profile">
-          <Profile items={temp} />
-        </Route> */}
+        <Switch>
+          <Route exact path="/">
+            <Main
+              onSelectCard={handleSelectedCard}
+              weatherTemp={currentTemperatureUnit}
+              currentTemp={temp}
+              newGeneratedCards={defaultClothingItemsArray}
+            />
+          </Route>
+          <Route path="/profile">
+            <Profile
+              currentTemp={temp}
+              newGeneratedCards={defaultClothingItemsArray}
+              weatherTemp={currentTemperatureUnit}
+              onSelectCard={handleSelectedCard}
+            />
+          </Route>
+        </Switch>
+
         <Footer />
         {activeModal === "create" && (
           <AddItemModal

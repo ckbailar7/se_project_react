@@ -5,3 +5,16 @@
   flex-wrap: nowrap;
   flex-flow: row;
 }
+
+.sidebar_container {
+}
+
+.sidebar_avatar-Image {
+  height: 56px;
+}
+
+.sidebar_avatar-Name {
+  width: 157px;
+  height: 25px;
+  padding: 17px 0 20px 20px;
+}

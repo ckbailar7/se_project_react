@@ -109,6 +109,7 @@
   background-color: transparent;
   border: none;
   color: rgba(255, 77, 0, 1);
+  margin: 0 0 0 200px;
 }
 
 @media screen and (min-width: 100px) and (max-width: 299px) {
