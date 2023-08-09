@@ -22,7 +22,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
 
   const newTemp = currentTemp;
   const newCelTempTemp = (currentTemp - 32) * 0.556;
-  //console.log(`newCelTempTemp ... `, newCelTempTemp);
+  console.log(`newCelTempTemp ... `, newCelTempTemp);
   const weatherType = useMemo(() => {
     if (
       (newTemp >= 82 && weatherTemp === "F") ||
@@ -58,7 +58,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
   //console.log("Hello from Main");
   //console.log(currentTemp);
   //console.log(filteredCards.map);
-
+  console.log(`weatherTemp ...`, weatherTemp);
   return (
     <main id="0" className="main">
       <WeatherCard
