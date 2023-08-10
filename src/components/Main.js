@@ -76,11 +76,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
               return item.weather.toLowerCase() === weatherType;
             })
             .map((data) => (
-              <ItemCard
-                key={data._id}
-                data={data}
-                onSelectCard={onSelectCard}
-              />
+              <ItemCard key={data.id} data={data} onSelectCard={onSelectCard} />
             ))}
           {/* {filteredCards.map((data) => (
             <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />
