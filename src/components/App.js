@@ -89,6 +89,7 @@ function App() {
 
         const newWeatherData = parseInt(weatherString);
         setWeatherData(weatherDataParsed);
+        setTemp(weatherDataParsed.temperature["F"]);
         console.log(
           `weatherDataParsed`,
           weatherDataParsed[currentTemperatureUnit]
