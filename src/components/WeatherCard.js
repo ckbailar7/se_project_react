@@ -12,7 +12,7 @@ import SunnyRain from "../images/Sunny/Sunny-Rain.svg";
 import SunnyStorm from "../images/Sunny/Sunny-Storm.svg";
 import SunnySnow from "../images/Sunny/Sunny-Snow.svg";
 import SunnyFog from "../images/Sunny/Sunny-Fog.svg";
-//import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 //import { useContext } from "react";
 
 const weatherOptions = [

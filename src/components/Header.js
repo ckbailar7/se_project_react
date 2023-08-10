@@ -2,9 +2,10 @@ import HeaderLogo from "../images/wtwrlogologo.svg";
 import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import currentDate from "../utils/constants";
-import Switch from "./Switch";
+//import Switch from "./Switch";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import ToggleSwitch from "./ToggleSwitch";
 
 const Header = ({
   onCreateModal,
@@ -27,7 +28,7 @@ const Header = ({
         </div>
       </div>
       <div className="header__avatar-logo">
-        <Switch
+        <ToggleSwitch
           onColor="#3683d0"
           isOn={value}
           handleToggle={() => setValue(!value)}
