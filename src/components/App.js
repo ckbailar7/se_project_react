@@ -22,6 +22,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
+  const [weatherData, setWeatherData] = useState({});
   const [currentLocation, setCurrentLocation] = useState("");
   const [currentTemperatureUnit, setCurrenTemperatureUnit] = useState("F");
   const [defaultClothingItemsArray, setDefaultClothingItemsArray] = useState(
@@ -42,9 +43,18 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    currentTemperatureUnit === "F"
-      ? setCurrenTemperatureUnit("C")
-      : setCurrenTemperatureUnit("F");
+    console.log(weatherData.temperature);
+    if (currentTemperatureUnit === "F") {
+      setCurrenTemperatureUnit("C");
+      setTemp(weatherData.temperature["C"]);
+    } else {
+      setCurrenTemperatureUnit("F");
+      setTemp(weatherData.temperature["F"]);
+    }
+
+    // currentTemperatureUnit === "F"
+    //   ? setCurrenTemperatureUnit("C")
+    //   : setCurrenTemperatureUnit("F");
   };
 
   const onAddItem = (values) => {
@@ -63,16 +73,31 @@ function App() {
       });
   };
 
+  // useEffect(() => {
+  //   setWeatherData(weatherData);
+  // });
+
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
         const currentLocation = parseWeatherDataName(data);
         setCurrentLocation(currentLocation);
-        const weatherData = parseWeatherData(data);
-        const weatherString = weatherData.temperature[currentTemperatureUnit];
-        const newWeatherData = parseInt(weatherString);
+        const weatherDataParsed = parseWeatherData(data);
 
-        setTemp(newWeatherData);
+        const weatherString =
+          weatherDataParsed.temperature[currentTemperatureUnit];
+
+        const newWeatherData = parseInt(weatherString);
+        setWeatherData(weatherDataParsed);
+        console.log(
+          `weatherDataParsed`,
+          weatherDataParsed[currentTemperatureUnit]
+        );
+        console.log(`weatherString`, weatherString);
+        console.log(`newWeatherData`, newWeatherData);
+
+        // setTemp(newWeatherData);
+        // setWeatherData(newWeatherData);
         //setTemp(60);
         api
           .getItems()
