@@ -11,7 +11,7 @@ const Switch = ({
   handleToggleSwitchChange,
 }) => {
   return (
-    <div>
+    <div className="react-switch-container">
       <input
         checked={isOn}
         onChange={handleToggleSwitchChange}
