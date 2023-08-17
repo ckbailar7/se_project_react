@@ -4,16 +4,10 @@ import "../blocks/Sidebar.css";
 
 const SideBar = () => {
   return (
-    <>
-      <div className="sidebar_component">
-        <img
-          className="sidebar_avatar-Image"
-          src={userAvatar}
-          alt="avatar"
-        ></img>
-        <div className="sidebar_avatar-Name">Jared Girvan</div>
-      </div>
-    </>
+    <div className="sidebar_component">
+      <img className="sidebar_avatar-Image" src={userAvatar} alt="avatar"></img>
+      <div className="sidebar_avatar-Name">Jared Girvan</div>
+    </div>
   );
 };
 

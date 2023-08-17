@@ -8,22 +8,24 @@ import { useMemo, useContext } from "react";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
-  const checkWeatherTempDegreeFar = useMemo(() => {
-    if (weatherTemp === "F") {
-      //console.log(`checkWeatherTempDegreeFar .... ` + "true");
-      return true;
-    } else {
-      console.log(`checkWeatherTempDegreeFar .... ` + "false");
-      return false;
-    }
-  }, [weatherTemp]);
+  // const checkWeatherTempDegreeFar = useMemo(() => {
+  //   if (weatherTemp === "F") {
+  //     //console.log(`checkWeatherTempDegreeFar .... ` + "true");
+  //     return true;
+  //   } else {
+  //     console.log(`checkWeatherTempDegreeFar .... ` + "false");
+  //     return false;
+  //   }
+  // }, [weatherTemp]);
 
   //const newTemp = currentTemp?.[weatherTemp] || 999;
 
   const newTemp = currentTemp;
   const newCelTempTemp = (currentTemp - 32) * 0.556;
   console.log(`newCelTempTemp ... `, newCelTempTemp);
-  const weatherType = useMemo(() => {
+
+  //Revision for weatherType without memoization
+  const getWeatherType = () => {
     if (
       (newTemp >= 82 && weatherTemp === "F") ||
       (newTemp >= 28 && weatherTemp === "C")
@@ -42,7 +44,29 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
     ) {
       return "cold";
     }
-  }, [newTemp]);
+  };
+
+  const weatherType = getWeatherType();
+  // const weatherType = useMemo(() => {
+  //   if (
+  //     (newTemp >= 82 && weatherTemp === "F") ||
+  //     (newTemp >= 28 && weatherTemp === "C")
+  //   ) {
+  //     return "hot";
+  //   } else if (
+  //     (newTemp >= 66 && weatherTemp === "F") ||
+  //     (newTemp >= 19 && weatherTemp === "C") ||
+  //     (newTemp <= 81 && weatherTemp === "F") ||
+  //     (newTemp <= 27 && weatherTemp === "C")
+  //   ) {
+  //     return "warm";
+  //   } else if (
+  //     (newTemp <= 65 && weatherTemp === "F") ||
+  //     (newTemp <= 18 && weatherTemp === "C")
+  //   ) {
+  //     return "cold";
+  //   }
+  // }, [newTemp]);
 
   //console.log(`New Generated Cards ... `, newGeneratedCards);
 
@@ -68,8 +92,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
         currentTemp={newTemp}
       />
       <section className="card__section" id="card-section">
-        Today is {newTemp}
-        {weatherTemp} You may want to wear:
+        Today is {newTemp}°{weatherTemp} You may want to wear:
         <div className="card__items">
           {newGeneratedCards
             .filter((item) => {

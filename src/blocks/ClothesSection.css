@@ -24,6 +24,10 @@
   font-size: 20px;
   width: 119px;
   height: 25px;
+  cursor: pointer;
+}
+.clothes__section-title_button:hover {
+  opacity: 50%;
 }
 .clothes__section-clothes_items {
   /* display: flex;

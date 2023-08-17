@@ -42,6 +42,8 @@ function App() {
     setSelectedCard(card);
   };
 
+  //const temp = weatherData.temperature[currentTemperatureUnit];
+
   const handleToggleSwitchChange = () => {
     console.log(weatherData.temperature);
     if (currentTemperatureUnit === "F") {
@@ -100,21 +102,33 @@ function App() {
         // setTemp(newWeatherData);
         // setWeatherData(newWeatherData);
         //setTemp(60);
-        api
-          .getItems()
-          .then((data) => {
-            setDefaultClothingItemsArray(data);
-            console.log(defaultClothingItemsArray);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        // api
+        //   .getItems()
+        //   .then((data) => {
+        //     setDefaultClothingItemsArray(data);
+        //     console.log(defaultClothingItemsArray);
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
         return newWeatherData;
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    api
+      .getItems()
+      .then((data) => {
+        setDefaultClothingItemsArray(data);
+        console.log(defaultClothingItemsArray);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   useEffect(() => {
     const closeByEscape = (e) => {

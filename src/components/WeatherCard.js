@@ -14,69 +14,70 @@ import SunnySnow from "../images/Sunny/Sunny-Snow.svg";
 import SunnyFog from "../images/Sunny/Sunny-Fog.svg";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 //import { useContext } from "react";
+import { weatherOptions } from "../utils/constants";
 
-const weatherOptions = [
-  {
-    url: Sunny,
-    day: true,
-    type: "Sunny",
-  },
-  {
-    url: SunnyCloudy,
-    day: true,
-    type: "Sunny-Cloudy",
-  },
-  {
-    url: SunnyRain,
-    day: true,
-    type: "Sunny-Rain",
-  },
-  {
-    url: SunnyStorm,
-    day: true,
-    type: "Sunny-Storm",
-  },
-  {
-    url: SunnySnow,
-    day: true,
-    type: "Sunny-Snow",
-  },
-  {
-    url: SunnyFog,
-    day: true,
-    type: "Sunny-Fog",
-  },
-  {
-    url: Night,
-    day: false,
-    type: "Night",
-  },
-  {
-    url: NightCloudy,
-    day: false,
-    type: "Night-Cloudy",
-  },
-  {
-    url: NightRain,
-    day: false,
-    type: "Night-Rain",
-  },
-  {
-    url: NightStorm,
-    day: false,
-    type: "Night-Storm",
-  },
-  {
-    url: NightSnow,
-    day: false,
-    type: "Night-Snow",
-  },
-  {
-    url: NightFog,
-    day: false,
-    type: "Night-Fog",
-  },
-];
+// const weatherOptions = [
+//   {
+//     url: Sunny,
+//     day: true,
+//     type: "Sunny",
+//   },
+//   {
+//     url: SunnyCloudy,
+//     day: true,
+//     type: "Sunny-Cloudy",
+//   },
+//   {
+//     url: SunnyRain,
+//     day: true,
+//     type: "Sunny-Rain",
+//   },
+//   {
+//     url: SunnyStorm,
+//     day: true,
+//     type: "Sunny-Storm",
+//   },
+//   {
+//     url: SunnySnow,
+//     day: true,
+//     type: "Sunny-Snow",
+//   },
+//   {
+//     url: SunnyFog,
+//     day: true,
+//     type: "Sunny-Fog",
+//   },
+//   {
+//     url: Night,
+//     day: false,
+//     type: "Night",
+//   },
+//   {
+//     url: NightCloudy,
+//     day: false,
+//     type: "Night-Cloudy",
+//   },
+//   {
+//     url: NightRain,
+//     day: false,
+//     type: "Night-Rain",
+//   },
+//   {
+//     url: NightStorm,
+//     day: false,
+//     type: "Night-Storm",
+//   },
+//   {
+//     url: NightSnow,
+//     day: false,
+//     type: "Night-Snow",
+//   },
+//   {
+//     url: NightFog,
+//     day: false,
+//     type: "Night-Fog",
+//   },
+// ];
 
 const WeatherCard = ({ day, type, weatherTemp, currentTemp }) => {
   //console.log("weather Card");
@@ -84,16 +85,15 @@ const WeatherCard = ({ day, type, weatherTemp, currentTemp }) => {
   //console.log(currentTemp);
   //const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
-  const imgSrc = weatherOptions.filter((i) => {
+  const imgSrc = weatherOptions.find((i) => {
     return i.day === day && i.type === type;
   });
-  const imageSrcUrl = imgSrc[0].url || "";
+  const imageSrcUrl = imgSrc.url || "";
   return (
     <>
       <section className="weather" id="weather">
         <div className="weather_info">
-          {currentTemp}
-          {weatherTemp}
+          {currentTemp}°{weatherTemp}
         </div>
 
         <img src={imageSrcUrl} className="weather_image" alt="weather"></img>

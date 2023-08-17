@@ -10,7 +10,8 @@ const ClothesSection = ({
   onCreateModal,
 }) => {
   const newTemp = currentTemp;
-  const weatherType = useMemo(() => {
+
+  const getWeatherType = () => {
     if (
       (newTemp >= 82 && weatherTemp === "F") ||
       (newTemp >= 28 && weatherTemp === "C")
@@ -29,7 +30,30 @@ const ClothesSection = ({
     ) {
       return "cold";
     }
-  }, [newTemp]);
+  };
+
+  const weatherType = getWeatherType();
+
+  // const weatherType = useMemo(() => {
+  //   if (
+  //     (newTemp >= 82 && weatherTemp === "F") ||
+  //     (newTemp >= 28 && weatherTemp === "C")
+  //   ) {
+  //     return "hot";
+  //   } else if (
+  //     (newTemp >= 66 && weatherTemp === "F") ||
+  //     (newTemp >= 19 && weatherTemp === "C") ||
+  //     (newTemp <= 81 && weatherTemp === "F") ||
+  //     (newTemp <= 27 && weatherTemp === "C")
+  //   ) {
+  //     return "warm";
+  //   } else if (
+  //     (newTemp <= 65 && weatherTemp === "F") ||
+  //     (newTemp <= 18 && weatherTemp === "C")
+  //   ) {
+  //     return "cold";
+  //   }
+  // }, [newTemp]);
 
   const filteredCards = newGeneratedCards.filter((item) => {
     return (

@@ -46,15 +46,14 @@ const ItemModal = ({
                 onClick={(e) => {
                   e.preventDefault();
                 }}
+              />
+              <button
+                className="modal__content-flex-img_deleteBtn__button"
+                type="submit"
+                onClick={handleDeleteSubmit}
               >
-                <button
-                  className="modal__content-flex-img_deleteBtn__button"
-                  type="submit"
-                  onClick={handleDeleteSubmit}
-                >
-                  Delete item
-                </button>
-              </form>
+                Delete item
+              </button>
             </div>
           </div>
         </div>

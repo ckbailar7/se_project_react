@@ -1,6 +1,6 @@
 import "../blocks/AddItemModal.css";
 import ModalWithForm from "./ModalWithForm";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 
 // onAddItem refers to handleAddItemSubmit, which is declared in App.js
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
@@ -31,12 +31,17 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     onCloseModal();
   };
 
+  // useEffect(() => {
+  //   if (isOpen) {
+  //   }
+  // }, [isOpen]);
   return (
     <ModalWithForm
       title="New Garment"
       onClose={onCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      buttonText="Add Garment"
     >
       <div className="modalWithForm">
         <label className="modalWithForm__name">
@@ -71,6 +76,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         <div className="modalWithForm__radio-Btns__container">
           <div>
             <input
+              name="radio"
               type="radio"
               id="hot"
               value="hot"
@@ -80,6 +86,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           </div>
           <div>
             <input
+              name="radio"
               type="radio"
               id="warm"
               value="warm"
@@ -89,6 +96,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           </div>
           <div>
             <input
+              name="radio"
               type="radio"
               id="cold"
               value="cold"

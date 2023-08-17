@@ -14,6 +14,7 @@ const Header = ({
   handleToggleSwitchChange,
 }) => {
   const [value, setValue] = useState(false);
+
   return (
     <header className="header">
       <div className="header__logo">
