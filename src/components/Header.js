@@ -13,8 +13,6 @@ const Header = ({
   currentTemp,
   handleToggleSwitchChange,
 }) => {
-  const [value, setValue] = useState(false);
-
   return (
     <header className="header">
       <div className="header__logo">
@@ -30,9 +28,6 @@ const Header = ({
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch
-          onColor="#3683d0"
-          isOn={value}
-          handleToggle={() => setValue(!value)}
           currentTemp={currentTemp}
           handleToggleSwitchChange={handleToggleSwitchChange}
         />

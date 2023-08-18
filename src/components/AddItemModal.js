@@ -3,11 +3,12 @@ import ModalWithForm from "./ModalWithForm";
 import { React, useEffect, useState } from "react";
 
 // onAddItem refers to handleAddItemSubmit, which is declared in App.js
-const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
+const AddItemModal = ({ onAddItem, onCloseModal }) => {
   // declare state for each input field
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
+  const [isOpen, setIsOpen] = useState("create");
 
   const handleNameChange = (e) => {
     console.log(e.target.value);
@@ -31,10 +32,11 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     onCloseModal();
   };
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //   }
-  // }, [isOpen]);
+  useEffect(() => {
+    if (isOpen) {
+      setIsOpen("");
+    }
+  }, [isOpen]);
   return (
     <ModalWithForm
       title="New Garment"

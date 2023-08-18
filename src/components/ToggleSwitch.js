@@ -3,13 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import "../blocks/ToggleSwitch.css";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
-const ToggleSwitch = ({
-  isOn,
-  handleToggle,
-  onColor,
-  currentTemp,
-  handleToggleSwitchChange,
-}) => {
+const ToggleSwitch = ({ handleToggleSwitchChange }) => {
   const [currentTemperatureUnitTTT, handleToggleSwitchChangeTTT] =
     useState("C");
   const handleChange = () => {

@@ -1,5 +1,5 @@
 import "../blocks/ItemModal.css";
-import ConfirmDeleteFormComponent from "./confirmDeletFormComponent";
+import ConfirmDeleteFormComponent from "./ConfirmDeletFormComponent";
 
 const ItemModal = ({
   selectedCard,
