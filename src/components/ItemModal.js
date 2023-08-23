@@ -1,5 +1,7 @@
 import "../blocks/ItemModal.css";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 import ConfirmDeleteFormComponent from "./ConfirmDeletFormComponent";
+import { useState } from "react";
 
 const ItemModal = ({
   selectedCard,
@@ -9,9 +11,14 @@ const ItemModal = ({
   buttonText = " Delete item ",
   onDelete,
 }) => {
+  const [activeDeleteConfirmModal, setActiveDeleteConfirm] = useState("");
   const handleDeleteSubmit = () => {
     console.log(selectedCard);
     onDelete(selectedCard.id);
+  };
+
+  const handleCreateDeleteConfirmModal = () => {
+    setActiveDeleteConfirm("deleteConfirmPreview");
   };
   return (
     <div id="modal" onClick={onClose} className={`modal`} tabIndex="-1">
@@ -50,7 +57,8 @@ const ItemModal = ({
               <button
                 className="modal__content-flex-img_deleteBtn__button"
                 type="submit"
-                onClick={handleDeleteSubmit}
+                onClick={handleCreateDeleteConfirmModal}
+                // onClick={handleDeleteSubmit}
               >
                 Delete item
               </button>
@@ -58,6 +66,10 @@ const ItemModal = ({
           </div>
         </div>
       </div>
+
+      {activeDeleteConfirmModal === "deleteConfirmPreview" && (
+        <DeleteConfirmModal />
+      )}
     </div>
   );
 };
