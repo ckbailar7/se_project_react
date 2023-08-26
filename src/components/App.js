@@ -92,12 +92,12 @@ function App() {
         const newWeatherData = parseInt(weatherString);
         setWeatherData(weatherDataParsed);
         setTemp(weatherDataParsed.temperature["F"]);
-        console.log(
-          `weatherDataParsed`,
-          weatherDataParsed[currentTemperatureUnit]
-        );
-        console.log(`weatherString`, weatherString);
-        console.log(`newWeatherData`, newWeatherData);
+        // console.log(
+        //   `weatherDataParsed`,
+        //   weatherDataParsed[currentTemperatureUnit]
+        // );
+        //console.log(`weatherString`, weatherString);
+        //console.log(`newWeatherData`, newWeatherData);
 
         // setTemp(newWeatherData);
         // setWeatherData(newWeatherData);
@@ -123,7 +123,7 @@ function App() {
       .getItems()
       .then((data) => {
         setDefaultClothingItemsArray(data);
-        console.log(defaultClothingItemsArray);
+        //console.log(defaultClothingItemsArray);
       })
       .catch((err) => {
         console.log(err);
@@ -201,6 +201,7 @@ function App() {
 
         {activeModal === "preview" && (
           <ItemModal
+            onSelectCard={handleSelectedCard}
             selectedCard={selectedCard}
             onClose={handleCloseModal}
             onDelete={handleDeleteSelectedItem}

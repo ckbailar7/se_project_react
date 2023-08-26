@@ -11,9 +11,9 @@ function handleInitialResponse(res) {
 
 function handleRequest(url, options) {
   return fetch(url, options).then((res) => {
-    console.log(res);
-    console.log(`Url ... `, url);
-    console.log(`Options...`, options);
+    //console.log(res);
+    // console.log(`Url ... `, url);
+    // console.log(`Options...`, options);
     if (res.ok) {
       return res.json();
     } else {

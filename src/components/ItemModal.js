@@ -1,21 +1,25 @@
 import "../blocks/ItemModal.css";
 import DeleteConfirmModal from "./DeleteConfirmModal";
-import ConfirmDeleteFormComponent from "./ConfirmDeletFormComponent";
+//import ConfirmDeleteFormComponent from "../components/ConfirmDeleteFormComponent.js";
 import { useState } from "react";
 
 const ItemModal = ({
   selectedCard,
   onClose,
+  onSelectCard,
   handleEscKeyDown,
   handleDeleteCard,
   buttonText = " Delete item ",
   onDelete,
 }) => {
+  console.log(`SelectedCard from Itemmodal.js : ... `, selectedCard);
   const [activeDeleteConfirmModal, setActiveDeleteConfirm] = useState("");
-  const handleDeleteSubmit = () => {
-    console.log(selectedCard);
-    onDelete(selectedCard.id);
-  };
+  // const handleDeleteSubmit = () => {
+  //   console.log(selectedCard);
+  //   onDelete(selectedCard.id);
+  // };
+
+  const testSelectedCardScope = () => {};
 
   const handleCreateDeleteConfirmModal = () => {
     setActiveDeleteConfirm("deleteConfirmPreview");
@@ -68,7 +72,13 @@ const ItemModal = ({
       </div>
 
       {activeDeleteConfirmModal === "deleteConfirmPreview" && (
-        <DeleteConfirmModal />
+        <DeleteConfirmModal
+          // handleDeleteSubmit={handleDeleteSubmit}
+          onDelete={onDelete}
+          selectedCard={selectedCard}
+          onClose={onClose}
+          onSelectCard={onSelectCard}
+        />
       )}
     </div>
   );

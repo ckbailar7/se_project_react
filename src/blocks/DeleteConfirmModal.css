@@ -29,7 +29,7 @@
 .modal__content-delete_text1 {
   width: 295px;
   height: 48px;
-  top: -70px;
+  top: -30px;
   size: 20px;
   text-align: center;
   /* margin: 0; */
@@ -42,10 +42,24 @@
   width: 128px;
   height: 24px;
   color: red;
+  margin-bottom: 24px;
+  background-color: white;
+  border: none;
+}
+.delete__Button-one:hover {
+  cursor: pointer;
+  opacity: 50%;
 }
 
 .delete__Button-two {
   width: 61px;
   height: 24px;
   color: black;
+  background-color: white;
+  border: none;
+}
+
+.delete__Button-two:hover {
+  cursor: pointer;
+  opacity: 50%;
 }

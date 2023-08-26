@@ -22,7 +22,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
 
   const newTemp = currentTemp;
   const newCelTempTemp = (currentTemp - 32) * 0.556;
-  console.log(`newCelTempTemp ... `, newCelTempTemp);
+  //console.log(`newCelTempTemp ... `, newCelTempTemp);
 
   //Revision for weatherType without memoization
   const getWeatherType = () => {
@@ -82,7 +82,7 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
   //console.log("Hello from Main");
   //console.log(currentTemp);
   //console.log(filteredCards.map);
-  console.log(`weatherTemp ...`, weatherTemp);
+  // console.log(`weatherTemp ...`, weatherTemp);
   return (
     <main id="0" className="main">
       <WeatherCard

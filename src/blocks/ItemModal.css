@@ -111,6 +111,10 @@
   color: rgba(255, 77, 0, 1);
   margin: 0 0 0 200px;
 }
+.modal__content-flex-img_deleteBtn__button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
 
 @media screen and (min-width: 100px) and (max-width: 299px) {
   .modal__content-flex-img_deleteBtn__button {

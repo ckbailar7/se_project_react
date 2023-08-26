@@ -10,7 +10,7 @@ const ToggleSwitch = ({ handleToggleSwitchChange }) => {
     if (currentTemperatureUnitTTT === "C") handleToggleSwitchChangeTTT("F");
     if (currentTemperatureUnitTTT === "F") handleToggleSwitchChangeTTT("C");
   };
-  console.log(currentTemperatureUnitTTT);
+  //console.log(currentTemperatureUnitTTT);
   return (
     <label className="newLabel-switch">
       <input
