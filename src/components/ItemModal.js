@@ -12,7 +12,8 @@ const ItemModal = ({
   buttonText = " Delete item ",
   onDelete,
 }) => {
-  console.log(`SelectedCard from Itemmodal.js : ... `, selectedCard);
+  //console.log(`SelectedCard from Itemmodal.js : ... `, selectedCard);
+  //console.log(`type`, typeof selectedCard);
   const [activeDeleteConfirmModal, setActiveDeleteConfirm] = useState("");
   // const handleDeleteSubmit = () => {
   //   console.log(selectedCard);
@@ -20,6 +21,9 @@ const ItemModal = ({
   // };
 
   const testSelectedCardScope = () => {};
+  const handleCloseConfirmModal = () => {
+    setActiveDeleteConfirm("");
+  };
 
   const handleCreateDeleteConfirmModal = () => {
     setActiveDeleteConfirm("deleteConfirmPreview");

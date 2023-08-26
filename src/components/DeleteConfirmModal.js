@@ -1,19 +1,19 @@
 import "../blocks/DeleteConfirmModal.css";
-const DeleteConfirmModal = (
+const DeleteConfirmModal = ({
   buttonText,
   name,
   onSubmit,
   onDelete,
   onClose,
-  selectedCard
-) =>
+  selectedCard,
+}) =>
   // { onSelectCard }
   {
-    console.log(selectedCard, "selectedCardddd from DELETECONFIRMMODAL.JS");
+    //console.log(selectedCard, "selectedCardddd from DELETECONFIRMMODAL.JS");
     const handleDeleteSubmit = () => {
-      console.log("Hello from handle delete submit function <3");
-      console.log(selectedCard);
-      onDelete(selectedCard);
+      console.log("Hello from handle delete submit function :D");
+      console.log(`Your selected Card is ...`, selectedCard);
+      //onDelete(selectedCard);
     };
     return (
       <div id="modal" className={"modal"}>
@@ -28,7 +28,12 @@ const DeleteConfirmModal = (
             irreversible
           </p>
           <div className="modal__content-delete_buttons-container">
-            <button className="delete__Button-one">Yes, delete item</button>
+            <button
+              onClick={onDelete(selectedCard.id)}
+              className="delete__Button-one"
+            >
+              Yes, delete item
+            </button>
             <button onClick={onClose} className="delete__Button-two">
               Cancel
             </button>
