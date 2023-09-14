@@ -42,10 +42,13 @@ function App() {
     setSelectedCard(card);
   };
 
-  //const temp = weatherData.temperature[currentTemperatureUnit];
+  //const temp = weatherData.temperature;
+  //console.log(weatherData.temperature[`${currentTemperatureUnit}`]);
+  //console.log(`weatherData.temperature.C`, weatherData.temperature.C);
+  //console.log(`currentTemperatureUnit`, currentTemperatureUnit);
+  console.log(weatherData.temperature);
 
   const handleToggleSwitchChange = () => {
-    console.log(weatherData.temperature);
     if (currentTemperatureUnit === "F") {
       setCurrenTemperatureUnit("C");
       setTemp(weatherData.temperature["C"]);
@@ -60,6 +63,7 @@ function App() {
   };
 
   const onAddItem = (values) => {
+    console.log(`From onAddItem ... <3`);
     console.log(values);
 
     api
@@ -69,6 +73,8 @@ function App() {
           addedItem,
           ...defaultClothingItemsArray,
         ]);
+        console.log(`Added Item`, addedItem);
+        console.log(`Default ClothingItemsArray`, defaultClothingItemsArray);
       })
       .catch((err) => {
         console.log(err);
@@ -92,25 +98,15 @@ function App() {
         const newWeatherData = parseInt(weatherString);
         setWeatherData(weatherDataParsed);
         setTemp(weatherDataParsed.temperature["F"]);
-        // console.log(
-        //   `weatherDataParsed`,
-        //   weatherDataParsed[currentTemperatureUnit]
-        // );
-        //console.log(`weatherString`, weatherString);
-        //console.log(`newWeatherData`, newWeatherData);
+        console.log(`weatherDataParsed`, weatherDataParsed);
+        console.log(`weatherString`, weatherString, weatherString.type);
+        console.log(
+          `newWeatherData`,
+          newWeatherData,
+          `type:`,
+          newWeatherData.type
+        );
 
-        // setTemp(newWeatherData);
-        // setWeatherData(newWeatherData);
-        //setTemp(60);
-        // api
-        //   .getItems()
-        //   .then((data) => {
-        //     setDefaultClothingItemsArray(data);
-        //     console.log(defaultClothingItemsArray);
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
         return newWeatherData;
       })
       .catch((error) => {
@@ -128,7 +124,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   useEffect(() => {
     const closeByEscape = (e) => {
@@ -204,6 +200,7 @@ function App() {
             onSelectCard={handleSelectedCard}
             selectedCard={selectedCard}
             onClose={handleCloseModal}
+            //onDelete={handleTESTDeleteItem}
             onDelete={handleDeleteSelectedItem}
           />
         )}

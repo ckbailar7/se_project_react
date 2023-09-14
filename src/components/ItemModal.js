@@ -15,10 +15,10 @@ const ItemModal = ({
   //console.log(`SelectedCard from Itemmodal.js : ... `, selectedCard);
   //console.log(`type`, typeof selectedCard);
   const [activeDeleteConfirmModal, setActiveDeleteConfirm] = useState("");
-  // const handleDeleteSubmit = () => {
-  //   console.log(selectedCard);
-  //   onDelete(selectedCard.id);
-  // };
+  const handleDeleteSubmit = () => {
+    console.log(selectedCard);
+    onDelete(selectedCard.id);
+  };
 
   const testSelectedCardScope = () => {};
   const handleCloseConfirmModal = () => {
@@ -65,8 +65,8 @@ const ItemModal = ({
               <button
                 className="modal__content-flex-img_deleteBtn__button"
                 type="submit"
-                onClick={handleCreateDeleteConfirmModal}
-                // onClick={handleDeleteSubmit}
+                //onClick={handleCreateDeleteConfirmModal}
+                onClick={handleDeleteSubmit}
               >
                 Delete item
               </button>

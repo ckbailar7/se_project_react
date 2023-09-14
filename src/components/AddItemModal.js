@@ -32,6 +32,14 @@ const AddItemModal = ({ onAddItem, onCloseModal }) => {
     onCloseModal();
   };
 
+  const handleTestSubmitEVENT = (e) => {
+    e.preventDefault();
+    console.log(`From handleTestSubmitEVENT`, e);
+    console.log({ name, imageUrl, weather });
+    onAddItem({ name, imageUrl, weather });
+    onCloseModal();
+  };
+
   useEffect(() => {
     if (isOpen) {
       setIsOpen("");
