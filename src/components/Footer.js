@@ -2,11 +2,11 @@ import "../blocks/Footer.css";
 import React from "react";
 
 function Footer() {
-  const fullYear = new Date();
+  const currentDate = new Date();
   return (
     <footer className="footer">
       <div>Developed by Practicum student Jared Girvan</div>
-      <div>{fullYear.getFullYear()}</div>
+      <div>{currentDate.getFullYear()}</div>
     </footer>
   );
 }

@@ -31,15 +31,21 @@
 .header__avatar-logo {
   font-family: "Cabinet Grotesk semi";
   display: flex;
-  gap: 20px;
+  /* gap: 20px; */
   align-items: center;
+  min-width: 369px;
+  height: 28px;
 }
 
 .header__avatar-logo_button {
   background-color: transparent;
   border: none;
-  font-family: "Cabinet Grotesk semi";
+  font-family: "Cabinet Grotesk medium";
+  color: rgba(0, 0, 0, 1);
   cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  margin: 0 20px 0 0;
 }
 
 .header__logo-date {
@@ -49,6 +55,40 @@
 .header__logo_profile {
   display: flex;
   gap: 20px;
+  align-items: center;
+  font-family: "Cabinet Grotesk semi";
+}
+.header__logo-profile_name {
+  width: 157px;
+  height: 25px;
+  font-size: 20px;
+  line-height: 24.8px;
+  font-family: "Cabinet Grotesk medium";
+  color: rgba(0, 0, 0, 1);
+}
+
+a:link {
+  color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.header__logo-profile_image {
+}
+
+.header__logo-profile_container {
+  display: flex;
   align-items: center;
   font-family: "Cabinet Grotesk semi";
 }

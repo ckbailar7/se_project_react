@@ -85,10 +85,10 @@ const WeatherCard = ({ day, type, weatherTemp, currentTemp }) => {
   //console.log(currentTemp);
   //const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
-  const imgSrc = weatherOptions.find((i) => {
-    return i.day === day && i.type === type;
+  const weatherOption = weatherOptions.find((item) => {
+    return item.day === day && item.type === type;
   });
-  const imageSrcUrl = imgSrc.url || "";
+  const imageSrcUrl = weatherOption.url || "";
   return (
     <>
       <section className="weather" id="weather">

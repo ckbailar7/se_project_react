@@ -49,10 +49,13 @@
 .newLabel-switch {
   display: flex;
   position: relative;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .newLabel-switch:hover {
   color: black;
+  cursor: pointer;
 }
 
 .newLabel-switch-box {

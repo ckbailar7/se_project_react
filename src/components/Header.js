@@ -31,20 +31,20 @@ const Header = ({
           currentTemp={currentTemp}
           handleToggleSwitchChange={handleToggleSwitchChange}
         />
-        <div>
-          <button
-            className="header__avatar-logo_button"
-            onClick={onCreateModal}
-          >
-            +Add New Clothes
-          </button>
-        </div>
+
+        <button className="header__avatar-logo_button" onClick={onCreateModal}>
+          + Add clothes
+        </button>
+
         <NavLink exact to="/profile">
-          <div className="header__logo">
-            <div>Jared Girvan</div>
-            <div>
-              <img src={userAvatar} alt="avatar"></img>
-            </div>
+          <div className="header__logo-profile_container">
+            <div className="header__logo-profile_name">Jared Girvan</div>
+
+            <img
+              className="header__logo-profile_image"
+              src={userAvatar}
+              alt="avatar"
+            ></img>
           </div>
         </NavLink>
       </div>
