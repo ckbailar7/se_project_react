@@ -53,6 +53,13 @@
     cursor: pointer;
   }
 
+  .modal__content-flex-img_info {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
   .modal__content-flex-img-name {
     font-family: "Cabinet Grotesk semi";
     color: rgba(0, 0, 0, 0.5);
@@ -68,19 +75,31 @@
     font-size: 16px;
     cursor: pointer;
     padding: 2px 12px 2px 12px;
+    justify-content: center;
   }
 
   .modal__content-flex-card-weather {
     font-family: "Cabinet Grotesk semi";
     padding-left: 28px;
+    width: 115px;
+    height: 24px;
   }
 }
+
+/* (min-width: 300px) and (max-width: 1350px) Above ^^ */
+/* Base Res */
 
 .modal__content-flex {
   display: block;
 }
 
-.modal__content-Item_close {
+/* .modal__content-flex-img_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+} */
+
+.modal .modal__content-Item_close {
   position: relative;
   background-image: url("../images/Unioncloseclose.svg");
   background-repeat: no-repeat;
@@ -109,7 +128,9 @@
   background-color: transparent;
   border: none;
   color: rgba(255, 77, 0, 1);
-  margin: 0 0 0 200px;
+  margin: 0 0 0 112px;
+  width: 101px;
+  height: 24px;
 }
 .modal__content-flex-img_deleteBtn__button:hover {
   opacity: 50%;
@@ -119,5 +140,80 @@
 @media screen and (min-width: 100px) and (max-width: 299px) {
   .modal__content-flex-img_deleteBtn__button {
     margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 1351px) and (max-width: 3000px) {
+  .modal__content {
+    padding: 0 0 0 0;
+    background-color: white;
+    max-width: 496px;
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  .modal .modal__content-Item_close {
+    background-image: url("../images/JCLCLOSE.png");
+    top: 12px;
+    right: 12px;
+    z-index: 1;
+  }
+
+  .modal__content-flex {
+    width: 498px;
+    height: 610px;
+  }
+
+  .modal__content-flex-img_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal__content-flex-img {
+    width: 498px;
+    height: 498px;
+    border-radius: 20px;
+  }
+
+  .modal__content-flex-img_info {
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    font-family: "Cabinet Grotesk medium";
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .modal__content-flex-img-name {
+    font-family: "Cabinet Grotesk medium";
+    width: 26px;
+    height: 24px;
+    margin: 20px 0 12px 20px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .modal__content-flex-img_deleteBtn {
+    position: relative;
+    left: 37px;
+    bottom: 38px;
+    align-items: flex-start;
+  }
+
+  .modal__content-flex-img_deleteBtn__button {
+    margin: 0 32px 0 0;
+  }
+
+  .modal__content-flex-card-weather {
+    /* font-family: "Cabinet Grotesk medium";
+    font-size: 20px;
+    line-height: 24px; */
+    /* width: 115px;
+    height: 24px; */
+    margin: 0 0 0 20px;
   }
 }

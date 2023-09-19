@@ -24,7 +24,15 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .modal__content {
+  background-color: white;
+  max-width: 496px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 28px 31px 36px 28px;
+}
+.modal__content-modalWithForm {
   /* display: flex;
   flex-direction: column; */
   background-color: white;
@@ -61,15 +69,12 @@
   /* padding-bottom: 24px; */
 }
 
-.modal__content-form {
-  /* display: flex; */
-  /* flex-direction: column; */
-}
-
 .modalWithForm {
   display: flex;
   flex-direction: column;
   font-family: "Cabinet Grotesk medium";
+  width: 496px;
+  /* height: 436px; */
 }
 
 .modalWithForm__name {
@@ -99,6 +104,7 @@
 }
 
 .modalWithForm__radio-Btns {
+  cursor: pointer;
 }
 
 .modalWithForm__name-input {
@@ -123,7 +129,7 @@
   width: 124px;
   height: 36px;
   color: rgba(255, 255, 255, 1);
-
+  cursor: pointer;
   border: none;
   border-radius: 5px;
   font-family: "Cabinet Grotesk medium";

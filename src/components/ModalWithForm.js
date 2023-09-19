@@ -15,7 +15,7 @@ function ModalWithForm({
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="modal__content"
+        className="modal__content-modalWithForm"
       >
         <button
           className="modal__content-button"

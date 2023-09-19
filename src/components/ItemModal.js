@@ -53,23 +53,25 @@ const ItemModal = ({
             <div className="modal__content-flex-img-name">
               {selectedCard.name}
             </div>
-            <div className="modal__content-flex-card-weather">
-              Weather: {selectedCard.weather}
-            </div>
-            <div className="modal__content-flex-img_deleteBtn">
-              <form
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              />
-              <button
-                className="modal__content-flex-img_deleteBtn__button"
-                type="submit"
-                //onClick={handleCreateDeleteConfirmModal}
-                onClick={handleDeleteSubmit}
-              >
-                Delete item
-              </button>
+            <div className="modal__content-flex-img_info">
+              <div className="modal__content-flex-card-weather">
+                Weather: {selectedCard.weather}
+              </div>
+              <div className="modal__content-flex-img_deleteBtn">
+                <form
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                />
+                <button
+                  className="modal__content-flex-img_deleteBtn__button"
+                  type="submit"
+                  //onClick={handleCreateDeleteConfirmModal}
+                  onClick={handleDeleteSubmit}
+                >
+                  Delete item
+                </button>
+              </div>
             </div>
           </div>
         </div>
