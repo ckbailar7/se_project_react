@@ -8,7 +8,6 @@ const AddItemModal = ({ onAddItem, onCloseModal }) => {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-  //const [isOpen, setIsOpen] = useState("create");
 
   const handleNameChange = (e) => {
     console.log(e.target.value);
@@ -39,12 +38,12 @@ const AddItemModal = ({ onAddItem, onCloseModal }) => {
     onAddItem({ name, imageUrl, weather });
     onCloseModal();
   };
+  useEffect(() => {
+    setName("");
+    setWeather("");
+    setImageUrl("");
+  }, []);
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     setIsOpen("");
-  //   }
-  // }, [isOpen]);
   return (
     <ModalWithForm
       title="New Garment"
