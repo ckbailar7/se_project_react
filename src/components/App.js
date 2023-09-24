@@ -14,7 +14,7 @@ import {
   parseWeatherDataName,
 } from "../utils/weatherApi";
 import { Switch, Route } from "react-router-dom";
-import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import "../utils/api";
 import api from "../utils/api";
 
@@ -24,7 +24,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [weatherData, setWeatherData] = useState({});
   const [currentLocation, setCurrentLocation] = useState("");
-  const [currentTemperatureUnit, setCurrenTemperatureUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [defaultClothingItemsArray, setDefaultClothingItemsArray] = useState(
     []
   );
@@ -48,18 +48,23 @@ function App() {
   //console.log(`currentTemperatureUnit`, currentTemperatureUnit);
   console.log(weatherData.temperature);
 
-  const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "F") {
-      setCurrenTemperatureUnit("C");
-      setTemp(weatherData.temperature["C"]);
-    } else {
-      setCurrenTemperatureUnit("F");
-      setTemp(weatherData.temperature["F"]);
-    }
+  // const handleToggleSwitchChange = () => {
+  //   if (currentTemperatureUnit === "F") {
+  //     setCurrenTemperatureUnit("C");
+  //     setTemp(weatherData.temperature["C"]);
+  //   } else {
+  //     setCurrenTemperatureUnit("F");
+  //     setTemp(weatherData.temperature["F"]);
+  //   }
 
-    // currentTemperatureUnit === "F"
-    //   ? setCurrenTemperatureUnit("C")
-    //   : setCurrenTemperatureUnit("F");
+  //   // currentTemperatureUnit === "F"
+  //   //   ? setCurrenTemperatureUnit("C")
+  //   //   : setCurrenTemperatureUnit("F");
+  // };
+
+  const handleToggleSwitchChange = () => {
+    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
+    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
   const onAddItem = (values) => {
@@ -90,24 +95,11 @@ function App() {
       .then((data) => {
         const currentLocation = parseWeatherDataName(data);
         setCurrentLocation(currentLocation);
-        const weatherDataParsed = parseWeatherData(data);
+        const temperature = parseWeatherData(data);
 
-        const weatherString =
-          weatherDataParsed.temperature[currentTemperatureUnit];
-
-        const newWeatherData = parseInt(weatherString);
-        setWeatherData(weatherDataParsed);
-        setTemp(weatherDataParsed.temperature["F"]);
-        console.log(`weatherDataParsed`, weatherDataParsed);
-        console.log(`weatherString`, weatherString, weatherString.type);
-        console.log(
-          `newWeatherData`,
-          newWeatherData,
-          `type:`,
-          newWeatherData.type
-        );
-
-        return newWeatherData;
+        setWeatherData(temperature);
+        setTemp(temperature);
+        console.log(`weatherDataParsed`, temperature);
       })
       .catch((error) => {
         console.log(error);
@@ -148,16 +140,19 @@ function App() {
       .handleDeleteSelectedItem(id)
       .then(() => {
         setDefaultClothingItemsArray((defaultClothingItemsArray) =>
-          defaultClothingItemsArray.filter((itemForDLT) => itemForDLT.id !== id)
+          defaultClothingItemsArray.filter((item) => item.id !== id)
         );
-      })
-      .then(() => {
         handleCloseModal();
       })
+      // .then(() => {
+      //   handleCloseModal();
+      // })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  console.log(`currentTemperatureUnit`, currentTemperatureUnit);
 
   return (
     <div id="content__container">
@@ -167,15 +162,15 @@ function App() {
         <Header
           onCreateModal={handleCreateModal}
           currentLocation={currentLocation}
-          currentTemp={temp}
+          temp={temp}
           handleToggleSwitchChange={handleToggleSwitchChange}
         />
         <Switch>
           <Route exact path="/">
             <Main
               onSelectCard={handleSelectedCard}
-              weatherTemp={currentTemperatureUnit}
-              currentTemp={temp}
+              weatherTemp={temp}
+              //currentTemp={temp}
               newGeneratedCards={defaultClothingItemsArray}
             />
           </Route>

@@ -25,7 +25,6 @@ export const parseWeatherData = (data) => {
       C: Math.round(((temperature - 32) * 5) / 9),
     },
   };
-  const weatherData = weather;
 
   // weather.temperature.F = `${Math.round(data.main.temp)}°F`;
   // weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
@@ -36,7 +35,8 @@ export const parseWeatherData = (data) => {
   //console.log("weather.temperature", weather.temperature);
   // console.log(`weatherData - parseWeatherData`, weatherData);
   //onsole.log("newNewWeatherData - parseWeatherData", newNewWeatherData);
-  return weatherData;
+  console.log(weather);
+  return weather;
 };
 
 export const parseWeaterDataCelcius = (data) => {

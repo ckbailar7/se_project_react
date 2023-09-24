@@ -10,7 +10,8 @@ import ToggleSwitch from "./ToggleSwitch";
 const Header = ({
   onCreateModal,
   currentLocation,
-  currentTemp,
+  // currentTemp,
+  temp,
   handleToggleSwitchChange,
 }) => {
   return (
@@ -28,7 +29,7 @@ const Header = ({
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch
-          currentTemp={currentTemp}
+          currentTemp={temp}
           handleToggleSwitchChange={handleToggleSwitchChange}
         />
 

@@ -1,6 +1,7 @@
-import { useMemo } from "react";
 import ItemCard from "./ItemCard";
 import "../blocks/ClothesSection.css";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { useContext } from "react";
 
 const ClothesSection = ({
   newGeneratedCards,
@@ -8,25 +9,26 @@ const ClothesSection = ({
   weatherTemp,
   onSelectCard,
   onCreateModal,
+  //currentTemperatureUnit,
 }) => {
-  const newTemp = currentTemp;
-
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const temp = currentTemp?.temperature?.[currentTemperatureUnit] || 999;
   const getWeatherType = () => {
     if (
-      (newTemp >= 82 && weatherTemp === "F") ||
-      (newTemp >= 28 && weatherTemp === "C")
+      (temp >= 82 && currentTemperatureUnit === "F") ||
+      (temp >= 28 && currentTemperatureUnit === "C")
     ) {
       return "hot";
     } else if (
-      (newTemp >= 66 && weatherTemp === "F") ||
-      (newTemp >= 19 && weatherTemp === "C") ||
-      (newTemp <= 81 && weatherTemp === "F") ||
-      (newTemp <= 27 && weatherTemp === "C")
+      (temp >= 66 && currentTemperatureUnit === "F") ||
+      (temp >= 19 && currentTemperatureUnit === "C") ||
+      (temp <= 81 && currentTemperatureUnit === "F") ||
+      (temp <= 27 && currentTemperatureUnit === "C")
     ) {
       return "warm";
     } else if (
-      (newTemp <= 65 && weatherTemp === "F") ||
-      (newTemp <= 18 && weatherTemp === "C")
+      (temp <= 65 && currentTemperatureUnit === "F") ||
+      (temp <= 18 && currentTemperatureUnit === "C")
     ) {
       return "cold";
     }
@@ -55,11 +57,11 @@ const ClothesSection = ({
   //   }
   // }, [newTemp]);
 
-  const filteredCards = newGeneratedCards.filter((item) => {
-    return (
-      item.weather && weatherType && item.weather.toLowerCase() === weatherType
-    );
-  });
+  // const filteredCards = newGeneratedCards.filter((item) => {
+  //   return (
+  //     item.weather && weatherType && item.weather.toLowerCase() === weatherType
+  //   );
+  // });
   return (
     <div className="clothes__section-container">
       <div className="clothes__section-title">
