@@ -5,7 +5,7 @@ import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
 import Profile from "./Profile";
 import AddItemModal from "./AddItemModal";
-import { defaultClothingItems } from "../utils/constants";
+// import { defaultClothingItems } from "../utils/constants";
 import "../blocks/App.css";
 import { useState, useEffect } from "react";
 import {
