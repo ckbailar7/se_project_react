@@ -10,7 +10,7 @@ const WeatherCard = ({ day, type, weatherTemp, currentTemp }) => {
   const weatherOption = weatherOptions.find((item) => {
     return item.day === day && item.type === type;
   });
-  const imageSrcUrl = weatherOption.url || "";
+  const imageSrcUrl = weatherOption ? weatherOption.url : ""; // Default to empty string if weather option not found
   return (
     <>
       <section className="weather" id="weather">
@@ -18,11 +18,9 @@ const WeatherCard = ({ day, type, weatherTemp, currentTemp }) => {
           {weatherTemp}°{currentTemperatureUnit}
         </div>
 
-        <img
-          src={{ imageSrcUrl }}
-          className="weather_image"
-          alt="weather"
-        ></img>
+        {imageSrcUrl && (
+          <img src={imageSrcUrl} className="weather_image" alt="weather" />
+        )}
       </section>
     </>
   );

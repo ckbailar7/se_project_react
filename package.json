@@ -1,5 +1,5 @@
 {
-  "name": "se_project_react",
+  "name": "cloneToCRA-VITE",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,10 +8,11 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.4",
+    "react-router-dom": "^6.23.1",
     "react-scripts": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://ckbailar7.github.io/cloneToCRA-VITE",
   "scripts": {
     "start": "vite",
     "build": "vite build",
@@ -19,7 +20,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "dev": "vite"
+    "dev": "vite",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -44,7 +46,7 @@
     "@svgr/plugin-jsx": "^8.1.0",
     "@vitejs/plugin-react": "^4.2.1",
     "gh-pages": "^5.0.0",
-    "vite": "^5.1.1"
-  },
-  "homepage": "https://{ckbailar7}.github.io/{se_project_react}"
+    "vite": "^5.1.1",
+    "vite-plugin-svgr": "^4.2.0"
+  }
 }

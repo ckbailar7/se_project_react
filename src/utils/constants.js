@@ -1,16 +1,16 @@
-import Night from "/public/images/Night/Night.svg";
-import NightCloudy from "/public/images/Night/Night-Cloudy.svg";
-import NightRain from "/public/images/Night/Night-Rain.svg";
-import NightStorm from "/public/images/Night/Night-Storm.svg";
-import NightSnow from "/public/images/Night/Night-Snow.svg";
-import NightFog from "/public/images/Night/Night-Fog.svg";
+import Night from "../images/Night/Night.svg";
+import NightCloudy from "../images/Night/Night-Cloudy.svg";
+import NightRain from "../images/Night/Night-Rain.svg";
+import NightStorm from "../images/Night/Night-Storm.svg";
+import NightSnow from "../images/Night/Night-Snow.svg";
+import NightFog from "../images/Night/Night-Fog.svg";
 
-import Sunny from "/public/images/Sunny/Sunny.svg";
-import SunnyCloudy from "/public/images/Sunny/Sunny-Cloudy.svg";
-import SunnyRain from "/public/images/Sunny/Sunny-Rain.svg";
-import SunnyStorm from "/public/images/Sunny/Sunny-Storm.svg";
-import SunnySnow from "/public/images/Sunny/Sunny-Snow.svg";
-import SunnyFog from "/public/images/Sunny/Sunny-Fog.svg";
+import Sunny from "../images/Sunny/Sunny.svg";
+import SunnyCloudy from "../images/Sunny/Sunny-Cloudy.svg";
+import SunnyRain from "../images/Sunny/Sunny-Rain.svg";
+import SunnyStorm from "../images/Sunny/Sunny-Storm.svg";
+import SunnySnow from "../images/Sunny/Sunny-Snow.svg";
+import SunnyFog from "../images/Sunny/Sunny-Fog.svg";
 
 export const localSelectors = {
   latitude: "38.9072",
@@ -26,62 +26,62 @@ const currentDate = new Date().toLocaleString("default", {
 
 export const weatherOptions = [
   {
-    url: { Sunny },
+    url: Sunny,
     day: true,
     type: "Sunny",
   },
   {
-    url: { SunnyCloudy },
+    url: SunnyCloudy,
     day: true,
     type: "Sunny-Cloudy",
   },
   {
-    url: { SunnyRain },
+    url: SunnyRain,
     day: true,
     type: "Sunny-Rain",
   },
   {
-    url: { SunnyStorm },
+    url: SunnyStorm,
     day: true,
     type: "Sunny-Storm",
   },
   {
-    url: { SunnySnow },
+    url: SunnySnow,
     day: true,
     type: "Sunny-Snow",
   },
   {
-    url: { SunnyFog },
+    url: SunnyFog,
     day: true,
     type: "Sunny-Fog",
   },
   {
-    url: { Night },
+    url: Night,
     day: false,
     type: "Night",
   },
   {
-    url: { NightCloudy },
+    url: NightCloudy,
     day: false,
     type: "Night-Cloudy",
   },
   {
-    url: { NightRain },
+    url: NightRain,
     day: false,
     type: "Night-Rain",
   },
   {
-    url: { NightStorm },
+    url: NightStorm,
     day: false,
     type: "Night-Storm",
   },
   {
-    url: { NightSnow },
+    url: NightSnow,
     day: false,
     type: "Night-Snow",
   },
   {
-    url: { NightFog },
+    url: NightFog,
     day: false,
     type: "Night-Fog",
   },

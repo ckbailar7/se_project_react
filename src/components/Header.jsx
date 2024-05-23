@@ -1,4 +1,4 @@
-import HeaderLogo from "/public/images/wtwrlogologo.svg";
+import HeaderLogo from "../images/wtwrlogologo.svg";
 import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import currentDate from "../utils/constants";
