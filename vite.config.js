@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
       htmlPlugin(mode),
       svgrPlugin(),
     ],
-    base: "/cloneToCRA-VITE/",
+    base: "/se_project_react/",
   };
 });
 function setEnv(mode) {
