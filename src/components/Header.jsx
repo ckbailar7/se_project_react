@@ -9,7 +9,9 @@ import ToggleSwitch from "./ToggleSwitch";
 
 const Header = ({
   onCreateModal,
+  onCreateRegisterModal,
   currentLocation,
+  onCreateLoginModal,
   // currentTemp,
   temp,
   handleToggleSwitchChange,
@@ -35,6 +37,20 @@ const Header = ({
 
         <button className="header__avatar-logo_button" onClick={onCreateModal}>
           + Add clothes
+        </button>
+
+        <button
+          className="header__avatar-logo_button"
+          onClick={onCreateLoginModal}
+        >
+          Login
+        </button>
+
+        <button
+          className="header__avatar-logo_button"
+          onClick={onCreateRegisterModal}
+        >
+          Register
         </button>
 
         <NavLink exact to="/profile">

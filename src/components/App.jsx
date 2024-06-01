@@ -3,6 +3,8 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
+import RegisterModal from "./RegisterModal";
+import LoginModal from "./LoginModal";
 import Profile from "./Profile";
 import AddItemModal from "./AddItemModal";
 // import { defaultClothingItems } from "../utils/constants";
@@ -13,7 +15,7 @@ import {
   parseWeatherData,
   parseWeatherDataName,
 } from "../utils/weatherApi";
-import { Router, Route, Routes } from "react-router-dom";
+import { Router, Route, Routes, Navigate } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import "../utils/api";
 import api from "../utils/api";
@@ -28,6 +30,17 @@ function App() {
   const [defaultClothingItemsArray, setDefaultClothingItemsArray] = useState(
     []
   );
+
+  // Sets isLoggedIn default value to false
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLoginModal = () => {
+    setActiveModal("login");
+  };
+
+  const handleRegistrationModal = () => {
+    setActiveModal("register");
+  };
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -161,6 +174,8 @@ function App() {
       >
         <Header
           onCreateModal={handleCreateModal}
+          onCreateRegisterModal={handleRegistrationModal}
+          onCreateLoginModal={handleLoginModal}
           currentLocation={currentLocation}
           temp={temp}
           handleToggleSwitchChange={handleToggleSwitchChange}
@@ -189,6 +204,16 @@ function App() {
               />
             }
           ></Route>
+          <Route
+            path="*"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/Main" replace />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
         </Routes>
 
         <Footer />
@@ -204,6 +229,13 @@ function App() {
             //onDelete={handleTESTDeleteItem}
             onDelete={handleDeleteSelectedItem}
           />
+        )}
+
+        {activeModal === "register" && (
+          <RegisterModal onCloseModal={handleCloseModal} />
+        )}
+        {activeModal === "login" && (
+          <LoginModal onCloseModal={handleCloseModal} />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
