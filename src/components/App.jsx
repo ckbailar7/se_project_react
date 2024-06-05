@@ -1,12 +1,16 @@
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import ProtectedRoute from "./ProtectedRoute";
 import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
 import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
 import Profile from "./Profile";
 import AddItemModal from "./AddItemModal";
+import { register, authorize } from "../utils/auth";
+import { getToken, setToken } from "../utils/token";
+
 // import { defaultClothingItems } from "../utils/constants";
 import "../blocks/App.css";
 import { useState, useEffect } from "react";
@@ -15,8 +19,9 @@ import {
   parseWeatherData,
   parseWeatherDataName,
 } from "../utils/weatherApi";
-import { Router, Route, Routes, Navigate } from "react-router-dom";
+import { Router, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import "../utils/api";
 import api from "../utils/api";
 
@@ -32,7 +37,11 @@ function App() {
   );
 
   // Sets isLoggedIn default value to false
+  const [currentUser, setCurrentUser] = useState({ username: "", email: "" });
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLoginModal = () => {
     setActiveModal("login");
@@ -99,9 +108,62 @@ function App() {
       });
   };
 
-  // useEffect(() => {
-  //   setWeatherData(weatherData);
-  // });
+  const onAttemptRegistration = (data) => {
+    register(data)
+      .then((res) => {
+        // TODO
+        console.log(res);
+        localStorage.setItem("jwt", res.token);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
+    authorize(email, password)
+      .then((data) => {
+        console.log(data);
+        if (data.jwt) {
+          setToken(data.jwt);
+          setCurrentUser(data.user);
+          setIsLoggedIn(true);
+          const redirectPath = location.state?.from?.pathname || "/main";
+          navigate(redirectPath);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    //api call
+    api
+      .getUserInfo(jwt)
+      .then(({ email, password }) => {
+        //
+        setIsLoggedIn(true);
+        setCurrentUser({ email, password });
+        const redirectPath = location.state?.from?.pathname || "/main";
+        navigate(redirectPath);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // TODO - handle JWT
+  }, []);
 
   useEffect(() => {
     getForecastWeather()
@@ -169,75 +231,91 @@ function App() {
 
   return (
     <div id="content__container">
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <Header
-          onCreateModal={handleCreateModal}
-          onCreateRegisterModal={handleRegistrationModal}
-          onCreateLoginModal={handleLoginModal}
-          currentLocation={currentLocation}
-          temp={temp}
-          handleToggleSwitchChange={handleToggleSwitchChange}
-        />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Main
-                onSelectCard={handleSelectedCard}
-                weatherTemp={temp}
-                //currentTemp={temp}
-                newGeneratedCards={defaultClothingItemsArray}
-              />
-            }
-          ></Route>
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                currentTemp={temp}
-                newGeneratedCards={defaultClothingItemsArray}
-                weatherTemp={currentTemperatureUnit}
-                onSelectCard={handleSelectedCard}
-                onCreateModal={handleCreateModal}
-              />
-            }
-          ></Route>
-          <Route
-            path="*"
-            element={
-              isLoggedIn ? (
-                <Navigate to="/Main" replace />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
+      <CurrentUserContext.Provider value={currentUser}>
+        <CurrentTemperatureUnitContext.Provider
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+        >
+          <Header
+            onCreateModal={handleCreateModal}
+            onCreateRegisterModal={handleRegistrationModal}
+            onCreateLoginModal={handleLoginModal}
+            currentLocation={currentLocation}
+            temp={temp}
+            handleToggleSwitchChange={handleToggleSwitchChange}
+            isLoggedIn={isLoggedIn}
+            currentUser={currentUser}
           />
-        </Routes>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  onSelectCard={handleSelectedCard}
+                  weatherTemp={temp}
+                  //currentTemp={temp}
+                  newGeneratedCards={defaultClothingItemsArray}
+                />
+              }
+            ></Route>
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile
+                    currentTemp={temp}
+                    newGeneratedCards={defaultClothingItemsArray}
+                    weatherTemp={currentTemperatureUnit}
+                    onSelectCard={handleSelectedCard}
+                    onCreateModal={handleCreateModal}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="*"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/Main" replace />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+          </Routes>
 
-        <Footer />
-        {activeModal === "create" && (
-          <AddItemModal onCloseModal={handleCloseModal} onAddItem={onAddItem} />
-        )}
+          <Footer />
+          {activeModal === "create" && (
+            <AddItemModal
+              onCloseModal={handleCloseModal}
+              onAddItem={onAddItem}
+            />
+          )}
 
-        {activeModal === "preview" && (
-          <ItemModal
-            onSelectCard={handleSelectedCard}
-            selectedCard={selectedCard}
-            onClose={handleCloseModal}
-            //onDelete={handleTESTDeleteItem}
-            onDelete={handleDeleteSelectedItem}
-          />
-        )}
+          {activeModal === "preview" && (
+            <ItemModal
+              onSelectCard={handleSelectedCard}
+              selectedCard={selectedCard}
+              onClose={handleCloseModal}
+              //onDelete={handleTESTDeleteItem}
+              onDelete={handleDeleteSelectedItem}
+            />
+          )}
 
-        {activeModal === "register" && (
-          <RegisterModal onCloseModal={handleCloseModal} />
-        )}
-        {activeModal === "login" && (
-          <LoginModal onCloseModal={handleCloseModal} />
-        )}
-      </CurrentTemperatureUnitContext.Provider>
+          {activeModal === "register" && (
+            <RegisterModal
+              onCloseModal={handleCloseModal}
+              onAttemptRegistration={onAttemptRegistration}
+            />
+          )}
+          {activeModal === "login" && (
+            <LoginModal
+              onCloseModal={handleCloseModal}
+              handleLogin={handleLogin}
+            />
+          )}
+        </CurrentTemperatureUnitContext.Provider>
+      </CurrentUserContext.Provider>
     </div>
   );
 }

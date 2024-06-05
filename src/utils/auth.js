@@ -3,7 +3,7 @@
 
 export const BASE_URL = "http://localhost:3000/se_project_react";
 
-export const register = (name, avatar, email, password) => {
+export const register = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {

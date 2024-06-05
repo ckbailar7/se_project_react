@@ -92,3 +92,15 @@ a:visited {
   align-items: center;
   font-family: "Cabinet Grotesk semi";
 }
+
+.header__logo-profile_initial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #000;
+}
