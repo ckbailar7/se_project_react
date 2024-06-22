@@ -2,14 +2,8 @@ import "../blocks/ItemModal.css";
 import ModalWithForm from "./ModalWithForm";
 import { React, useEffect, useState } from "react";
 
-const RegisterModal = ({ onCloseModal, onAttemptRegistration }) => {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [data, setData] = useState({
+const RegisterModal = ({ onCloseModal, onAttemptRegistration, buttonText }) => {
+  const [formData, setFormData] = useState({
     name: "",
     avatar: "",
     email: "",
@@ -17,40 +11,19 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration }) => {
     confirmPassword: "",
   });
 
-  const handleNameChange = (e) => {
-    console.log(e.target.value);
-    setName(e.target.value);
-    // const { name, value } = e.target;
-    // setData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
-  };
-
-  const handleSetAvatar = (e) => {
-    console.log(`Avatar ...`, e.target.value);
-    setAvatar(e.target.value);
-  };
-  const handleEmailChange = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    console.log(e.target.value);
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    console.log(e.target.value);
-    setConfirmPassword(e.targetValue);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = (e) => {
     //prevent Default behavior
     //call onAddItem with approppriate arguments
     e.preventDefault();
-    onAttemptRegistration({ data });
+    onAttemptRegistration(formData);
     onCloseModal();
   };
   return (
@@ -65,13 +38,13 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration }) => {
           <input
             className="modalWithForm__name-input"
             id="name"
-            type="name"
+            type="text"
             name="name"
             minLength="1"
             maxLength="300"
             placeholder="Name"
-            onChange={handleNameChange}
-            value={name}
+            onChange={handleChange}
+            value={formData.name}
           ></input>
         </label>
         <label className="modalWithForm__name">
@@ -79,13 +52,13 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration }) => {
           <input
             className="modalWithForm__name-input"
             id="avatar"
-            type="name"
+            type="text"
             name="avatar"
             minLength="1"
             maxLength="300"
             placeholder="Avatar"
-            onChange={handleSetAvatar}
-            value={avatar}
+            onChange={handleChange}
+            value={formData.avatar}
           ></input>
         </label>
         <label className="modalWithForm__name">
@@ -98,8 +71,8 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration }) => {
             minLength="1"
             maxLength="300"
             placeholder="email"
-            onChange={handleEmailChange}
-            value={email}
+            onChange={handleChange}
+            value={formData.email}
           ></input>
         </label>
         <label className="modalWithForm__name">
@@ -112,24 +85,27 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration }) => {
             minLength="1"
             maxLength="300"
             placeholder="Password"
-            onChange={handlePasswordChange}
-            value={password}
+            onChange={handleChange}
+            value={formData.password}
           ></input>
         </label>
         <label className="modalWithForm__name">
           Confirm Password
           <input
             className="modalWithForm__name-input"
-            id="Confirmpassword"
-            type="Password"
-            name="Confirmpassword"
+            id="confirmpassword"
+            type="password"
+            name="confirmPassword"
             minLength="1"
             maxLength="300"
             placeholder="Confirm Password"
-            onChange={handleConfirmPasswordChange}
-            value={confirmPassword}
+            onChange={handleChange}
+            value={formData.confirmPassword}
           ></input>
         </label>
+        <button className="modal__content-submitBtn" type="submit">
+          {buttonText}
+        </button>
       </div>
     </ModalWithForm>
   );

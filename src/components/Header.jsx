@@ -24,7 +24,7 @@ const Header = ({
     <header className="header">
       <div className="header__logo">
         <div>
-          <NavLink exact to="/">
+          <NavLink to="/">
             <img src={HeaderLogo} alt="logo"></img>
           </NavLink>
         </div>
@@ -46,12 +46,12 @@ const Header = ({
             >
               + Add clothes
             </button>
-            <NavLink exact to="/profile">
+            <NavLink to="/profile">
               <div className="header__logo-profile_container">
                 <div className="header__logo-profile_name">
-                  {currentUser.name}
+                  {currentUser && currentUser.name}
                 </div>
-                {currentUser.userAvatar ? (
+                {currentUser && currentUser.userAvatar ? (
                   <img
                     className="header__logo-profile_image"
                     src={currentUser.userAvatar}
@@ -59,7 +59,9 @@ const Header = ({
                   />
                 ) : (
                   <div className="header__logo-profile_initial">
-                    {currentUser.name ? currentUser.name[0].toUpperCase() : "F"}
+                    {currentUser && currentUser.username
+                      ? currentUser.username[0].toUpperCase()
+                      : "F"}
                   </div>
                 )}
               </div>
@@ -81,7 +83,7 @@ const Header = ({
               Register
             </button>
 
-            <NavLink exact to="/profile">
+            <NavLink to="/profile">
               <div className="header__logo-profile_container">
                 <div className="header__logo-profile_name">
                   {currentUser.name}

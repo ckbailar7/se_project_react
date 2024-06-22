@@ -8,7 +8,12 @@ import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
+  if (!Array.isArray(newGeneratedCards)) {
+    console.error("newGeneratedCards is not an array:", newGeneratedCards);
+    return null;
+  }
   // const checkWeatherTempDegreeFar = useMemo(() => {
+
   //   if (weatherTemp === "F") {
   //     //console.log(`checkWeatherTempDegreeFar .... ` + "true");
   //     return true;
@@ -110,10 +115,14 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
         <div className="card__items">
           {newGeneratedCards
             .filter((item) => {
-              return item.weather.toLowerCase() === weatherType;
+              return item.weather && item.weather.toLowerCase() === weatherType;
             })
             .map((data) => (
-              <ItemCard key={data.id} data={data} onSelectCard={onSelectCard} />
+              <ItemCard
+                key={data._id}
+                data={data}
+                onSelectCard={onSelectCard}
+              />
             ))}
           {/* {filteredCards.map((data) => (
             <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />

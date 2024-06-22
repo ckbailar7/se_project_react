@@ -1,31 +1,46 @@
 //
 //
 
-export const BASE_URL = "http://localhost:3000/se_project_react";
+export const BASE_URL = "http://localhost:3001";
 
-export const register = ({ name, avatar, email, password }) => {
+export const register = ({ avatar, email, name, password }) => {
+  console.log("req ==>>", { avatar, email, name, password });
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ avatar, email, name, password }),
   }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+    //return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+    if (!res.ok) {
+      return Promise.reject(`Error: ${res.status}`);
+    }
+    return res.json();
   });
 };
 //
 //
-export const authorize = (email, password) => {
+export const authorize = ({ email, password }) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(email, password),
-  }).then((res) => {
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+    body: JSON.stringify({ email, password }),
+  })
+    .then((res) => {
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      // if (res.ok) {
+      //   res.json();
+      // } else {
+      //   return Promise.reject(`Error ${res.status}`);
+      // }
+    })
+    .catch((err) => {
+      console.error("Authorization Error:", err);
+      throw err;
+    });
 };
 //
 

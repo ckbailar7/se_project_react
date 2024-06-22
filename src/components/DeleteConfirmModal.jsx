@@ -10,11 +10,18 @@ const DeleteConfirmModal = ({
   // { onSelectCard }
   {
     //console.log(selectedCard, "selectedCardddd from DELETECONFIRMMODAL.JS");
-    const handleDeleteSubmit = () => {
-      console.log("Hello from handle delete submit function :D");
-      console.log(`Your selected Card is ...`, selectedCard);
-      //onDelete(selectedCard);
+    // const handleDeleteSubmit = () => {
+    //   console.log("Hello from handle delete submit function :D");
+    //   console.log(`Your selected Card is ...`, selectedCard);
+    //   //onDelete(selectedCard);
+    // };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      onDelete({ id });
+      onClose;
     };
+
     return (
       <div id="modal" className={"modal"}>
         <div

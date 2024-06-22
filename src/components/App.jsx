@@ -37,7 +37,11 @@ function App() {
   );
 
   // Sets isLoggedIn default value to false
-  const [currentUser, setCurrentUser] = useState({ username: "", email: "" });
+  const [currentUser, setCurrentUser] = useState({
+    username: "",
+    email: "",
+    name: "",
+  });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -84,18 +88,53 @@ function App() {
   //   //   : setCurrenTemperatureUnit("F");
   // };
 
+  useEffect(() => {
+    console.log("JWT Checking in local storage ");
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    //api call
+    api
+      .getUserInfo(jwt)
+      .then((res) => {
+        console.log("res from api.getUserInfo(jwt) ===>", res);
+        if (res && res.email) {
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+        }
+      })
+      .catch((err) => console.error("Token validation failed", err));
+    // .then(({ username, email }) => {
+    //   //
+    //   setIsLoggedIn(true);
+    //   setCurrentUser({ username, email });
+    //   const redirectPath = window.location.state?.from?.pathname || "/main";
+    //   navigate(redirectPath);
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
+
+    // TODO - handle JWT
+  }, []);
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const onAddItem = (values) => {
-    console.log(`From onAddItem ... <3`);
-    console.log(values);
+  const onAddItem = ({ name, imageUrl, weather }) => {
+    console.log(`from onAddItem ... ${name}`);
+    console.log(`from onAddItem ... ${imageUrl}`);
+    console.log(`from onAddItem ... ${weather}`);
 
     api
-      .addNewItem(values)
+      .addNewItem(name, imageUrl, weather)
       .then((addedItem) => {
+        console.log("added item from .then((addedItem) => {})");
         setDefaultClothingItemsArray((defaultClothingItemsArray) => [
           addedItem,
           ...defaultClothingItemsArray,
@@ -108,8 +147,11 @@ function App() {
       });
   };
 
-  const onAttemptRegistration = (data) => {
-    register(data)
+  const onAttemptRegistration = ({ name, avatar, email, password }) => {
+    console.log(
+      `Attempting registration with : ==> ${(name, avatar, email, password)}`
+    );
+    register({ name, avatar, email, password })
       .then((res) => {
         // TODO
         console.log(res);
@@ -122,48 +164,33 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
+    console.log(`Attempting LOGIN with ==> ${email}, ${password}`);
     if (!email || !password) {
       return;
     }
-    authorize(email, password)
-      .then((data) => {
-        console.log(data);
-        if (data.jwt) {
-          setToken(data.jwt);
-          setCurrentUser(data.user);
+    authorize({ email, password })
+      .then((res) => {
+        console.log("Response from authorization", res);
+        if (res.token) {
+          setToken(res.token);
+          setCurrentUser({
+            username: res.username,
+            email: res.email,
+            name: "",
+          });
           setIsLoggedIn(true);
-          const redirectPath = location.state?.from?.pathname || "/main";
+          const redirectPath = window.location.state?.from?.pathname || "/main";
           navigate(redirectPath);
+          console.log("currentUser", currentUser);
+        } else {
+          console.log("JWT token is missing in the response");
         }
       })
+
       .catch((err) => {
-        console.error(err);
+        console.error("Login error:", err);
       });
   };
-
-  useEffect(() => {
-    const jwt = getToken();
-
-    if (!jwt) {
-      return;
-    }
-
-    //api call
-    api
-      .getUserInfo(jwt)
-      .then(({ email, password }) => {
-        //
-        setIsLoggedIn(true);
-        setCurrentUser({ email, password });
-        const redirectPath = location.state?.from?.pathname || "/main";
-        navigate(redirectPath);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    // TODO - handle JWT
-  }, []);
 
   useEffect(() => {
     getForecastWeather()
@@ -185,7 +212,12 @@ function App() {
     api
       .getItems()
       .then((data) => {
-        setDefaultClothingItemsArray(data);
+        console.log("Data being received =>>", data.data);
+        if (data.data && Array.isArray(data.data)) {
+          setDefaultClothingItemsArray(data.data);
+        } else {
+          console.log("expected Array but insteadd received : ", data);
+        }
         //console.log(defaultClothingItemsArray);
       })
       .catch((err) => {
@@ -206,11 +238,12 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("CURRENT USER USEFFECT()", currentUser);
+  }, []);
+
   const handleDeleteSelectedItem = (id) => {
-    console.log(
-      `hello from handleDeleteSelectedItem ...Current Selected ID : `,
-      id
-    );
+    console.log("Deleting item with ID:", id);
     api
       .handleDeleteSelectedItem(id)
       .then(() => {
@@ -223,7 +256,7 @@ function App() {
       //   handleCloseModal();
       // })
       .catch((err) => {
-        console.log(err);
+        console.log("Error deleting item", err);
       });
   };
 
@@ -268,6 +301,7 @@ function App() {
                     onSelectCard={handleSelectedCard}
                     onCreateModal={handleCreateModal}
                     isLoggedIn={isLoggedIn}
+                    currentUser={currentUser}
                   />
                 </ProtectedRoute>
               }
@@ -289,6 +323,7 @@ function App() {
             <AddItemModal
               onCloseModal={handleCloseModal}
               onAddItem={onAddItem}
+              buttonText={"submit"}
             />
           )}
 
@@ -299,6 +334,7 @@ function App() {
               onClose={handleCloseModal}
               //onDelete={handleTESTDeleteItem}
               onDelete={handleDeleteSelectedItem}
+              currentUser={currentUser}
             />
           )}
 
@@ -306,12 +342,14 @@ function App() {
             <RegisterModal
               onCloseModal={handleCloseModal}
               onAttemptRegistration={onAttemptRegistration}
+              buttonText={"submit"}
             />
           )}
           {activeModal === "login" && (
             <LoginModal
               onCloseModal={handleCloseModal}
               handleLogin={handleLogin}
+              buttonText={"submit"}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

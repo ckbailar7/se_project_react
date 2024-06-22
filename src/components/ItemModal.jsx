@@ -11,13 +11,24 @@ const ItemModal = ({
   handleDeleteCard,
   buttonText = " Delete item ",
   onDelete,
+  currentUser,
 }) => {
+  // Checking if the current user is the owner of the current clothing item
+  const isOwn = selectedCard.owner === currentUser._id;
+
+  const itemDeleteButtonClassName = `modal__content-flex-img_deleteBtn__button ${
+    isOwn
+      ? "modal__content-flex-img_deleteBtn__button_visible"
+      : "modal__content-flex-img_deleteBtn__button_hidden"
+  }`;
+
   //console.log(`SelectedCard from Itemmodal.js : ... `, selectedCard);
   //console.log(`type`, typeof selectedCard);
   const [activeDeleteConfirmModal, setActiveDeleteConfirm] = useState("");
   const handleDeleteSubmit = () => {
     console.log(selectedCard);
-    onDelete(selectedCard.id);
+    console.log("selectedCard ._id", selectedCard._id);
+    onDelete(selectedCard._id);
   };
 
   const testSelectedCardScope = () => {};
@@ -58,19 +69,21 @@ const ItemModal = ({
                 Weather: {selectedCard.weather}
               </div>
               <div className="modal__content-flex-img_deleteBtn">
+                {isOwn && (
+                  <button
+                    className="modal__content-flex-img_deleteBtn__button"
+                    type="submit"
+                    //onClick={handleCreateDeleteConfirmModal}
+                    onClick={handleDeleteSubmit}
+                  >
+                    Delete item
+                  </button>
+                )}
                 <form
                   onClick={(e) => {
                     e.preventDefault();
                   }}
                 />
-                <button
-                  className="modal__content-flex-img_deleteBtn__button"
-                  type="submit"
-                  //onClick={handleCreateDeleteConfirmModal}
-                  onClick={handleDeleteSubmit}
-                >
-                  Delete item
-                </button>
               </div>
             </div>
           </div>

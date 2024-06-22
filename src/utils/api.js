@@ -1,65 +1,76 @@
-export const base_URL =
-  "https://my-json-server.typicode.com/ckbailar7/se_project_react";
+import { getToken } from "./token";
 
-function handleInitialResponse(res) {
-  return res.ok
-    ? res.json()
-    : Promise.reject(
-        `From Api.js handleInitialResponse() .. Error: The Request Failed ...${res.status}`
-      );
-}
+const base_URL = "http://localhost:3001";
 
-export const getUserInfo = (token) => {
-  // Send a GET request to users/me
-  return fetch(`${base_URL}/profile`, {
+const headers = () => {
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${getToken()}`,
+  };
+};
+
+const handleInitialResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error(`Request failed with status ${res.status}`);
+  }
+};
+
+const handleRequest = (url, options) => {
+  return fetch(url, options).then(handleInitialResponse);
+};
+
+export const getUserInfo = async () => {
+  try {
+    const response = await fetch(`${base_URL}/users/me`, {
+      headers: headers(),
+    });
+    if (!response.ok) throw new Error("Failed to fetch user info");
+    return response.json();
+  } catch (error) {
+    throw new Error(`Failed to fetch user info: ${error.message} `);
+  }
+};
+
+const getItems = () => {
+  return handleRequest(`${base_URL}/items`, {
     method: "GET",
-    headers: {
-      Accept: "aaplication/json",
-      "Content-Type": "application/json",
-      // Specify auth header with appropriatley formatted value
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };
 
-function handleRequest(url, options, token) {
-  return fetch(url, options).then((res) => {
-    //console.log(res);
-    // console.log(`Url ... `, url);
-    // console.log(`Options...`, options);
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
-}
+const addNewItem = async (name, imageUrl, weather) => {
+  try {
+    const response = await fetch(`${base_URL}/items`, {
+      method: "POST",
+      headers: headers(),
+      body: JSON.stringify({ name, imageUrl, weather }),
+    });
+    if (!response.ok) throw new Error("Failed to add new item");
+    return response.json();
+  } catch (error) {
+    throw new Error(`Failed to add new item: ${error.message}`);
+  }
+};
 
-function getItems() {
-  return handleRequest(`${base_URL}/items`, {
-    method: "GET",
-  });
-}
+const handleDeleteSelectedItem = async (id, token) => {
+  try {
+    const response = await fetch(`${base_URL}/items/${id}`, {
+      method: "DELETE",
+      headers: headers(),
+      body: JSON.stringify({ id, token }),
+    });
+    if (!response.ok) throw new Error("Failed to delete item");
+    return response.json();
+  } catch (error) {
+    throw new Error(`Failed to delete item : ${error.message}`);
+  }
 
-function addNewItem({ values }, token) {
-  return handleRequest(`${base_URL}/items`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(values),
-    Authorization: `Bearer ${token}`,
-  });
-}
-
-function handleDeleteSelectedItem(id, token) {
-  return handleRequest(`${base_URL}/items/${id}`, {
-    method: "DELETE",
-    Authorization: `Bearer ${token}`,
-  });
-}
+  // return handleRequest(`${base_URL}/items/${id}`, {
+  //   method: "DELETE",
+  //   Authorization: `Bearer ${token}`,
+  // });
+};
 
 const api = {
   handleInitialResponse,

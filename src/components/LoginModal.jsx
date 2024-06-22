@@ -2,25 +2,27 @@ import "../blocks/ItemModal.css";
 import ModalWithForm from "./ModalWithForm";
 import { React, useEffect, useState } from "react";
 
-const LoginModal = ({ onCloseModal, handleLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({ onCloseModal, handleLogin, buttonText }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleEmailChange = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-  const handlePasswordChange = (e) => {
-    console.log(e.target.value);
-    setPassword(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(data);
+    handleLogin(formData);
+    onCloseModal();
   };
   return (
-    <ModalWithForm title="Login" onClose={onCloseModal}>
+    <ModalWithForm title="Login" onClose={onCloseModal} onSubmit={handleSubmit}>
       <div className="modalWithForm">
         <label className="modalWithForm__name">
           Email
@@ -32,8 +34,8 @@ const LoginModal = ({ onCloseModal, handleLogin }) => {
             minLength="1"
             maxLength="300"
             placeholder="Email"
-            onChange={handleEmailChange}
-            value={email}
+            onChange={handleChange}
+            value={formData.email}
           ></input>
         </label>
         <label className="modalWithForm__name">
@@ -46,10 +48,13 @@ const LoginModal = ({ onCloseModal, handleLogin }) => {
             minLength="1"
             maxLength="300"
             placeholder="Password"
-            onChange={handlePasswordChange}
-            value={password}
+            onChange={handleChange}
+            value={formData.password}
           ></input>
         </label>
+        <button className="modal__content-submitBtn" type="submit">
+          {buttonText}
+        </button>
       </div>
     </ModalWithForm>
   );

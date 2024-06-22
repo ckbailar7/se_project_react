@@ -3,7 +3,7 @@ import ModalWithForm from "./ModalWithForm";
 import { React, useEffect, useState } from "react";
 
 // onAddItem refers to handleAddItemSubmit, which is declared in App.js
-const AddItemModal = ({ onAddItem, onCloseModal }) => {
+const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
   // declare state for each input field
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -115,6 +115,9 @@ const AddItemModal = ({ onAddItem, onCloseModal }) => {
               className={"modalWithForm__radio-Btns"}
             ></input>
             <label>Cold</label>
+            <button className="modal__content-submitBtn" type="submit">
+              {buttonText}
+            </button>
           </div>
         </div>
       </div>
