@@ -208,6 +208,14 @@
     margin: 0 32px 0 0;
   }
 
+  .modal__content-flex-img_deleteBtn__button_visible {
+    visibility: visible;
+  }
+
+  .modal__content-flex-img_deleteBtn__button_hidden {
+    visibility: hidden;
+  }
+
   .modal__content-flex-card-weather {
     /* font-family: "Cabinet Grotesk medium";
     font-size: 20px;

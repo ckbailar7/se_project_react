@@ -5,9 +5,10 @@ import currentDate from "../utils/constants";
 //import Switch from "./Switch";
 import { useState } from "react";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ToggleSwitch from "./ToggleSwitch";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { getToken, removeToken } from "../utils/token";
 
 const Header = ({
   onCreateModal,
@@ -20,6 +21,14 @@ const Header = ({
   isLoggedIn,
   currentUser,
 }) => {
+  const navigate = useNavigate();
+
+  function signOut() {
+    removeToken();
+    navigate("/login");
+    isLoggedIn(false);
+  }
+
   return (
     <header className="header">
       <div className="header__logo">
@@ -51,6 +60,12 @@ const Header = ({
                 <div className="header__logo-profile_name">
                   {currentUser && currentUser.name}
                 </div>
+                <button
+                  className="header__avatar-logo_button"
+                  onClick={signOut}
+                >
+                  Sign Out
+                </button>
                 {currentUser && currentUser.userAvatar ? (
                   <img
                     className="header__logo-profile_image"

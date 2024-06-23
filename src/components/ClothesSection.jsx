@@ -73,7 +73,7 @@ const ClothesSection = ({
       <div className="clothes__section-clothes_items">
         {newGeneratedCards
           .filter((item) => {
-            return item.weather.toLowerCase() === weatherType;
+            return item.weather && item.weather.toLowerCase() === weatherType;
           })
           .map((data) => (
             <ItemCard key={data.id} data={data} onSelectCard={onSelectCard} />

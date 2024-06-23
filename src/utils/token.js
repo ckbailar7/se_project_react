@@ -12,4 +12,7 @@ export const getToken = () => {
   return localStorage.getItem(TOKEN_KEY);
 };
 
+export const removeToken = () => {
+  localStorage.removeItem(TOKEN_KEY);
+};
 //import into App.jsx

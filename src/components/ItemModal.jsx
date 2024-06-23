@@ -16,6 +16,12 @@ const ItemModal = ({
   // Checking if the current user is the owner of the current clothing item
   const isOwn = selectedCard.owner === currentUser._id;
 
+  if (!isOwn) {
+    console.log("Item is NOT owned by current user");
+  } else {
+    console.log("Item IS owned by current user");
+  }
+
   const itemDeleteButtonClassName = `modal__content-flex-img_deleteBtn__button ${
     isOwn
       ? "modal__content-flex-img_deleteBtn__button_visible"
@@ -71,7 +77,7 @@ const ItemModal = ({
               <div className="modal__content-flex-img_deleteBtn">
                 {isOwn && (
                   <button
-                    className="modal__content-flex-img_deleteBtn__button"
+                    className={itemDeleteButtonClassName}
                     type="submit"
                     //onClick={handleCreateDeleteConfirmModal}
                     onClick={handleDeleteSubmit}

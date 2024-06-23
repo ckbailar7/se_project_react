@@ -27,7 +27,7 @@ const Profile = ({
     });
   }, [currentTemp, newGeneratedCards, weatherTemp, currentUser]);
 
-  if (!currentUser || typeof currentUser === "object") {
+  if (!currentUser || Object.keys(currentUser).length === 0) {
     console.log("currentUser is not valid: ", currentUser);
     return null;
   }
