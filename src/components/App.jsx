@@ -6,6 +6,7 @@ import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
 import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
+import UpdateProfileModal from "./UpdateProfileModal";
 import Profile from "./Profile";
 import AddItemModal from "./AddItemModal";
 import { register, authorize } from "../utils/auth";
@@ -66,6 +67,10 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleUpdateProfileModal = () => {
+    setActiveModal("updateProfile");
   };
 
   //const temp = weatherData.temperature;
@@ -302,6 +307,7 @@ function App() {
                     onCreateModal={handleCreateModal}
                     isLoggedIn={isLoggedIn}
                     currentUser={currentUser}
+                    onCreateUpdateUserModal={handleUpdateProfileModal}
                   />
                 </ProtectedRoute>
               }
@@ -349,6 +355,12 @@ function App() {
             <LoginModal
               onCloseModal={handleCloseModal}
               handleLogin={handleLogin}
+              buttonText={"submit"}
+            />
+          )}
+          {activeModal === "updateProfile" && (
+            <UpdateProfileModal
+              onCloseModal={handleCloseModal}
               buttonText={"submit"}
             />
           )}

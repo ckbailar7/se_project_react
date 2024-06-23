@@ -2,7 +2,7 @@ import userAvatar from "../images/userAvatar.png";
 import "../blocks/Header.css";
 import "../blocks/Sidebar.css";
 
-const SideBar = ({ currentUser }) => {
+const SideBar = ({ currentUser, onCreateUpdateUserModal }) => {
   return (
     <div className="sidebar_component">
       <img
@@ -11,6 +11,8 @@ const SideBar = ({ currentUser }) => {
         alt="avatar"
       ></img>
       <div className="sidebar_avatar-Name">{currentUser.name}</div>
+
+      <button onClick={onCreateUpdateUserModal}>Update Profile</button>
     </div>
   );
 };

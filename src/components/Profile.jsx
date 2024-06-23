@@ -12,10 +12,15 @@ const Profile = ({
   onSelectCard,
   onCreateModal,
   currentUser,
+  onCreateUpdateUserModal,
 }) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   //const temp = currentTemp?.temperature?.[currentTemperatureUnit] || 999;
   //const { email, password } = currentUser;
+
+  const userItems = newGeneratedCards.filter(
+    (item) => item.owner === currentUser._id
+  );
 
   //Log current props
   useEffect(() => {
@@ -36,15 +41,19 @@ const Profile = ({
   return (
     <div className="profile__component">
       <div className="profile__sidebar">
-        <SideBar currentUser={currentUser} />
+        <SideBar
+          currentUser={currentUser}
+          onCreateUpdateUserModal={onCreateUpdateUserModal}
+        />
       </div>
       <div className="profile__clothes-component">
         <ClothesSection
-          newGeneratedCards={newGeneratedCards}
+          newGeneratedCards={userItems}
           currentTemp={currentTemp}
           weatherTemp={weatherTemp}
           onSelectCard={onSelectCard}
           onCreateModal={onCreateModal}
+          currentUser={currentUser}
           //currentTemperatureUnit={currentTemperatureUnit}
         />
       </div>

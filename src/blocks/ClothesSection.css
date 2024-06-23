@@ -47,6 +47,14 @@
   width: 1038px;
 }
 
+.clothes__section-clothes_items_visible {
+  visibility: visible;
+}
+
+.clothes__section-clothes_items_hidden {
+  visibility: hidden;
+}
+
 /* display: flex;
     flex-wrap: wrap;
     gap: 20px;

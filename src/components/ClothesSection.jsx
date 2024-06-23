@@ -9,6 +9,7 @@ const ClothesSection = ({
   weatherTemp,
   onSelectCard,
   onCreateModal,
+  currentUser,
   //currentTemperatureUnit,
 }) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -35,6 +36,14 @@ const ClothesSection = ({
   };
 
   const weatherType = getWeatherType();
+
+  const isOwn = newGeneratedCards.owner === currentUser._id;
+
+  const profileOwnedClothingItemsClassName = `clothes__section-clothes_items ${
+    isOwn
+      ? "clothes__section-clothes_items_visible"
+      : "clothes__section-clothes_items_hidden"
+  }`;
 
   // const weatherType = useMemo(() => {
   //   if (
