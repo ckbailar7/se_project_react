@@ -55,3 +55,26 @@
   pointer-events: none;
   padding: 2px 12px 2px 12px;
 }
+
+.card__name-button {
+  background-image: url("../images/likedjune.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 18px;
+  height: 15px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: -30px;
+  pointer-events: auto;
+  background-color: transparent;
+}
+
+.card__name-button_filled {
+  background-image: url("../images/State=Liked.png");
+}
+
+.card__name-button_empty {
+  background-image: url("../images/likedjune.png");
+}

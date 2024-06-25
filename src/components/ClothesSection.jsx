@@ -10,6 +10,7 @@ const ClothesSection = ({
   onSelectCard,
   onCreateModal,
   currentUser,
+  onCardLike,
   //currentTemperatureUnit,
 }) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -85,7 +86,13 @@ const ClothesSection = ({
             return item.weather && item.weather.toLowerCase() === weatherType;
           })
           .map((data) => (
-            <ItemCard key={data.id} data={data} onSelectCard={onSelectCard} />
+            <ItemCard
+              key={data._id}
+              data={data}
+              onSelectCard={onSelectCard}
+              onCardLike={onCardLike}
+              currentUser={currentUser}
+            />
           ))}
       </div>
     </div>

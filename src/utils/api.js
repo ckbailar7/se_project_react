@@ -53,6 +53,33 @@ const addNewItem = async (name, imageUrl, weather) => {
   }
 };
 
+const handleLikeSelectedItem = async (id) => {
+  try {
+    const response = await fetch(`${base_URL}/items/${id}/likes`, {
+      method: "PUT",
+      headers: headers(),
+    });
+    if (!response.ok) throw new Error("Failed to send a like to item");
+    return response.json();
+  } catch (error) {
+    throw new Error(`Failed to send a Like to item ${error.message}`);
+  }
+};
+
+const handleRemoveLikeSelectedItem = async (id) => {
+  console.log("ID BEING LOGGED ======>", id);
+  try {
+    const response = await fetch(`${base_URL}/items/${id}/likes`, {
+      method: "DELETE",
+      headers: headers(),
+    });
+    if (!response.ok) throw new Error("Failed to remove a like to item");
+    return response.json();
+  } catch (error) {
+    throw new Error(`Failed to remove a Like to item ${error.message}`);
+  }
+};
+
 const handleDeleteSelectedItem = async (id, token) => {
   try {
     const response = await fetch(`${base_URL}/items/${id}`, {
@@ -72,6 +99,20 @@ const handleDeleteSelectedItem = async (id, token) => {
   // });
 };
 
+const handleUpdateCurrentUserProfile = async (name, avatar) => {
+  try {
+    const response = await fetch(`${base_URL}/users/me`, {
+      method: "PATCH",
+      headers: headers(),
+      body: JSON.stringify({ name, avatar }),
+    });
+    if (!response.ok) throw new Error("Failed to update user information");
+    return response.json();
+  } catch (error) {
+    throw new Error(`Failed to update profile: ${error.message}`);
+  }
+};
+
 const api = {
   handleInitialResponse,
   handleRequest,
@@ -79,6 +120,9 @@ const api = {
   addNewItem,
   handleDeleteSelectedItem,
   getUserInfo,
+  handleUpdateCurrentUserProfile,
+  handleLikeSelectedItem,
+  handleRemoveLikeSelectedItem,
 };
 
 export default api;

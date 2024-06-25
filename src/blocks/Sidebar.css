@@ -2,8 +2,7 @@
   max-width: 100%;
   display: flex;
   align-self: flex-start;
-  flex-wrap: nowrap;
-  flex-flow: row;
+  flex-wrap: wrap;
 }
 
 .sidebar_container {
@@ -17,4 +16,9 @@
   width: 157px;
   height: 25px;
   padding: 17px 0 20px 20px;
+}
+
+.sidebar__avatar-Image_container {
+  display: flex;
+  flex-wrap: nowrap;
 }

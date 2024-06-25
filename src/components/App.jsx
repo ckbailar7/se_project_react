@@ -197,6 +197,124 @@ function App() {
       });
   };
 
+  const handleChangeProfileData = ({ name, avatar }) => {
+    console.log(`Attempting changeUserProfileData with ==> ${name}, ${avatar}`);
+    if (!name || !avatar) {
+      return;
+    }
+
+    api
+      .handleUpdateCurrentUserProfile(name, avatar)
+      .then((res) => {
+        console.log("response from handleUpdateCurrentUserProfile ===>", res);
+      })
+      .catch((err) => {
+        console.error("PROFILE UPDATE ERROR:", err);
+      });
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      console.log("User not logged in . Cannot like or unlike items");
+      return;
+    }
+
+    // Determine which api function to call based on current like status
+    const apiFunction = isLiked
+      ? api.handleRemoveLikeSelectedItem
+      : api.handleLikeSelectedItem;
+
+    apiFunction(id, token).then((updatedCard) => {
+      setDefaultClothingItemsArray((cards) => {
+        return cards.map((item) => (item._id === id ? updatedCard.data : item));
+      });
+    });
+
+    // !isLiked
+    //   ? api
+    //       .handleLikeSelectedItem(id, token)
+    //       .then((updatedCard) => {
+    //         setDefaultClothingItemsArray((cards) =>
+    //           cards.map((item) => (item._id ? updatedCard : item))
+    //         );
+    //       })
+    //       .catch((err) => console.log(err))
+    //   : api
+    //       .handleRemoveLikeSelectedItem(id, token)
+    //       .then((updatedCard) => {
+    //         setDefaultClothingItemsArray((cards) =>
+    //           cards.map((item) => (item._id === id ? updatedCard : item))
+    //         );
+    //       })
+    //       .catch((err) => console.log(err));
+  };
+
+  // const handleCardLike = (id, isLiked) => {
+  //   const token = localStorage.getItem("jwt");
+
+  //   const apiFunction = isLiked
+  //     ? api.handleLikeSelectedItem
+  //     : api.handleRemoveLikeSelectedItem;
+
+  //   apiFunction(id, token)
+  //     .then((updatedCard) => {
+  //       setDefaultClothingItemsArray((cards) =>
+  //         cards.map((item) => (item._id === id ? updatedCard : item))
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error updating card like status", err);
+  //     });
+  // };
+
+  // const handleCardLikeoriginal = (id, isLiked) => {
+  //   const token = localStorage.getItem("jwt");
+
+  //   console.log("id being received in handleCardLikeAPP>JSX => ", id);
+
+  //   // Determine the endpoint based on like status
+  //   // const apiFunction = isLiked
+  //   //   ? api.handleRemoveLikeSelectedItem
+  //   //   : api.handleLikeSelectedItem;
+
+  //   // Call the apropriate function
+  //   // apiFunction(id, token)
+  //   //   .then((updatedCard) => {
+  //   //     Update the state to reflect the new like status
+  //   //     setDefaultClothingItemsArray((cards) =>
+  //   //       cards.map((item) => (item._id === id ? updatedCard : item))
+  //   //     );
+  //   //   })
+  //   //   .catch((err) => {
+  //   //     console.error("Card Like error", err);
+  //   //   });
+
+  //   // Check if card is currently liked
+  //   //if so, send request to add the users id to the cards likes array
+  //   isLiked
+  //     ? api
+  //         .handleLikeSelectedItem(id, token)
+  //         .then((updatedCard) => {
+  //           setDefaultClothingItemsArray((cards) =>
+  //             cards.map((item) => (item._id === id ? updatedCard : item))
+  //           );
+  //         })
+  //         .catch((err) => {
+  //           console.log("Card Like ERROR", err);
+  //         })
+  //     : api
+  //         .handleRemoveLikeSelectedItem(id)
+  //         .then((updatedCard) => {
+  //           setDefaultClothingItemsArray((cards) =>
+  //             cards.map((item) => (item._id === id ? updatedCard : item))
+  //           );
+  //         })
+  //         .catch((err) => {
+  //           console.error("Card remove Like Error", err);
+  //         });
+  // };
+
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
@@ -292,6 +410,8 @@ function App() {
                   weatherTemp={temp}
                   //currentTemp={temp}
                   newGeneratedCards={defaultClothingItemsArray}
+                  onCardLike={handleCardLike}
+                  currentUser={currentUser}
                 />
               }
             ></Route>
@@ -308,6 +428,8 @@ function App() {
                     isLoggedIn={isLoggedIn}
                     currentUser={currentUser}
                     onCreateUpdateUserModal={handleUpdateProfileModal}
+                    handleChangeProfileData={handleChangeProfileData}
+                    onCardLike={handleCardLike}
                   />
                 </ProtectedRoute>
               }
@@ -316,7 +438,7 @@ function App() {
               path="*"
               element={
                 isLoggedIn ? (
-                  <Navigate to="/Main" replace />
+                  <Navigate to="/" replace />
                 ) : (
                   <Navigate to="/login" replace />
                 )
@@ -361,6 +483,7 @@ function App() {
           {activeModal === "updateProfile" && (
             <UpdateProfileModal
               onCloseModal={handleCloseModal}
+              handleChangeProfileData={handleChangeProfileData}
               buttonText={"submit"}
             />
           )}

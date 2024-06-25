@@ -4,10 +4,15 @@ import ModalWithForm from "./ModalWithForm";
 
 import { React, useState } from "react";
 
-const UpdateProfileModal = ({ onCloseModal, buttonText, onCreateModal }) => {
+const UpdateProfileModal = ({
+  onCloseModal,
+  buttonText,
+  onCreateModal,
+  handleChangeProfileData,
+}) => {
   const [formData, setFormData] = useState({
-    avatar: "",
     name: "",
+    avatar: "",
   });
 
   const handleChange = (e) => {
@@ -20,6 +25,7 @@ const UpdateProfileModal = ({ onCloseModal, buttonText, onCreateModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleChangeProfileData(formData);
     onCloseModal();
   };
 
@@ -58,6 +64,7 @@ const UpdateProfileModal = ({ onCloseModal, buttonText, onCreateModal }) => {
             value={formData.avatar}
           ></input>
         </label>
+        <button type="submit">{buttonText}</button>
       </div>
     </ModalWithForm>
   );

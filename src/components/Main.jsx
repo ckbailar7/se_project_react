@@ -6,8 +6,18 @@ import "../blocks/ItemCard.css";
 
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { useState } from "react";
 
-function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
+function Main({
+  weatherTemp,
+  onSelectCard,
+  currentTemp,
+  newGeneratedCards,
+  onCardLike,
+  currentUser,
+}) {
+  //const [newGeneratedCards, setNewGeneratedCards] = useState([]);
+
   if (!Array.isArray(newGeneratedCards)) {
     console.error("newGeneratedCards is not an array:", newGeneratedCards);
     return null;
@@ -122,6 +132,8 @@ function Main({ weatherTemp, onSelectCard, currentTemp, newGeneratedCards }) {
                 key={data._id}
                 data={data}
                 onSelectCard={onSelectCard}
+                onCardLike={onCardLike}
+                currentUser={currentUser}
               />
             ))}
           {/* {filteredCards.map((data) => (

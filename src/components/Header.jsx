@@ -21,14 +21,6 @@ const Header = ({
   isLoggedIn,
   currentUser,
 }) => {
-  const navigate = useNavigate();
-
-  function signOut() {
-    removeToken();
-    navigate("/login");
-    isLoggedIn(false);
-  }
-
   return (
     <header className="header">
       <div className="header__logo">
@@ -60,12 +52,7 @@ const Header = ({
                 <div className="header__logo-profile_name">
                   {currentUser && currentUser.name}
                 </div>
-                <button
-                  className="header__avatar-logo_button"
-                  onClick={signOut}
-                >
-                  Sign Out
-                </button>
+
                 {currentUser && currentUser.userAvatar ? (
                   <img
                     className="header__logo-profile_image"
@@ -98,7 +85,7 @@ const Header = ({
               Register
             </button>
 
-            <NavLink to="/profile">
+            <NavLink to="/">
               <div className="header__logo-profile_container">
                 <div className="header__logo-profile_name">
                   {currentUser.name}

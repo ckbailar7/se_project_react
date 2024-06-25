@@ -4,6 +4,8 @@ import ClothesSection from "./ClothesSection";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { useContext } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { removeToken } from "../utils/token";
 
 const Profile = ({
   currentTemp,
@@ -13,7 +15,11 @@ const Profile = ({
   onCreateModal,
   currentUser,
   onCreateUpdateUserModal,
+  handleChangeProfileData,
+  onCardLike,
+  isLoggedIn,
 }) => {
+  const navigate = useNavigate();
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   //const temp = currentTemp?.temperature?.[currentTemperatureUnit] || 999;
   //const { email, password } = currentUser;
@@ -37,6 +43,12 @@ const Profile = ({
     return null;
   }
 
+  function signOut() {
+    removeToken();
+    navigate("/");
+    isLoggedIn(false);
+  }
+
   //console.log(`currentTemperatureUnit .. Profile.js`, currentTemperatureUnit);
   return (
     <div className="profile__component">
@@ -44,6 +56,8 @@ const Profile = ({
         <SideBar
           currentUser={currentUser}
           onCreateUpdateUserModal={onCreateUpdateUserModal}
+          handleChangeProfileData={handleChangeProfileData}
+          handleSignout={signOut}
         />
       </div>
       <div className="profile__clothes-component">
@@ -54,6 +68,7 @@ const Profile = ({
           onSelectCard={onSelectCard}
           onCreateModal={onCreateModal}
           currentUser={currentUser}
+          onCardLike={onCardLike}
           //currentTemperatureUnit={currentTemperatureUnit}
         />
       </div>
