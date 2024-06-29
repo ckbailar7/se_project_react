@@ -115,10 +115,10 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
               className={"modalWithForm__radio-Btns"}
             ></input>
             <label>Cold</label>
-            <button className="modal__content-submitBtn" type="submit">
-              {buttonText}
-            </button>
           </div>
+          <button className="modal__content-submitBtn" type="submit">
+            {buttonText}
+          </button>
         </div>
       </div>
     </ModalWithForm>

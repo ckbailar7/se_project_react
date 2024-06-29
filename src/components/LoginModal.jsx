@@ -2,7 +2,12 @@ import "../blocks/ItemModal.css";
 import ModalWithForm from "./ModalWithForm";
 import { React, useEffect, useState } from "react";
 
-const LoginModal = ({ onCloseModal, handleLogin, buttonText }) => {
+const LoginModal = ({
+  onCloseModal,
+  handleLogin,
+  buttonText,
+  handleMoveToRegisterModal,
+}) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,6 +26,13 @@ const LoginModal = ({ onCloseModal, handleLogin, buttonText }) => {
     handleLogin(formData);
     onCloseModal();
   };
+
+  const handleLoginTransitionToRegistration = (e) => {
+    e.preventDefault();
+    handleMoveToRegisterModal();
+    onCloseModal;
+  };
+
   return (
     <ModalWithForm title="Login" onClose={onCloseModal} onSubmit={handleSubmit}>
       <div className="modalWithForm">
@@ -52,9 +64,18 @@ const LoginModal = ({ onCloseModal, handleLogin, buttonText }) => {
             value={formData.password}
           ></input>
         </label>
-        <button className="modal__content-submitBtn" type="submit">
-          {buttonText}
-        </button>
+        <div className="modal__content-ButtonContainer">
+          <button className="modal__content-submitBtn" type="submit">
+            {buttonText}
+          </button>
+          <button
+            onClick={handleLoginTransitionToRegistration}
+            className="modal__content-submitBtn_secondary"
+            type="register"
+          >
+            or Register
+          </button>
+        </div>
       </div>
     </ModalWithForm>
   );

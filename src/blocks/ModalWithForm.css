@@ -133,11 +133,36 @@
   border: none;
   border-radius: 5px;
   font-family: "Cabinet Grotesk medium";
+  margin-top: 20px;
+  /* margin-right: 20px; */
+  margin-right: -24px;
+}
+
+.modal__content-submitBtn_secondary {
+  background-color: transparent;
+  width: 124px;
+  height: 36px;
+  color: rgb(0, 0, 0.434);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-family: "Cabinet Grotesk medium";
+  margin-top: 20px;
+  /* margin-right: 20px; */
+}
+
+.modal__content-submitBtn_secondary:hover {
+  color: rgba(0, 0, 0, 0.345);
 }
 
 .modal__content-submitBtn:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgb(0, 0, 0);
 }
 .modal__content-submitBtn:active {
   background-color: rgba(0, 0, 0, 1);
+}
+
+.modal__content-ButtonContainer {
+  display: flex;
+  flex-direction: row;
 }

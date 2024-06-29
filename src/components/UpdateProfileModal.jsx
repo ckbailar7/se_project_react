@@ -64,7 +64,9 @@ const UpdateProfileModal = ({
             value={formData.avatar}
           ></input>
         </label>
-        <button type="submit">{buttonText}</button>
+        <button className="modal__content-submitBtn" type="submit">
+          {buttonText}
+        </button>
       </div>
     </ModalWithForm>
   );

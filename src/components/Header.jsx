@@ -73,16 +73,15 @@ const Header = ({
           <>
             <button
               className="header__avatar-logo_button"
+              onClick={onCreateRegisterModal}
+            >
+              Sign Up
+            </button>
+            <button
+              className="header__avatar-logo_button"
               onClick={onCreateLoginModal}
             >
               Login
-            </button>
-
-            <button
-              className="header__avatar-logo_button"
-              onClick={onCreateRegisterModal}
-            >
-              Register
             </button>
 
             <NavLink to="/">

@@ -48,6 +48,15 @@ function App() {
 
   const navigate = useNavigate();
 
+  const handleMoveToRegisterModal = () => {
+    // navigate("/register");
+    setActiveModal("register");
+  };
+
+  const handleMoveToLoginModal = () => {
+    setActiveModal("login");
+  };
+
   const handleLoginModal = () => {
     setActiveModal("login");
   };
@@ -77,7 +86,7 @@ function App() {
   //console.log(weatherData.temperature[`${currentTemperatureUnit}`]);
   //console.log(`weatherData.temperature.C`, weatherData.temperature.C);
   //console.log(`currentTemperatureUnit`, currentTemperatureUnit);
-  console.log(weatherData.temperature);
+  // console.log(weatherData.temperature);
 
   // const handleToggleSwitchChange = () => {
   //   if (currentTemperatureUnit === "F") {
@@ -105,7 +114,7 @@ function App() {
     api
       .getUserInfo(jwt)
       .then((res) => {
-        console.log("res from api.getUserInfo(jwt) ===>", res);
+        //console.log("res from api.getUserInfo(jwt) ===>", res);
         if (res && res.email) {
           setCurrentUser(res);
           setIsLoggedIn(true);
@@ -132,20 +141,20 @@ function App() {
   };
 
   const onAddItem = ({ name, imageUrl, weather }) => {
-    console.log(`from onAddItem ... ${name}`);
-    console.log(`from onAddItem ... ${imageUrl}`);
-    console.log(`from onAddItem ... ${weather}`);
+    //console.log(`from onAddItem ... ${name}`);
+    //console.log(`from onAddItem ... ${imageUrl}`);
+    //console.log(`from onAddItem ... ${weather}`);
 
     api
       .addNewItem(name, imageUrl, weather)
       .then((addedItem) => {
-        console.log("added item from .then((addedItem) => {})");
+        //console.log("added item from .then((addedItem) => {})");
         setDefaultClothingItemsArray((defaultClothingItemsArray) => [
           addedItem,
           ...defaultClothingItemsArray,
         ]);
-        console.log(`Added Item`, addedItem);
-        console.log(`Default ClothingItemsArray`, defaultClothingItemsArray);
+        //console.log(`Added Item`, addedItem);
+        //console.log(`Default ClothingItemsArray`, defaultClothingItemsArray);
       })
       .catch((err) => {
         console.log(err);
@@ -153,15 +162,15 @@ function App() {
   };
 
   const onAttemptRegistration = ({ name, avatar, email, password }) => {
-    console.log(
-      `Attempting registration with : ==> ${(name, avatar, email, password)}`
-    );
+    // console.log(
+    //   `Attempting registration with : ==> ${(name, avatar, email, password)}`
+    // );
     register({ name, avatar, email, password })
       .then((res) => {
         // TODO
-        console.log(res);
+        //console.log(res);
         localStorage.setItem("jwt", res.token);
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -169,13 +178,13 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
-    console.log(`Attempting LOGIN with ==> ${email}, ${password}`);
+    //console.log(`Attempting LOGIN with ==> ${email}, ${password}`);
     if (!email || !password) {
       return;
     }
     authorize({ email, password })
       .then((res) => {
-        console.log("Response from authorization", res);
+        //console.log("Response from authorization", res);
         if (res.token) {
           setToken(res.token);
           setCurrentUser({
@@ -184,9 +193,9 @@ function App() {
             name: "",
           });
           setIsLoggedIn(true);
-          const redirectPath = window.location.state?.from?.pathname || "/main";
+          const redirectPath = window.location.state?.from?.pathname || "/";
           navigate(redirectPath);
-          console.log("currentUser", currentUser);
+          //console.log("currentUser", currentUser);
         } else {
           console.log("JWT token is missing in the response");
         }
@@ -335,7 +344,7 @@ function App() {
     api
       .getItems()
       .then((data) => {
-        console.log("Data being received =>>", data.data);
+        //console.log("Data being received =>>", data.data);
         if (data.data && Array.isArray(data.data)) {
           setDefaultClothingItemsArray(data.data);
         } else {
@@ -362,7 +371,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("CURRENT USER USEFFECT()", currentUser);
+    console.log("CURRENT ActiveMODAL", activeModal);
   }, []);
 
   const handleDeleteSelectedItem = (id) => {
@@ -435,13 +444,29 @@ function App() {
               }
             ></Route>
             <Route
-              path="*"
+              path="/login"
               element={
-                isLoggedIn ? (
-                  <Navigate to="/" replace />
-                ) : (
-                  <Navigate to="/login" replace />
-                )
+                <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
+                  <LoginModal
+                    onCloseModal={handleCloseModal}
+                    handleLogin={handleLogin}
+                    buttonText-={"Login"}
+                    handleMoveToRegisterModal={handleMoveToRegisterModal}
+                  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
+                  <RegisterModal
+                    onCloseModal={handleCloseModal}
+                    buttonText={"Sign up"}
+                    onAttemptRegistration={onAttemptRegistration}
+                    handleMoveToLoginModal={handleMoveToLoginModal}
+                  />
+                </ProtectedRoute>
               }
             />
           </Routes>
@@ -451,7 +476,7 @@ function App() {
             <AddItemModal
               onCloseModal={handleCloseModal}
               onAddItem={onAddItem}
-              buttonText={"submit"}
+              buttonText={"Add garment"}
             />
           )}
 
@@ -470,21 +495,23 @@ function App() {
             <RegisterModal
               onCloseModal={handleCloseModal}
               onAttemptRegistration={onAttemptRegistration}
-              buttonText={"submit"}
+              buttonText={"Sign up"}
+              handleMoveToLoginModal={handleMoveToLoginModal}
             />
           )}
           {activeModal === "login" && (
             <LoginModal
               onCloseModal={handleCloseModal}
               handleLogin={handleLogin}
-              buttonText={"submit"}
+              buttonText={"Login"}
+              handleMoveToRegisterModal={handleMoveToRegisterModal}
             />
           )}
           {activeModal === "updateProfile" && (
             <UpdateProfileModal
               onCloseModal={handleCloseModal}
               handleChangeProfileData={handleChangeProfileData}
-              buttonText={"submit"}
+              buttonText={"Save changes"}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

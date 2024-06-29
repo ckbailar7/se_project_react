@@ -2,7 +2,12 @@ import "../blocks/ItemModal.css";
 import ModalWithForm from "./ModalWithForm";
 import { React, useEffect, useState } from "react";
 
-const RegisterModal = ({ onCloseModal, onAttemptRegistration, buttonText }) => {
+const RegisterModal = ({
+  onCloseModal,
+  onAttemptRegistration,
+  buttonText,
+  handleMoveToLoginModal,
+}) => {
   const [formData, setFormData] = useState({
     name: "",
     avatar: "",
@@ -19,6 +24,11 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration, buttonText }) => {
     });
   };
 
+  const handleRegistrationMoveToLogin = (e) => {
+    e.preventDefault();
+    handleMoveToLoginModal();
+  };
+
   const handleSubmit = (e) => {
     //prevent Default behavior
     //call onAddItem with approppriate arguments
@@ -26,9 +36,10 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration, buttonText }) => {
     onAttemptRegistration(formData);
     onCloseModal();
   };
+
   return (
     <ModalWithForm
-      title="Register"
+      title="Sign Up"
       onClose={onCloseModal}
       onSubmit={handleSubmit}
     >
@@ -103,9 +114,18 @@ const RegisterModal = ({ onCloseModal, onAttemptRegistration, buttonText }) => {
             value={formData.confirmPassword}
           ></input>
         </label>
-        <button className="modal__content-submitBtn" type="submit">
-          {buttonText}
-        </button>
+        <div className="modal__content-ButtonContainer">
+          <button className="modal__content-submitBtn" type="submit">
+            {buttonText}
+          </button>
+          <button
+            onClick={handleRegistrationMoveToLogin}
+            className="modal__content-submitBtn_secondary"
+            type="login"
+          >
+            or Login
+          </button>
+        </div>
       </div>
     </ModalWithForm>
   );
