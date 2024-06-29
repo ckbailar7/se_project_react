@@ -82,6 +82,10 @@ function App() {
     setActiveModal("updateProfile");
   };
 
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+  };
+
   //const temp = weatherData.temperature;
   //console.log(weatherData.temperature[`${currentTemperatureUnit}`]);
   //console.log(`weatherData.temperature.C`, weatherData.temperature.C);
@@ -439,6 +443,7 @@ function App() {
                     onCreateUpdateUserModal={handleUpdateProfileModal}
                     handleChangeProfileData={handleChangeProfileData}
                     onCardLike={handleCardLike}
+                    handleSignOut={handleSignOut}
                   />
                 </ProtectedRoute>
               }
@@ -512,6 +517,7 @@ function App() {
               onCloseModal={handleCloseModal}
               handleChangeProfileData={handleChangeProfileData}
               buttonText={"Save changes"}
+              currentUser={currentUser}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

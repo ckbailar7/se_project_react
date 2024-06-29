@@ -30,7 +30,7 @@ const ItemModal = ({
 
   //console.log(`SelectedCard from Itemmodal.js : ... `, selectedCard);
   //console.log(`type`, typeof selectedCard);
-  const [activeDeleteConfirmModal, setActiveDeleteConfirm] = useState("");
+  const [activeModal, setActiveModal] = useState("");
   const handleDeleteSubmit = () => {
     console.log(selectedCard);
     console.log("selectedCard ._id", selectedCard._id);
@@ -43,7 +43,7 @@ const ItemModal = ({
   };
 
   const handleCreateDeleteConfirmModal = () => {
-    setActiveDeleteConfirm("deleteConfirmPreview");
+    setActiveModal("deleteConfirmPreview");
   };
   return (
     <div id="modal" onClick={onClose} className={`modal`} tabIndex="-1">
@@ -78,9 +78,9 @@ const ItemModal = ({
                 {isOwn && (
                   <button
                     className={itemDeleteButtonClassName}
-                    type="submit"
-                    //onClick={handleCreateDeleteConfirmModal}
-                    onClick={handleDeleteSubmit}
+                    type="text"
+                    onClick={handleCreateDeleteConfirmModal}
+                    // onClick={handleDeleteSubmit}
                   >
                     Delete item
                   </button>
@@ -96,7 +96,7 @@ const ItemModal = ({
         </div>
       </div>
 
-      {activeDeleteConfirmModal === "deleteConfirmPreview" && (
+      {activeModal === "deleteConfirmPreview" && (
         <DeleteConfirmModal
           // handleDeleteSubmit={handleDeleteSubmit}
           onDelete={onDelete}

@@ -9,10 +9,11 @@ const UpdateProfileModal = ({
   buttonText,
   onCreateModal,
   handleChangeProfileData,
+  currentUser,
 }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    avatar: "",
+    name: currentUser.name || "",
+    avatar: currentUser.avatar || "",
   });
 
   const handleChange = (e) => {

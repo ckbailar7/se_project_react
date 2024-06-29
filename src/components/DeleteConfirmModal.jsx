@@ -16,10 +16,10 @@ const DeleteConfirmModal = ({
     //   //onDelete(selectedCard);
     // };
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      onDelete({ id });
-      onClose;
+    const handleDeleteSubmit = () => {
+      console.log(selectedCard);
+      console.log("selectedCard ._id", selectedCard._id);
+      onDelete(selectedCard._id);
     };
 
     return (
@@ -35,10 +35,7 @@ const DeleteConfirmModal = ({
             irreversible
           </p>
           <div className="modal__content-delete_buttons-container">
-            <button
-              onClick={onDelete(selectedCard.id)}
-              className="delete__Button-one"
-            >
+            <button onClick={handleDeleteSubmit} className="delete__Button-one">
               Yes, delete item
             </button>
             <button onClick={onClose} className="delete__Button-two">

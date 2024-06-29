@@ -18,6 +18,7 @@ const Profile = ({
   handleChangeProfileData,
   onCardLike,
   isLoggedIn,
+  handleSignOut,
 }) => {
   const navigate = useNavigate();
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -46,7 +47,7 @@ const Profile = ({
   function signOut() {
     removeToken();
     navigate("/");
-    isLoggedIn(false);
+    handleSignOut();
   }
 
   //console.log(`currentTemperatureUnit .. Profile.js`, currentTemperatureUnit);
