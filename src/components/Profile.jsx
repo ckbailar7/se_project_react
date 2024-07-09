@@ -44,12 +44,6 @@ const Profile = ({
     return null;
   }
 
-  function signOut() {
-    removeToken();
-    navigate("/");
-    handleSignOut();
-  }
-
   //console.log(`currentTemperatureUnit .. Profile.js`, currentTemperatureUnit);
   return (
     <div className="profile__component">
@@ -58,7 +52,7 @@ const Profile = ({
           currentUser={currentUser}
           onCreateUpdateUserModal={onCreateUpdateUserModal}
           handleChangeProfileData={handleChangeProfileData}
-          handleSignout={signOut}
+          handleSignout={handleSignOut}
         />
       </div>
       <div className="profile__clothes-component">

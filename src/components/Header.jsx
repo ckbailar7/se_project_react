@@ -84,7 +84,7 @@ const Header = ({
               Login
             </button>
 
-            <NavLink to="/">
+            {/* <NavLink to="/">
               <div className="header__logo-profile_container">
                 <div className="header__logo-profile_name">
                   {currentUser.name}
@@ -101,7 +101,7 @@ const Header = ({
                   </div>
                 )}
               </div>
-            </NavLink>
+            </NavLink> */}
 
             {/* <NavLink exact to="/profile"> */}
             {/* {currentUser.userAvatar ? (

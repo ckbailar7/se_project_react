@@ -3,6 +3,10 @@ import "../blocks/Header.css";
 import "../blocks/Sidebar.css";
 
 const SideBar = ({ currentUser, onCreateUpdateUserModal, handleSignout }) => {
+  const signoutHandler = () => {
+    handleSignout();
+  };
+
   return (
     <div className="sidebar_component">
       <div className="sidebar__avatar-Image_container">
@@ -20,7 +24,7 @@ const SideBar = ({ currentUser, onCreateUpdateUserModal, handleSignout }) => {
       >
         Change Profile Data
       </button>
-      <button className="header__avatar-logo_button" onClick={handleSignout}>
+      <button className="header__avatar-logo_button" onClick={signoutHandler}>
         Sign Out
       </button>
     </div>

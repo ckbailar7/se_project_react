@@ -10,7 +10,7 @@ import UpdateProfileModal from "./UpdateProfileModal";
 import Profile from "./Profile";
 import AddItemModal from "./AddItemModal";
 import { register, authorize } from "../utils/auth";
-import { getToken, setToken } from "../utils/token";
+import { getToken, removeToken, setToken } from "../utils/token";
 
 // import { defaultClothingItems } from "../utils/constants";
 import "../blocks/App.css";
@@ -42,6 +42,11 @@ function App() {
     username: "",
     email: "",
     name: "",
+  });
+
+  const [loginFormData, setLoginFormData] = useState({
+    email: "",
+    password: "",
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -83,7 +88,22 @@ function App() {
   };
 
   const handleSignOut = () => {
+    setCurrentUser({
+      username: "",
+      email: "",
+      name: "",
+    });
+    removeToken();
     setIsLoggedIn(false);
+    navigate("/");
+  };
+
+  const handleLoginFormChange = (e) => {
+    const { name, value } = e.target;
+    setLoginFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   //const temp = weatherData.temperature;
@@ -137,7 +157,7 @@ function App() {
     // });
 
     // TODO - handle JWT
-  }, []);
+  }, [isLoggedIn]);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -191,12 +211,13 @@ function App() {
         //console.log("Response from authorization", res);
         if (res.token) {
           setToken(res.token);
-          setCurrentUser({
-            username: res.username,
-            email: res.email,
-            name: "",
-          });
+          // setCurrentUser({
+          //   username: res.username,
+          //   email: res.email,
+          //   name: "",
+          // });
           setIsLoggedIn(true);
+
           const redirectPath = window.location.state?.from?.pathname || "/";
           navigate(redirectPath);
           //console.log("currentUser", currentUser);
@@ -359,7 +380,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [defaultClothingItemsArray]);
 
   useEffect(() => {
     const closeByEscape = (e) => {
@@ -454,9 +475,11 @@ function App() {
                 <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
                   <LoginModal
                     onCloseModal={handleCloseModal}
-                    handleLogin={handleLogin}
+                    handleLogin={() => handleLogin(loginFormData)}
                     buttonText-={"Login"}
                     handleMoveToRegisterModal={handleMoveToRegisterModal}
+                    formData={loginFormData}
+                    handleChange={handleLoginFormChange}
                   />
                 </ProtectedRoute>
               }
@@ -507,9 +530,12 @@ function App() {
           {activeModal === "login" && (
             <LoginModal
               onCloseModal={handleCloseModal}
-              handleLogin={handleLogin}
+              handleLogin={() => handleLogin(loginFormData)}
               buttonText={"Login"}
               handleMoveToRegisterModal={handleMoveToRegisterModal}
+              isLoggedIn={isLoggedIn}
+              formData={loginFormData}
+              handleChange={handleLoginFormChange}
             />
           )}
           {activeModal === "updateProfile" && (

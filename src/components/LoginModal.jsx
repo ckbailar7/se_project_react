@@ -1,36 +1,31 @@
 import "../blocks/ItemModal.css";
 import ModalWithForm from "./ModalWithForm";
 import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({
   onCloseModal,
   handleLogin,
   buttonText,
   handleMoveToRegisterModal,
+  isLoggedIn,
+  formData,
+  handleChange,
 }) => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(formData);
+    handleLogin();
     onCloseModal();
+    navigate("/");
+    5614776475;
   };
 
   const handleLoginTransitionToRegistration = (e) => {
     e.preventDefault();
     handleMoveToRegisterModal();
-    onCloseModal;
+    onCloseModal();
   };
 
   return (
@@ -65,7 +60,11 @@ const LoginModal = ({
           ></input>
         </label>
         <div className="modal__content-ButtonContainer">
-          <button className="modal__content-submitBtn" type="submit">
+          <button
+            className="modal__content-submitBtn"
+            type="submit"
+            onClick={handleSubmit}
+          >
             {buttonText}
           </button>
           <button
