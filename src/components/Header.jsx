@@ -53,10 +53,10 @@ const Header = ({
                   {currentUser && currentUser.name}
                 </div>
 
-                {currentUser && currentUser.userAvatar ? (
+                {currentUser && currentUser.avatar ? (
                   <img
                     className="header__logo-profile_image"
-                    src={currentUser.userAvatar}
+                    src={currentUser.avatar}
                     alt="avatar"
                   />
                 ) : (

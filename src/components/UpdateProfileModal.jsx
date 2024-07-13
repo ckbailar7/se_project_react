@@ -7,7 +7,6 @@ import { React, useState } from "react";
 const UpdateProfileModal = ({
   onCloseModal,
   buttonText,
-  onCreateModal,
   handleChangeProfileData,
   currentUser,
 }) => {

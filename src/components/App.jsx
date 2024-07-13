@@ -126,11 +126,28 @@ function App() {
   //   //   : setCurrenTemperatureUnit("F");
   // };
 
+  // useEffect(() => {
+  //   if (token) {
+  //     api
+  //       .getUserInfo(token)
+  //       .then((user) => {
+  //         setCurrentUser(user);
+  //       })
+  //       .catch((error) => {
+  //         console.error(`Token Validation Failed: ${error}`);
+  //         localStorage.removeItem("jwt");
+  //         setToken(null);
+  //       });
+  //   }
+  // }, [token]);
+
   useEffect(() => {
     console.log("JWT Checking in local storage ");
     const jwt = getToken();
+    console.log("Retrieved JWT : ", jwt);
 
     if (!jwt) {
+      console.log("No jwt found");
       return;
     }
 
@@ -140,8 +157,13 @@ function App() {
       .then((res) => {
         //console.log("res from api.getUserInfo(jwt) ===>", res);
         if (res && res.email) {
+          console.log("user info retrieved with JWT, ", res);
           setCurrentUser(res);
           setIsLoggedIn(true);
+        } else {
+          console.log("Invalid user info response");
+          removeToken();
+          setIsLoggedIn(false);
         }
       })
       .catch((err) => console.error("Token validation failed", err));
@@ -189,15 +211,32 @@ function App() {
     // console.log(
     //   `Attempting registration with : ==> ${(name, avatar, email, password)}`
     // );
-    register({ name, avatar, email, password })
+    return register({ name, avatar, email, password })
       .then((res) => {
+        if (res.token) {
+          // localStorage.setItem("jwt", res.token);
+          setToken(res.token); // Storing the Token
+          setCurrentUser({ name, avatar, email }); // Update cyrrentUser state variable
+          setIsLoggedIn(true); // Update the isLoggedIn state
+          navigate("/");
+          handleCloseModal();
+          close;
+        } else {
+          console.error("Token missing in registration response");
+        }
+        // debugger;
         // TODO
         //console.log(res);
-        localStorage.setItem("jwt", res.token);
-        navigate("/");
+        // Navigate to homepage
+        // localStorage.setItem("jwt", res.token);
+        // setLoginFormData({ email, password });
+        // handleLogin({ email, password });
+        // setIsLoggedIn(true);
+        // navigate("/");
+        // return res; // Return the reponse obj
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Registration Error", err);
       });
   };
 
@@ -240,7 +279,7 @@ function App() {
     api
       .handleUpdateCurrentUserProfile(name, avatar)
       .then((res) => {
-        console.log("response from handleUpdateCurrentUserProfile ===>", res);
+        setCurrentUser(res);
       })
       .catch((err) => {
         console.error("PROFILE UPDATE ERROR:", err);
@@ -484,7 +523,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/register"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
@@ -493,10 +532,11 @@ function App() {
                     buttonText={"Sign up"}
                     onAttemptRegistration={onAttemptRegistration}
                     handleMoveToLoginModal={handleMoveToLoginModal}
+                    setCurrentUser={setCurrentUser}
                   />
                 </ProtectedRoute>
               }
-            />
+            /> */}
           </Routes>
 
           <Footer />
@@ -525,6 +565,7 @@ function App() {
               onAttemptRegistration={onAttemptRegistration}
               buttonText={"Sign up"}
               handleMoveToLoginModal={handleMoveToLoginModal}
+              setCurrentUser={setCurrentUser}
             />
           )}
           {activeModal === "login" && (

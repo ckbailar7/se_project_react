@@ -19,7 +19,6 @@ const LoginModal = ({
     handleLogin();
     onCloseModal();
     navigate("/");
-    5614776475;
   };
 
   const handleLoginTransitionToRegistration = (e) => {

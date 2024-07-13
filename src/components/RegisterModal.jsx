@@ -7,6 +7,7 @@ const RegisterModal = ({
   onAttemptRegistration,
   buttonText,
   handleMoveToLoginModal,
+  setCurrentUser,
 }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -29,12 +30,46 @@ const RegisterModal = ({
     handleMoveToLoginModal();
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     // debugger;
+  //     const response = await onAttemptRegistration(formData);
+  //     if (response) {
+  //       console.log(
+  //         `Response from await onAttemptRegistration(formData ====> `,
+  //         response
+  //       );
+  //       setCurrentUser(response.name);
+  //       console.log("Registration Successful ");
+  //       onCloseModal();
+  //     } else {
+  //       console.log("Registration Failed", response);
+  //     }
+  //   } catch (error) {
+  //     console.log(`Registration Error; ${error}`);
+  //   }
+
+  //   //
+  //   //
+  //   //
+  //   // e.preventDefault();
+  //   // onAttemptRegistration(formData);
+  //   // onCloseModal();
+  // };
+
   const handleSubmit = (e) => {
-    //prevent Default behavior
-    //call onAddItem with approppriate arguments
     e.preventDefault();
-    onAttemptRegistration(formData);
-    onCloseModal();
+    onAttemptRegistration(formData)
+      .then((res) => {
+        if (res) {
+          onCloseModal();
+        } else {
+          console.error("Registration Failed");
+        }
+      })
+      .catch((err) => console.error("Registration error:", err));
   };
 
   return (

@@ -11,13 +11,18 @@ export const register = ({ avatar, email, name, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ avatar, email, name, password }),
-  }).then((res) => {
-    //return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    if (!res.ok) {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-    return res.json();
-  });
+  })
+    .then((res) => {
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      // if (!res.ok) {
+      //   return Promise.reject(`Error: ${res.status}`);
+      // }
+      // return res.json();
+    })
+    .catch((error) => {
+      console.error("Registration Error: ", error);
+      throw error;
+    });
 };
 //
 //
@@ -39,7 +44,7 @@ export const authorize = ({ email, password }) => {
     })
     .catch((err) => {
       console.error("Authorization Error:", err);
-      throw err;
+      // throw err;
     });
 };
 //
