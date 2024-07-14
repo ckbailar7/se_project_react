@@ -61,15 +61,15 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAttemptRegistration(formData)
-      .then((res) => {
-        if (res) {
-          onCloseModal();
-        } else {
-          console.error("Registration Failed");
-        }
-      })
-      .catch((err) => console.error("Registration error:", err));
+    onAttemptRegistration(formData);
+    // .then((res) => {
+    //   if (res) {
+    //     onCloseModal();
+    //   } else {
+    //     console.error("Registration Failed");
+    //   }
+    // })
+    // .catch((err) => console.error("Registration error:", err));
   };
 
   return (

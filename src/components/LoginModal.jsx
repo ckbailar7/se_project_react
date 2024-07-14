@@ -24,7 +24,6 @@ const LoginModal = ({
   const handleLoginTransitionToRegistration = (e) => {
     e.preventDefault();
     handleMoveToRegisterModal();
-    onCloseModal();
   };
 
   return (

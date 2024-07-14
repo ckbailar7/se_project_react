@@ -256,6 +256,7 @@ function App() {
           //   name: "",
           // });
           setIsLoggedIn(true);
+          handleCloseModal();
 
           const redirectPath = window.location.state?.from?.pathname || "/";
           navigate(redirectPath);
