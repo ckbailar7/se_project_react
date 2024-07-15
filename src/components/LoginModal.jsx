@@ -17,7 +17,7 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin();
-    onCloseModal();
+
     navigate("/");
   };
 
@@ -58,11 +58,7 @@ const LoginModal = ({
           ></input>
         </label>
         <div className="modal__content-ButtonContainer">
-          <button
-            className="modal__content-submitBtn"
-            type="submit"
-            onClick={handleSubmit}
-          >
+          <button className="modal__content-submitBtn" type="submit">
             {buttonText}
           </button>
           <button

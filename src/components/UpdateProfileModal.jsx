@@ -26,7 +26,6 @@ const UpdateProfileModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleChangeProfileData(formData);
-    onCloseModal();
   };
 
   return (

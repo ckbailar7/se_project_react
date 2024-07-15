@@ -14,7 +14,7 @@ export const register = ({ avatar, email, name, password }) => {
     },
     body: JSON.stringify({ avatar, email, name, password }),
   }).then((res) => {
-    api.handleInitialResponse(res);
+    return api.handleInitialResponse(res);
     // return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     // if (!res.ok) {
     //   return Promise.reject(`Error: ${res.status}`);
@@ -36,7 +36,7 @@ export const authorize = ({ email, password }) => {
     },
     body: JSON.stringify({ email, password }),
   }).then((res) => {
-    api.handleInitialResponse(res);
+    return api.handleInitialResponse(res);
     // return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     // if (res.ok) {
     //   res.json();

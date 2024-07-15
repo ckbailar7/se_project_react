@@ -213,9 +213,12 @@ function App() {
     // );
     return register({ name, avatar, email, password })
       .then((res) => {
-        if (res.token) {
+        console.log("Response from onAttemptRegistration", res);
+        if (res.user) {
           // localStorage.setItem("jwt", res.token);
-          setToken(res.token); // Storing the Token
+          setToken(res.user);
+          authorize({ email, password });
+          // Storing the Token
           setCurrentUser({ name, avatar, email }); // Update cyrrentUser state variable
           setIsLoggedIn(true); // Update the isLoggedIn state
           navigate("/");
@@ -245,9 +248,9 @@ function App() {
     if (!email || !password) {
       return;
     }
-    authorize({ email, password })
+    return authorize({ email, password })
       .then((res) => {
-        //console.log("Response from authorization", res);
+        console.log("Response from authorization", res);
         if (res.token) {
           setToken(res.token);
           // setCurrentUser({
@@ -277,10 +280,11 @@ function App() {
       return;
     }
 
-    api
+    return api
       .handleUpdateCurrentUserProfile(name, avatar)
       .then((res) => {
         setCurrentUser(res);
+        handleCloseModal();
       })
       .catch((err) => {
         console.error("PROFILE UPDATE ERROR:", err);
