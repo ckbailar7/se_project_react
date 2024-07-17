@@ -196,9 +196,11 @@ function App() {
       .then((addedItem) => {
         //console.log("added item from .then((addedItem) => {})");
         setDefaultClothingItemsArray((defaultClothingItemsArray) => [
-          addedItem,
+          addedItem.data,
           ...defaultClothingItemsArray,
         ]);
+        handleCloseModal();
+        ß;
         //console.log(`Added Item`, addedItem);
         //console.log(`Default ClothingItemsArray`, defaultClothingItemsArray);
       })
@@ -424,7 +426,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [defaultClothingItemsArray]);
+  }, []);
 
   useEffect(() => {
     const closeByEscape = (e) => {

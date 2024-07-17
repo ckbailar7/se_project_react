@@ -28,16 +28,8 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
     //call onAddItem with approppriate arguments
     e.preventDefault();
     onAddItem({ name, imageUrl, weather });
-    onCloseModal();
   };
 
-  const handleTestSubmitEVENT = (e) => {
-    e.preventDefault();
-    console.log(`From handleTestSubmitEVENT`, e);
-    console.log({ name, imageUrl, weather });
-    onAddItem({ name, imageUrl, weather });
-    onCloseModal();
-  };
   useEffect(() => {
     setName("");
     setWeather("");
@@ -92,7 +84,7 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
               onChange={handleWeatherChange}
               className={"modalWithForm__radio-Btns"}
             ></input>
-            <label>Hot</label>
+            <label for="hot">Hot</label>
           </div>
           <div>
             <input
@@ -103,7 +95,7 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
               onChange={handleWeatherChange}
               className={"modalWithForm__radio-Btns"}
             ></input>
-            <label>Warm</label>
+            <label for="warm">Warm</label>
           </div>
           <div>
             <input
@@ -114,7 +106,7 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
               onChange={handleWeatherChange}
               className={"modalWithForm__radio-Btns"}
             ></input>
-            <label>Cold</label>
+            <label for="cold">Cold</label>
           </div>
           <button className="modal__content-submitBtn" type="submit">
             {buttonText}
