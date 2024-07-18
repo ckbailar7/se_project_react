@@ -84,7 +84,7 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
               onChange={handleWeatherChange}
               className={"modalWithForm__radio-Btns"}
             ></input>
-            <label for="hot">Hot</label>
+            <label htmlFor="hot">Hot</label>
           </div>
           <div>
             <input
@@ -95,7 +95,7 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
               onChange={handleWeatherChange}
               className={"modalWithForm__radio-Btns"}
             ></input>
-            <label for="warm">Warm</label>
+            <label htmlFor="warm">Warm</label>
           </div>
           <div>
             <input
@@ -106,7 +106,7 @@ const AddItemModal = ({ onAddItem, onCloseModal, buttonText }) => {
               onChange={handleWeatherChange}
               className={"modalWithForm__radio-Btns"}
             ></input>
-            <label for="cold">Cold</label>
+            <label htmlFor="cold">Cold</label>
           </div>
           <button className="modal__content-submitBtn" type="submit">
             {buttonText}

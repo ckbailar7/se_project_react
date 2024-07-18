@@ -200,7 +200,7 @@ function App() {
           ...defaultClothingItemsArray,
         ]);
         handleCloseModal();
-        ß;
+
         //console.log(`Added Item`, addedItem);
         //console.log(`Default ClothingItemsArray`, defaultClothingItemsArray);
       })
