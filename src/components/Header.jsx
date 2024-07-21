@@ -19,8 +19,9 @@ const Header = ({
   temp,
   handleToggleSwitchChange,
   isLoggedIn,
-  currentUser,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <div className="header__logo">

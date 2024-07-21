@@ -15,28 +15,28 @@ const ClothesSection = ({
 }) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = currentTemp?.temperature?.[currentTemperatureUnit] || 999;
-  const getWeatherType = () => {
-    if (
-      (temp >= 82 && currentTemperatureUnit === "F") ||
-      (temp >= 28 && currentTemperatureUnit === "C")
-    ) {
-      return "hot";
-    } else if (
-      (temp >= 66 && currentTemperatureUnit === "F") ||
-      (temp >= 19 && currentTemperatureUnit === "C") ||
-      (temp <= 81 && currentTemperatureUnit === "F") ||
-      (temp <= 27 && currentTemperatureUnit === "C")
-    ) {
-      return "warm";
-    } else if (
-      (temp <= 65 && currentTemperatureUnit === "F") ||
-      (temp <= 18 && currentTemperatureUnit === "C")
-    ) {
-      return "cold";
-    }
-  };
+  // const getWeatherType = () => {
+  //   if (
+  //     (temp >= 82 && currentTemperatureUnit === "F") ||
+  //     (temp >= 28 && currentTemperatureUnit === "C")
+  //   ) {
+  //     return "hot";
+  //   } else if (
+  //     (temp >= 66 && currentTemperatureUnit === "F") ||
+  //     (temp >= 19 && currentTemperatureUnit === "C") ||
+  //     (temp <= 81 && currentTemperatureUnit === "F") ||
+  //     (temp <= 27 && currentTemperatureUnit === "C")
+  //   ) {
+  //     return "warm";
+  //   } else if (
+  //     (temp <= 65 && currentTemperatureUnit === "F") ||
+  //     (temp <= 18 && currentTemperatureUnit === "C")
+  //   ) {
+  //     return "cold";
+  //   }
+  // };
 
-  const weatherType = getWeatherType();
+  //const weatherType = getWeatherType();
 
   const isOwn = newGeneratedCards.owner === currentUser._id;
 
@@ -83,7 +83,7 @@ const ClothesSection = ({
       <div className="clothes__section-clothes_items">
         {newGeneratedCards
           .filter((item) => {
-            return item.weather && item.weather.toLowerCase() === weatherType;
+            return item.weather && item.weather.toLowerCase();
           })
           .map((data) => (
             <ItemCard

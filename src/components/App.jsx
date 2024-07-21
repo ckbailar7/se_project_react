@@ -286,6 +286,10 @@ function App() {
       .handleUpdateCurrentUserProfile(name, avatar)
       .then((res) => {
         setCurrentUser(res);
+        setDefaultClothingItemsArray((defaultClothingItemsArray) => [
+          res.data,
+          ...defaultClothingItemsArray,
+        ]);
         handleCloseModal();
       })
       .catch((err) => {
@@ -305,11 +309,17 @@ function App() {
       ? api.handleRemoveLikeSelectedItem
       : api.handleLikeSelectedItem;
 
-    apiFunction(id, token).then((updatedCard) => {
-      setDefaultClothingItemsArray((cards) => {
-        return cards.map((item) => (item._id === id ? updatedCard.data : item));
+    apiFunction(id, token)
+      .then((updatedCard) => {
+        setDefaultClothingItemsArray((cards) => {
+          return cards.map((item) =>
+            item._id === id ? updatedCard.data : item
+          );
+        });
+      })
+      .catch((err) => {
+        console.error("updated Cards error  line 308>>", err);
       });
-    });
 
     // !isLiked
     //   ? api
@@ -479,7 +489,7 @@ function App() {
             temp={temp}
             handleToggleSwitchChange={handleToggleSwitchChange}
             isLoggedIn={isLoggedIn}
-            currentUser={currentUser}
+            // currentUser={currentUser}
           />
           <Routes>
             <Route
@@ -491,7 +501,7 @@ function App() {
                   //currentTemp={temp}
                   newGeneratedCards={defaultClothingItemsArray}
                   onCardLike={handleCardLike}
-                  currentUser={currentUser}
+                  // currentUser={currentUser}
                 />
               }
             ></Route>

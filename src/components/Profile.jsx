@@ -24,20 +24,26 @@ const Profile = ({
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   //const temp = currentTemp?.temperature?.[currentTemperatureUnit] || 999;
   //const { email, password } = currentUser;
+  console.log(
+    "New Generated cards prop being passed to Profile.jsx ==>",
+    newGeneratedCards
+  );
 
   const userItems = newGeneratedCards.filter(
     (item) => item.owner === currentUser._id
   );
 
+  console.log("User items within Profile.jsx ==>", userItems);
+
   //Log current props
-  useEffect(() => {
-    console.log("Profile Component Props: ", {
-      currentTemp,
-      newGeneratedCards,
-      weatherTemp,
-      currentUser,
-    });
-  }, [currentTemp, newGeneratedCards, weatherTemp, currentUser]);
+  // useEffect(() => {
+  //   console.log("Profile Component Props: ", {
+  //     currentTemp,
+  //     newGeneratedCards,
+  //     weatherTemp,
+  //     currentUser,
+  //   });
+  // }, [currentTemp, newGeneratedCards, weatherTemp, currentUser]);
 
   if (!currentUser || Object.keys(currentUser).length === 0) {
     console.log("currentUser is not valid: ", currentUser);

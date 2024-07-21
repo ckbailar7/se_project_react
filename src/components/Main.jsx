@@ -7,6 +7,7 @@ import "../blocks/ItemCard.css";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main({
   weatherTemp,
@@ -14,9 +15,10 @@ function Main({
   currentTemp,
   newGeneratedCards,
   onCardLike,
-  currentUser,
 }) {
   //const [newGeneratedCards, setNewGeneratedCards] = useState([]);
+
+  const currentUser = useContext(CurrentUserContext);
 
   if (!Array.isArray(newGeneratedCards)) {
     console.error("newGeneratedCards is not an array:", newGeneratedCards);
@@ -44,14 +46,35 @@ function Main({
   console.log(currentTemperatureUnit);
 
   const getWeatherType = () => {
-    if (temp >= 86 || temp >= 28) {
+    if (
+      (temp >= 82 && currentTemperatureUnit === "F") ||
+      (temp >= 28 && currentTemperatureUnit === "C")
+    ) {
       return "hot";
-    } else if ((temp >= 66 && temp <= 81) || (temp >= 19 && temp <= 27)) {
+    } else if (
+      (temp >= 66 && currentTemperatureUnit === "F") ||
+      (temp >= 19 && currentTemperatureUnit === "C") ||
+      (temp <= 81 && currentTemperatureUnit === "F") ||
+      (temp <= 27 && currentTemperatureUnit === "C")
+    ) {
       return "warm";
-    } else if (temp <= 65 || temp <= 18) {
+    } else if (
+      (temp <= 65 && currentTemperatureUnit === "F") ||
+      (temp <= 18 && currentTemperatureUnit === "C")
+    ) {
       return "cold";
     }
   };
+
+  // const getWeatherType = () => {
+  //   if (temp >= 86 || temp >= 28) {
+  //     return "hot";
+  //   } else if ((temp >= 66 && temp <= 81) || (temp >= 19 && temp <= 27)) {
+  //     return "warm";
+  //   } else if (temp <= 65 || temp <= 18) {
+  //     return "cold";
+  //   }
+  // };
 
   //Revision for weatherType without memoization
   // const getWeatherType = () => {

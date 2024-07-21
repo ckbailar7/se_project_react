@@ -3,13 +3,14 @@ import "../blocks/ItemModal.css";
 import ModalWithForm from "./ModalWithForm";
 
 import { React, useState } from "react";
-
+import { useContext } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 const UpdateProfileModal = ({
   onCloseModal,
   buttonText,
   handleChangeProfileData,
-  currentUser,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
   const [formData, setFormData] = useState({
     name: currentUser.name || "",
     avatar: currentUser.avatar || "",
