@@ -285,11 +285,12 @@ function App() {
     return api
       .handleUpdateCurrentUserProfile(name, avatar)
       .then((res) => {
+        console.log("RESPONSE FROM UPDATEPROF >", res);
         setCurrentUser(res);
-        setDefaultClothingItemsArray((defaultClothingItemsArray) => [
-          res.data,
-          ...defaultClothingItemsArray,
-        ]);
+        // setDefaultClothingItemsArray((defaultClothingItemsArray) => [
+        //   res.data,
+        //   ...defaultClothingItemsArray,
+        // ]);
         handleCloseModal();
       })
       .catch((err) => {
@@ -455,14 +456,18 @@ function App() {
     console.log("CURRENT ActiveMODAL", activeModal);
   }, []);
 
-  const handleDeleteSelectedItem = (id) => {
+  const handleDeleteSelectedItem = (id, jwt) => {
     console.log("Deleting item with ID:", id);
     api
-      .handleDeleteSelectedItem(id)
+      .handleDeleteSelectedItem(id, jwt)
       .then(() => {
         setDefaultClothingItemsArray((defaultClothingItemsArray) =>
-          defaultClothingItemsArray.filter((item) => item.id !== id)
+          defaultClothingItemsArray.filter((item) => item._id !== id)
         );
+        // setDefaultClothingItemsArray((defaultClothingItemsArray) => [
+        //   removedItem.data,
+        //   ...defaultClothingItemsArray,
+        // ]);
         handleCloseModal();
       })
       // .then(() => {
