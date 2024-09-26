@@ -1,6 +1,9 @@
 import { getToken } from "./token";
 
-const base_URL = "http://localhost:3001";
+const base_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.yote.me"
+    : "http://localhost:3001";
 
 const headers = () => {
   return {
