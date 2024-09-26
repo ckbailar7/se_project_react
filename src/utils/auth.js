@@ -2,10 +2,11 @@
 //
 
 import api from "../utils/api";
+import { VITE_API_BASE_URL } from "../env";
 
 export const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://api.wtwr.yote.me"
+    ? VITE_API_BASE_URL
     : "http://localhost:3001";
 
 export const register = ({ avatar, email, name, password }) => {
