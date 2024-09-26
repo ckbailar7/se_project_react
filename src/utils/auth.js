@@ -2,7 +2,7 @@
 //
 
 import api from "../utils/api";
-import { VITE_API_BASE_URL } from "../env";
+import { VITE_API_BASE_URL } from ".env";
 
 export const BASE_URL =
   process.env.NODE_ENV === "production"
