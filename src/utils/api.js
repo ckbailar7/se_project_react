@@ -2,7 +2,7 @@ import { getToken } from "./token";
 
 const base_URL =
   process.env.NODE_ENV === "production"
-    ? import.meta.env.VITE_API_BASE_URL
+    ? "https://api.wtwr.yote.me"
     : "http://localhost:3001";
 
 const headers = () => {
