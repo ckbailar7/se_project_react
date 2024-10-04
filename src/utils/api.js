@@ -39,7 +39,15 @@ export const getUserInfo = async () => {
 const getItems = () => {
   return handleRequest(`${base_URL}/items`, {
     method: "GET",
-  });
+    headers: headers(),
+  })
+    .then((data) => {
+      console.log("Fetched Items:", data);
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching items:", error);
+    });
 };
 
 const addNewItem = async (name, imageUrl, weather) => {
