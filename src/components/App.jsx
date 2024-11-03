@@ -218,8 +218,8 @@ function App() {
         console.log("Response from onAttemptRegistration", res);
         if (res.user) {
           // localStorage.setItem("jwt", res.token);
-          setToken(res.user);
-          authorize({ email, password });
+          // setToken(res.user);
+          handleLogin({ email, password });
           // Storing the Token
           setCurrentUser({ name, avatar, email }); // Update cyrrentUser state variable
           setIsLoggedIn(true); // Update the isLoggedIn state
