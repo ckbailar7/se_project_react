@@ -3,10 +3,12 @@
 
 import api from "../utils/api";
 
-export const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://api.wtwr.yote.me"
-    : "http://localhost:3001";
+// export const BASE_URL =
+//   process.env.NODE_ENV === "production"
+//     ? "https://api.wtwr.yote.me"
+//     : "http://localhost:3001";
+
+const BASE_URL = import.meta.env.PROD ? import.meta.env.VITE_API_URL : "http://localhost:3001";
 
 export const register = ({ avatar, email, name, password }) => {
   console.log("req ==>>", { avatar, email, name, password });
