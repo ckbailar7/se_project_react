@@ -12,4 +12,4 @@ The idea of the application is pretty simple - we make a call to an API, which t
 
 ## Domain name
 
-"https://wtwr.yote.me"
+"https://wtwr-frontend.onrender.com"
