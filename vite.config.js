@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
       htmlPlugin(mode),
       svgrPlugin(),
     ],
-    base: "/se_project_react/",
+    // base: "/se_project_react/",
   };
 });
 function setEnv(mode) {
